@@ -12,7 +12,9 @@ function onStart() {
 		var realPath = router.route($request);
 		console.log(realPath)
 
-		if ("./" == realPath) { realPath = "./index.html" };
+		if ("/" == realPath) { realPath = "/index.html" };
+
+		realPath = "."+ realPath;
 
 		fs.readFile(realPath,"utf-8",function ($err, $data){
 			if($err) {
