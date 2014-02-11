@@ -15,7 +15,7 @@ function onStart() {
 		var realPath = router.route($request);
 		console.log(realPath)
 
-		if ("/" == realPath) { realPath = "/index.html" };
+		if ("/" == realPath) { realPath = "/"+ welcome };
 
 		realPath = "."+ realPath;
 
