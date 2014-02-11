@@ -19,11 +19,11 @@ function onStart() {
 
 		realPath = "."+ realPath;
 
-		fs.readFile(realPath,"utf-8",function ($err, $data){
+		fs.readFile(realPath, "utf-8", function ($err, $data){
 			if($err) {
 				console.log($err)
 			} else {
-				$response.writeHead(200, {'Content-Type': 'text/html'});
+				$response.writeHead(200, {"Content-Type": "text/html"});
 				$response.write($data);
 				$response.end();
 			}
