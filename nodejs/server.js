@@ -11,7 +11,7 @@ function onStart() {
 
 	console.log(appConf);
 
-	http.createServer(function ($request, $response) {
+	var server = http.createServer(function ($request, $response) {
 		var realPath = router.route($request);
 		console.log(realPath)
 
@@ -21,7 +21,7 @@ function onStart() {
 
 		fs.readFile(realPath, "utf-8", function ($err, $data){
 			if($err) {
-				console.log($err)
+				// console.log($err)
 			} else {
 				$response.writeHead(200, {"Content-Type": "text/html"});
 				$response.write($data);
@@ -29,9 +29,15 @@ function onStart() {
 			}
 		});
 
-	}).listen(port);
+	});
 
-	console.log("Server running at http://127.0.0.1:"+ port +"/");
+	server.setTimeout(3000, function(arg1){
+		// arg1.server._events.request.abort();
+	});
+
+	server.listen(port, function(){
+		console.log("Server running at http://127.0.0.1:%s/", port);
+	});
 }
 
 exports.start = onStart;
