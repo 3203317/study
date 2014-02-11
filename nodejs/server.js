@@ -2,6 +2,7 @@ var http = require("http");
 var fs = require("fs");
 var url = require("url")
 var conf = require("./server.conf")
+var router = require("./router.js")
 
 function onStart() {
 	var port = conf.appConf.port;
@@ -11,8 +12,8 @@ function onStart() {
 
 		var pathname = url.parse($request.url).pathname;
 
-		console.log(pathname);
-
+		router.route(pathname);
+		
 		fs.readFile("./index.html","utf-8",function ($err, $data){
 			if($err) throw $err;
 			$response.writeHead(200, {'Content-Type': 'text/html'});
