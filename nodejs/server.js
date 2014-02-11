@@ -13,9 +13,12 @@ function onStart() {
 
 		console.log(pathname);
 
-		$response.writeHead(200, {"Content-Type": "text/plain"})
-		$response.write("Hello, World!")
-		$response.end()
+		fs.readFile("./index.html","utf-8",function ($err, $data){
+			if($err) throw $err;
+			$response.writeHead(200, {'Content-Type': 'text/html'});
+			$response.write($data);
+			$response.end();
+		});
 
 	}).listen(port);
 
