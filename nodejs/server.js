@@ -1,12 +1,15 @@
-var http = require("http");
-var fs = require("fs");
-var url = require("url")
-var conf = require("./server.conf")
-var router = require("./router.js")
+var http = require("http"),
+	fs = require("fs"),
+	url = require("url"),
+	conf = require("./server.conf"),
+	router = require("./router.js")
 
 function onStart() {
-	var port = conf.appConf.port;
-	console.log(conf)
+	var appConf = conf.appConf,
+		port = appConf.port,
+		welcome = appConf.welcome;
+
+	console.log(appConf);
 
 	http.createServer(function ($request, $response) {
 		var realPath = router.route($request);
