@@ -9,16 +9,19 @@ function onStart() {
 	console.log(conf)
 
 	http.createServer(function ($request, $response) {
+		var realPath = router.route($request);
+		console.log(realPath)
 
-		var pathname = url.parse($request.url).pathname;
+		if ("./" == realPath) { realPath = "./index.html" };
 
-		router.route(pathname);
-		
-		fs.readFile("./index.html","utf-8",function ($err, $data){
-			if($err) throw $err;
-			$response.writeHead(200, {'Content-Type': 'text/html'});
-			$response.write($data);
-			$response.end();
+		fs.readFile(realPath,"utf-8",function ($err, $data){
+			if($err) {
+				console.log($err)
+			} else {
+				$response.writeHead(200, {'Content-Type': 'text/html'});
+				$response.write($data);
+				$response.end();
+			}
 		});
 
 	}).listen(port);
