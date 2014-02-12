@@ -22,17 +22,20 @@ function onStart() {
 		fs.readFile(realPath, "utf-8", function ($err, $data){
 			if($err) {
 				// console.log($err)
+                $response.writeHead(404, "not found", {"Content-Type": "text/plain"});
+                $response.write("the request "+ realPath +" is not found");
 			} else {
 				$response.writeHead(200, {"Content-Type": "text/html"});
 				$response.write($data);
-				$response.end();
 			}
+			$response.end();
 		});
 
 	});
 
 	server.setTimeout(3000, function(arg1){
 		// arg1.server._events.request.abort();
+		// console.log(arg1)
 	});
 
 	server.listen(port, function(){
