@@ -24,11 +24,10 @@ function onStart() {
 		var contentType = mime[ext] || "text/plain";
 
 
-		var eee = {
+		var cfg = {
 			fileMatch: /^(gif|png|jpg|js|css|html)$/ig,
 			maxAge: 60 * 60 * 24 * 365
 		};
-
 
 		// if ("/" == realPath) { realPath = "/"+ welcome };
 
@@ -47,19 +46,21 @@ function onStart() {
 				} else {
 					$response.setHeader("Content-Type", contentType);
 
+					/* 设置最后修改时间 */
 					var lastModified = $stats.mtime.toUTCString();
 					var ifModifiedSince = "If-Modified-Since".toLowerCase();
 					$response.setHeader("Last-Modified", lastModified);
 
-					if (ext.match(eee.fileMatch)) {
+					if (ext.match(cfg.fileMatch)) {
 						var expires = new Date();
-						expires.setTime(expires.getTime() + eee.maxAge * 1000);
+						expires.setTime(expires.getTime() + cfg.maxAge * 1000);
+						/* 过期 */
 						$response.setHeader("Expires", expires.toUTCString());
-						$response.setHeader("Cache-Control", "max-age=" + eee.maxAge);
+						/* 缓存 */
+						$response.setHeader("Cache-Control", "max-age=" + cfg.maxAge);
 					}
 
-					if($request.headers[ifModifiedSince] && lastModified == $request.headers[ifModifiedSince]) {
-						console.log("从浏览器cache里取")
+					if($request.headers[ifModifiedSince] && lastModified === $request.headers[ifModifiedSince]) {
 						$response.writeHead(304, "Not Modified");
 						$response.end();
 					}else{
@@ -67,8 +68,6 @@ function onStart() {
 						rst.on("error", function ($err){
 							console.log($err)
 						});
-
-						// console.log(rst)
 						rst.pipe($response);
 					}
 				}
