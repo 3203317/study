@@ -2,6 +2,7 @@ var http = require("http"),
 	fs = require("fs"),
 	url = require("url"),
 	path = require("path"),
+	zlib = require("zlib"),
 	conf = require("./server.conf"),
 	router = require("./router.js"),
 	mime = require("./mime.js").types;
@@ -26,7 +27,8 @@ function onStart() {
 
 		var cfg = {
 			fileMatch: /^(gif|png|jpg|js|css|html)$/ig,
-			maxAge: 60 * 60 * 24 * 365
+			maxAge: 60 * 60 * 24 * 365,
+			match: /css|js|html/ig
 		};
 
 		// if ("/" == realPath) { realPath = "/"+ welcome };
@@ -68,7 +70,20 @@ function onStart() {
 						rst.on("error", function ($err){
 							console.log($err)
 						});
-						rst.pipe($response);
+
+                        var acceptEncoding = $request.headers["accept-encoding"] || "";
+						var matched = ext.match(cfg.match);
+
+						if (matched && acceptEncoding.match(/\bgzip\b/)) {
+                            $response.writeHead(200, "Ok", {"Content-Encoding": "gzip"});
+                            rst.pipe(zlib.createGzip()).pipe($response);
+						} else if (matched && acceptEncoding.match(/\bdeflate\b/)) {
+                            $response.writeHead(200, "Ok", {"Content-Encoding": "deflate"});
+                            rst.pipe(zlib.createDeflate()).pipe($response);
+						} else {
+                            $response.writeHead(200, "Ok");
+							rst.pipe($response);
+						}
 					}
 				}
 			}
