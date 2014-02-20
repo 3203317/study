@@ -33,8 +33,7 @@
 	<body>
 		<div class="navbar navbar-fixed-top" role="navigation">
 			<ul class="breadcrumb">
-				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
-				<li class="active"><a href="../overall2/index.html">卡务管理平台</a></li>
+				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../index.html'">卡务管理平台</a></li>
 				<li class="active">卡片公用功能管理</li>
 				<li><a href="javascript:void(0);" onClick="location.reload()">打印设置</a></li>				
 			</ul>
@@ -102,21 +101,22 @@
 						<div class="olx-print-setup">
 							<div class="btn-group olx-magrinpx">
 								<button class="btn btn-primary olx-glyphicon olx-glyphicon-btn olx-zjdy" data-toggle="modal">证件打印</button>
-							    <button class="btn btn-primary olx-glyphicon olx-glyphicon-btn olx-zjdy" data-toggle="modal" data-target="#addModal">小票打印</button>
+							    <button class="btn btn-primary olx-glyphicon olx-glyphicon-btn olx-zjdy" data-toggle="modal">小票打印</button>
 							</div>
 							<div class="olx-prinul">
 							  <span class="olx-span">默认打印机</span><div class="form-group olx-cheform">						
 									<select class="form-control" id="certificateType">
-										<option value="0">证件号码</option>
-										<option value="1">市民卡号</option>
-										<option value="2">在线帐户</option>
-										<option value="3">电话号码</option>
+										<option value="1">小票打印机</option>
+										<option value="2">证件打印机</option>
+										<option value="3">惠普打印机A4</option>
 									</select>
 								</div>
 							</div>
 							<div class="olx-prinul">
 							  <span class="olx-span">默认业务</span>
 							  <ul class="olx-mrywul olx-cheform">
+							  	<li><input name="" type="checkbox" value=""><span>证卡打印</span></li>
+								<li><input name="" type="checkbox" value=""><span>照片打印</span></li>
 							  	<li><input name="" type="checkbox" value=""><span>发消费卡</span></li>
 								<li><input name="" type="checkbox" value=""><span>修改消费卡密码</span></li>
 								<li><input name="" type="checkbox" value=""><span>修改客户认证方式</span></li>
@@ -129,8 +129,7 @@
 							</div>
 							<div class="olx-prinul">
 							  <span class="olx-span">模板设置</span><div class="olx-chelab olx-tablepan">
-								<button type="submit" class="btn btn-primary olx-glyphicon glyphicon-cog
- olx-glyphicon-btn">证卡打印模板设计</button>	
+								<button type="submit" class="btn btn-primary olx-glyphicon glyphicon-cog olx-glyphicon-btn">证卡打印模板设计</button>	
  						</div>
 							</div>
 						</div>
