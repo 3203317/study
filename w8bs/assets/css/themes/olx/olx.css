@@ -1,0 +1,120 @@
+body {
+	padding-top: 50px;
+}
+ul,li{padding:0; margin:0;}
+li{ list-style-type:none;}
+.table thead tr {
+	/*background-color: red;*/
+}
+
+.container {
+	width: 100%;
+}
+
+.pagination {
+	margin: 0;
+}
+
+.navbar-btn {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.breadcrumb > li + li:before {
+    content: "> ";
+}
+
+/**/
+
+.olx-table-th-center {
+	text-align: center;
+}
+
+.olx-table-td-center {
+	text-align: center;
+}
+
+.olx-glyphicon {
+	position: relative;
+	display: inline-block;
+	font-family: "Glyphicons Halflings";
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-weight: normal;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.olx-glyphicon-btn:before {
+    float: left;
+    /*margin-top: 0px;*/
+}
+
+.olx-form-required {
+	color: red;
+}
+/*样式覆盖*/
+.breadcrumb{ background:#ECF3FB; font-size:12px;border-radius:0;border-bottom:1px #BFD6EC solid; height:38px;}
+.glyphicon{ margin-right:6px;}
+.panel{border-radius:0;}
+.panel-info{ border-color:#BFD6EC;}
+.panel-heading{ padding:0;}
+.panel-info > .panel-heading{ background:#EFF5FB; height:34px; border-color:#BFD6EC;  color:#666666;}
+.panel-title{font-size:12px;padding-left:10px; line-height:36px;}
+.panel-body{ padding:10px;}
+.form-control{border:1px #DBE8F4 solid;border-radius:0; font-size:12px; height:26px; padding:2px; color:#999898;}
+.form-inline select.form-control{ width:140px;}
+.btn{ border-radius:0; font-size:12px; padding:2px 10px;}
+.btn-group > .btn + .dropdown-toggle{padding-bottom:6px;}
+.btn-default{background-image:linear-gradient(to bottom, #ffffff 0px, #E2E2E2 100%); text-shadow: 0px 0px 0px;}
+.glyphicon-search:before{ margin-right:5px;margin-top:1px;}
+.glyphicon-info-sign:before{margin-right:5px;margin-top:1px;}
+.glyphicon-plus-sign:before{margin-right:5px;margin-top:1px;}
+.glyphicon-edit:before{margin-right:5px;margin-top:1px;}
+.glyphicon-remove-sign:before{margin-right:5px;margin-top:1px;}
+.glyphicon-export:before{margin-right:5px;margin-top:1px;}
+.panel-default > .panel-heading{background:#EFF5FB; height:32px; border-color:#BFD6EC;  color:#666666;}
+.btn-group{ padding-top:2px; padding-left:10px;}
+.navbar-btn{ margin-bottom:0; margin-right:10px;}
+.panel-default{border-color:#BFD6EC;}
+.olx-prompt{ line-height:32px; font-size:12px;}
+.olx-amount ul{padding:0; margin:0;}
+.olx-amount li{ float:left; list-style-type:none; color:#408BCA; margin:0 20px 0px 5px; height:32px; padding:0;}
+.olx-amount li label{color:#FF0000;}
+.panel-footer{ padding:5px; background:none; color:#FF0000; font-size:12px;}
+.close{opacity:1; line-height:normal;margin-right:10px; line-height:32px;color:#408BCA; font-size:26px;}
+.print{ color:#408BCA;font-size:16px;margin-right:3px;} 
+.xlx-alert{ background:#F3F8FC;border-color:#BFD6EC;border-radius:0px; padding:6px;font-size:12px; color:#333;}
+.oxl-form{ padding-top:2px;padding-left:5px;padding-bottom:2px;}
+.olx-chelab{ float:left; font-size:12px; padding-left:5px;padding-top:5px;padding-right:8px;}
+.olx-chelab input{ margin-top:2px; margin-right:3px;float:left;}
+.olx-head{background:#EFF5FB;  border:1px solid #BFD6EC; margin-bottom:10px;border-radius:0;}
+.olx-glyphicon-btn:before{ margin-right:5px; margin-top:1px; font-size:14px;}
+.olx-tablepan{ margin-bottom:5px;}
+.olx-print-setup{ margin:10px auto 0 auto; width:360px; overflow:hidden;}
+.olx-prinul{ font-size:12px; margin-top:10px; clear:both;}
+.olx-span{ float:left; width:72px; text-align:right;line-height:26px;}
+.olx-cheform{ float:left; margin-bottom:0px;margin-left:5px;}
+.olx-mrywul{ width:270px;}
+.olx-mrywul li{width:128px; float:left; color:#999898;line-height:26px;}
+.olx-mrywul input{ margin-top:6px; float:left; margin-right:5px; }
+.olx-zjdy{ font-size:14px; font-family:"微软雅黑"; font-weight:normal;padding:5px 20px;}
+.olx-magrinpx{margin-left:67px;}
+.olx-inputul li{float:left; width:160px;margin-right:10px;}
+.olx-groupinp{margin-bottom:8px;}
+.olx-consumption{ width:360px; font-size:14px; font-weight:bold;margin-top:6px; margin-bottom:10px;color:#666666;}
+.olx-consumption span{ padding-right:20px;}
+.olx-consumption span b{ color:#FF0000;}
+.olx-delpadding{padding-left:0; margin-bottom:10px;}
+.olx-ediwidht{ width:568px;}
+.olx-progress{border-radius:0px; margin-bottom:0px;}
+.olx-pubwid{  width:568px; margin-top:10px;}
+.olx-ediinp{ width:445px; float:left; margin-right:10px;}
+.olx-promptcon{ font-size:12px;padding:10px; line-height:24px;}
+.olx-templateleft{float:left;}
+.olx-templateright{width:310px; float:left; margin-left:10px;}
+.olx-imagephoto{width:186px; height:176px; border:2px solid #BFD6EC; padding:1px; float:left;}
+.olx-photointo{ float:left; padding-left:10px; line-height:24px; font-size:12px; color:#666666;}
+.olx-againediwidht{ width:668px;}
+.olx-sex{ font-size:12px;color:#999999;}
+.olx-sex label{ font-weight:normal;}
+.olx-sex span{ padding-right:10px;}

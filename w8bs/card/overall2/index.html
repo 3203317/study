@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<title>OverAll</title>
+		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+	    <!-- Bootstrap -->
+	    <link rel="stylesheet" type="text/css" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap.min.css" media="screen">
+	    <link rel="stylesheet" type="text/css" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap-theme.min.css" media="screen">
+
+		<!--[if lte IE 9]>
+		<link rel="stylesheet" type="text/css" href="/cdn/js/bsie/0.0.0/css/bootstrap-ie6.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/bsie/0.0.0/css/ie.css">
+		<link rel="stylesheet" type="text/css" href="/verybsie/css/bootstrap-verybsie.css">
+		<![endif]-->
+
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/verybsie/css/bootstrap-verybsie.css">
+		<![endif]-->
+		
+	    <!-- Olx -->
+	    <link rel="stylesheet" type="text/css" href="/olxjs/css/olx.css" media="screen">
+	    <link rel="stylesheet" type="text/css" href="../../assets/css/themes/olx/olx.css" media="screen">
+
+		<style>
+		.olx-table { font-size:12px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top" role="navigation">
+			<ul class="breadcrumb">
+				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
+				<li class="active">运营管理</li>
+				<li class="active">客户管理</li>
+				<li><a href="javascript:void(0);" onClick="location.reload()">客户基本信息管理</a></li>				
+			</ul>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" style="margin-bottom:-10px">
+					<div id="info_alert" class="alert alert-info collapse">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>小提示：</strong>如果要查询某个客户详细的基本信息，请选择查询条件。
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="margin-bottom:-10px">
+ 					<div class="panel panel-default table-responsive">
+ 						<div class="panel-heading">
+							<div class="olx-prompt">
+								<div class="olx-amount">
+									<ul>
+										<li><strong>当前授权余额：<label>99999.99</label>元</strong></li>
+										<li><strong>总金额：<label>0.00</label>元</strong></li>
+									</ul>
+								</div>
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<button type="button" class="close print" data-dismiss="alert"> <span class="glyphicon glyphicon-print"></span></button>							
+							
+							</div>
+
+ 						</div>
+
+						<table id="table1" data-olx-type="olx.grid" class="table table-bordered table-hover table-condensed table-striped olx-table" data-url="grid_2.html" data-current="2" data-pagesize="20" data-count="561">
+					
+							<tbody>
+								<tr>
+									<td>售卡张数：0 </td>
+									<td>钱包充值张数：0 </td>
+									<td>充值撤销张数：0 </td>
+									<td>补卡张数：0</td>
+									<td>挂失张数：0   </td>
+									<td>有卡销户张数：0</td>
+									<td>无卡销户张数：0</td>
+								</tr>
+								<tr>
+									
+									<td>售卡成本：0.00 </td>
+									<td>钱包充值金额：0.00 </td>
+									<td>充值撤销金额：0.00</td>
+									<td>领取冻结金额：0.00 </td>
+									<td>解挂张数：0</td>
+									<td>有卡销户金额：0.00</td>
+									<td>无卡销户金额：0.00</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="panel-footer">
+							提示信息：今天还没有结算！
+ 						</div>
+					</div>
+				</div>
+			</div>
+
+	</div>
+		<div id="addModal" class="modal fade" aria-hidden="true" aria-labelledby="addModalLabel" role="dialog" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+						<h4 id="addModalLabel" class="modal-title"><b>新增</b></h4>
+					</div>
+					<form id="addForm" data-olx-type="olx.form" class="form-horizontal" role="form" onSubmit="return false;">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="addForm_customerName" class="col-sm-3 control-label">客户名称</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="addForm_customerName" placeholder="客户名称" required autofocus>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="addForm_customerNameAddr" class="col-sm-3 control-label">客户地址</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="addForm_customerNameAddr" placeholder="客户地址" required autofocus>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="addForm_telNum" class="col-sm-3 control-label">电话号码</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="addForm_telNum" placeholder="电话号码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="addForm_email" class="col-sm-3 control-label">电子邮箱</label>
+								<div class="col-sm-7">
+									<input type="email" class="form-control" id="addForm_email" placeholder="电子邮箱">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="addForm_zipcode" class="col-sm-3 control-label">邮编</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="addForm_zipcode" placeholder="邮编" pattern="\d{6}" required autofocus>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+							<button class="btn btn-primary" type="submit">保存</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div id="editModal" class="modal fade" aria-hidden="true" aria-labelledby="editModalLabel" role="dialog" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+						<h4 id="editModalLabel" class="modal-title"><b>编辑</b></h4>
+					</div>
+					<form id="editForm" name="editForm" data-olx-type="olx.form" class="form-horizontal" role="form" data-url="edit.do">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="editForm_customerName" class="col-sm-3 control-label"><span class="olx-form-required">*</span>客户名称</label>
+								<div class="col-sm-7">
+									<input type="text" data-olx-type="olx.form.input" data-pattern="^\d{6}$" data-required="true" class="form-control" id="editForm_customerName" name="editForm_customerName" placeholder="客户名称" data-placement="bottom" data-original-title="请输入正确的格式。" autofocus>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editForm_customerNameAddr" class="col-sm-3 control-label">客户地址</label>
+								<div class="col-sm-7">
+									<input type="text" data-olx-type="olx.form.input" class="form-control" id="editForm_customerNameAddr" name="editForm_customerNameAddr" placeholder="客户地址">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editForm_telNum" class="col-sm-3 control-label">电话号码</label>
+								<div class="col-sm-7">
+									<input type="text" data-olx-type="olx.form.input" class="form-control" id="editForm_telNum" name="editForm_telNum" placeholder="电话号码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editForm_email" class="col-sm-3 control-label">电子邮箱</label>
+								<div class="col-sm-7">
+									<input type="text" data-olx-type="olx.form.input" class="form-control" id="editForm_email" name="editForm_email" placeholder="电子邮箱">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editForm_zipcode" class="col-sm-3 control-label">邮编</label>
+								<div class="col-sm-7">
+									<input type="text" data-olx-type="olx.form.input" data-pattern="^\d{6}$" class="form-control" id="editForm_zipcode" name="editForm_zipcode" placeholder="邮编" data-placement="bottom" data-original-title="请输入正确的邮编格式，例如：450000。" autofocus>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+							<button class="btn btn-warning" type="reset">重置</button>
+							<button class="btn btn-primary" type="submit">保存</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="delConfirmModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"><b>警告</b></h4>
+					</div>
+					<div class="modal-body">
+						<p>你确认执行该删除操作吗？</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="delConfirmModal_btn_submit">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="delAlertModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"><b>提示</b></h4>
+					</div>
+					<div class="modal-body">
+						<p>请选择需要删除的记录！</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="editAlertModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"><b>提示</b></h4>
+					</div>
+					<div class="modal-body">
+						<p>请选择一条需要编辑的记录！</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Bootstrap -->
+		<script type="text/javascript" src="/cdn/js/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/cdn/js/underscore/1.5.1/underscore.min.js"></script>
+
+		<!-- Olx -->
+		<script type="text/javascript" src="/olxjs/js/olx.js?v12"></script>
+
+		<!--[if lte IE 9]>
+			<script type="text/javascript" src="/cdn/js/html5shiv/3.7.0/html5shiv.js"></script>
+			<script type="text/javascript" src="/cdn/js/respond/1.3.0/respond.min.js"></script>
+		<![endif]-->
+
+		<!--[if lte IE 7]>
+		<script type="text/javascript" src="/verybsie/js/bootstrap-verybsie.js"></script>
+		<![endif]-->
+
+		<!-- Own -->
+		<script type="text/javascript" src="index.js"></script>
+
+	</body>
+</html>
