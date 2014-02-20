@@ -53,6 +53,9 @@ li{ list-style-type:none;}
 	color: red;
 }
 /*样式覆盖*/
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbod{background-color:#F7FBFF;}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{ border:1px solid #BFD6EC;}
 .breadcrumb{ background:#ECF3FB; font-size:12px;border-radius:0;border-bottom:1px #BFD6EC solid; height:38px;}
 .glyphicon{ margin-right:6px;}
 .panel{border-radius:0;}
@@ -118,3 +121,5 @@ li{ list-style-type:none;}
 .olx-sex{ font-size:12px;color:#999999;}
 .olx-sex label{ font-weight:normal;}
 .olx-sex span{ padding-right:10px;}
+.olx-redcolor{ color:#FF0000;}
+.olx-thcolor{ background:#EFF5FB;}
