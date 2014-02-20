@@ -33,15 +33,19 @@
 	<body>
 		<div class="navbar navbar-fixed-top" role="navigation">
 			<ul class="breadcrumb">
-				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
-				<li class="active"><a href="../overall2/index.html">卡务管理平台</a></li>
-				<li class="active">卡片公用功能管理</li>
-				<li><a href="javascript:void(0);" onClick="location.reload()">打印设置</a></li>				
+				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="index.html">卡务管理平台</a></li>
 			</ul>
 		</div>
 
 		<div class="container">
-		
+			<div class="row">
+				<div class="col-md-12" style="margin-bottom:-10px">
+					<div id="info_alert" class="alert alert-info collapse">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>小提示：</strong>如果要查询某个客户详细的基本信息，请选择查询条件。
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12" style="margin-bottom:-10px">
  					<div class="panel panel-default table-responsive">
@@ -90,59 +94,7 @@
 					</div>
 				</div>
 			</div>
-				<div class="row">
-				<div class="col-md-12" style="margin-bottom:-10px">
-				
- 					<div class="panel panel-default table-responsive olx-tablepan">
- 						
-<div class="panel-heading">
-							<div class="olx-chelab"><strong>操作提示：</strong>请先选择对应的打印机</div>
-							
- 						</div>
-						<div class="olx-print-setup">
-							<div class="btn-group olx-magrinpx">
-								<button class="btn btn-primary olx-glyphicon olx-glyphicon-btn olx-zjdy" data-toggle="modal">证件打印</button>
-							    <button class="btn btn-primary olx-glyphicon olx-glyphicon-btn olx-zjdy" data-toggle="modal" data-target="#addModal">小票打印</button>
-							</div>
-							<div class="olx-prinul">
-							  <span class="olx-span">默认打印机</span><div class="form-group olx-cheform">						
-									<select class="form-control" id="certificateType">
-										<option value="0">证件号码</option>
-										<option value="1">市民卡号</option>
-										<option value="2">在线帐户</option>
-										<option value="3">电话号码</option>
-									</select>
-								</div>
-							</div>
-							<div class="olx-prinul">
-							  <span class="olx-span">默认业务</span>
-							  <ul class="olx-mrywul olx-cheform">
-							  	<li><input name="" type="checkbox" value=""><span>发消费卡</span></li>
-								<li><input name="" type="checkbox" value=""><span>修改消费卡密码</span></li>
-								<li><input name="" type="checkbox" value=""><span>修改客户认证方式</span></li>
-								<li><input name="" type="checkbox" value=""><span>电子钱包充值</span></li>
-								<li><input name="" type="checkbox" value=""><span>发消费卡</span></li>
-								<li><input name="" type="checkbox" value=""><span>发消费卡</span></li>
-								<li><input name="" type="checkbox" value=""><span>发消费卡</span></li>
-								<li><input name="" type="checkbox" value=""><span>发消费卡</span></li>
-							  </ul>
-							</div>
-							<div class="olx-prinul">
-							  <span class="olx-span">模板设置</span><div class="olx-chelab olx-tablepan">
-								<button type="submit" class="btn btn-primary olx-glyphicon glyphicon-cog
- olx-glyphicon-btn">证卡打印模板设计</button>	
- 						</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel-heading olx-print-setup">
-						<div class="btn-group olx-magrinpx">
-								<button class="btn btn-primary olx-glyphicon glyphicon-info-sign olx-glyphicon-btn" data-toggle="modal">测试</button>
-							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" data-target="#addModal">保存设置</button>
-							</div>
-				</div>
-			</div>
-     </div>
+
 	</div>
 		<div id="addModal" class="modal fade" aria-hidden="true" aria-labelledby="addModalLabel" role="dialog" tabindex="-1">
 			<div class="modal-dialog">
