@@ -33,10 +33,9 @@
 	<body>
 		<div class="navbar navbar-fixed-top" role="navigation">
 			<ul class="breadcrumb">
-				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
-				<li class="active">卡务管理平台</li>
-				<li class="active">客户管理</li>
-				<li><a href="javascript:void(0);" onClick="location.reload()">客户基本信息管理</a></li>				
+				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../index.html'">卡务管理平台</a></li>
+				<li class="active">消费卡管理</li>
+				<li><a href="javascript:void(0);" onClick="location.reload()">客户信息批量导入</a></li>				
 			</ul>
 		</div>
 
@@ -118,14 +117,14 @@
 									
 								</div>
 								<div class="olx-print-setup olx-ediwidht">
-									<div class="progress olx-progress">
+									<div class="progress progress-striped active olx-progress">
 									  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
 										<span class="sr-only">60% Complete</span>
 									  </div>
                                     </div>
 									<textarea name="" cols="" rows="" class="olx-pubwid"></textarea>
 									<div class="form-group olx-pubwid">
-										<input type="text" class="form-control olx-ediinp" id="inputEmail3" placeholder="客户卡号"><button type="submit" class="btn btn-primary olx-glyphicon glyphicon-folder-open
+										<input type="text" class="form-control olx-ediinp" id="inputEmail3" placeholder="客户卡号"><button type="file" class="btn btn-primary olx-glyphicon glyphicon-folder-open
  olx-glyphicon-btn">选择导出文件</button>
 								</div>
 								
@@ -134,7 +133,7 @@
 							<div class="panel-heading olx-print-setup olx-ediwidht">
 								<div class="btn-group olx-delpadding">
 										<button class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn" data-toggle="modal">导入</button>
-										<button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" data-target="#addModal">取消</button>
+										<button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal">取消</button>
 									</div>
 						</div>
 					</div>
