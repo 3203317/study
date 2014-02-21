@@ -103,7 +103,7 @@ padding: 0;
 
 
 	</div>
-	<div class="conbody"><iframe border="0" frameborder="0" width="100%" height="100%" frameborder="0" src="card/index.html"></iframe></div>
+	<div class="conbody"><iframe id="newframe" border="0" frameborder="0" width="100%" height="100%" frameborder="0" src="card/index.html"></iframe></div>
 </div>
 <div id="footer">
 <span>版权所有：郑州新开普电子股份有限公司</span>
@@ -116,6 +116,18 @@ padding: 0;
 			data: {
 				simpleData: {
 					enable: true
+				}
+			},
+			callback: {
+				beforeClick: function(treeId, treeNode) {
+					var zTree = $.fn.zTree.getZTreeObj("tree");
+					if (treeNode.isParent) {
+						zTree.expandNode(treeNode);
+						return false;
+					} else {
+						$("#newframe").attr("src",treeNode.file);
+						return true;
+					}
 				}
 			}
 		};
@@ -281,9 +293,11 @@ padding: 0;
 			]
 		}, {
 			moduleId: 3, pModuleId: 0, moduleName: "卡务平台", Depth: 10, smallPic: "", bigPic: "", children: [
-				{ moduleId: 11, pModuleId: 1, moduleName: "权限管理", depth: 0, smallPic: "", bigPic: "" },
-				{ moduleId: 12, pModuleId: 1, moduleName: "用户管理", depth: 0, smallPic: "", bigPic: "" },
-				{ moduleId: 13, pModuleId: 1, moduleName: "角色管理", depth: 0, smallPic: "", bigPic: "" }
+				{ moduleId: 311, pModuleId: 3, moduleName: "卡片公用功能管理", depth: 0, smallPic: "frame/images/s1.png", bigPic: "frame/images/n1.png" },
+				{ moduleId: 312, pModuleId: 3, moduleName: "消费卡管理", depth: 0, smallPic: "frame/images/s2.png", bigPic: "frame/images/n2.png", children: [
+					{ id:3121, pId:0, name:"充值撤销", file:"card/czcx/"}
+				] },
+				{ moduleId: 313, pModuleId: 3, moduleName: "功能卡管理", depth: 0, smallPic: "frame/images/s3.png", bigPic: "frame/images/n3.png" }
 			], commonUses: [
 				{ moduleId: 11, pModuleId: 1, moduleName: "权限管理", depth: 0, smallPic: "", bigPic: "frame/images/n7.png" },
 				{ moduleId: 12, pModuleId: 1, moduleName: "用户管理", depth: 0, smallPic: "", bigPic: "frame/images/n8.png" },
