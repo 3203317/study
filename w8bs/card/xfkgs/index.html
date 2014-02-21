@@ -34,7 +34,7 @@
 			<ul class="breadcrumb">
 				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../index.html'">卡务管理平台</a></li>
 				<li class="active">消费卡管理</li>
-				<li><a href="javascript:void(0);" onClick="location.reload()">充值撤销</a></li>				
+				<li><a href="javascript:void(0);" onClick="location.reload()">消费卡挂失</a></li>				
 			</ul>
 		</div>
 
@@ -47,8 +47,8 @@
 							<div class="olx-prompt">
 								<div class="olx-amount">
 									<ul>
-										<li><strong>当前授权余额：<label>99999.99</label>元</strong></li>
-										<li><strong>总金额：<label>0.00</label>元</strong></li>
+										<li><strong>当前授权余额：<label>99999.99</label> 元</strong></li>
+										<li><strong>总金额：<label>0.00</label> 元</strong></li>
 									</ul>
 								</div>
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -91,7 +91,7 @@
 				<div class="row">
 				<div class="col-md-12" style="margin-bottom:-10px">
 					<div id="info_alert" class="alert alert-info xlx-alert">
-						<strong>操作提示：</strong>请先点击<span class="olx-redcolor">“读卡”</span>获取充值信息;最后一笔交易记录为充值类，可完全撤销单笔充值
+						<strong>操作提示：</strong>请先输入查询条件或点击<span class="olx-redcolor">“读身份证”</span>，再查询操作
 					</div>
 				</div>
 			</div>
@@ -99,162 +99,154 @@
 				<div class="col-md-12" style="margin-bottom:-10px">
 				<div class="panel-heading olx-head">
 							<form class="form-inline oxl-form" role="form">
-								<button type="submit" class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn">读卡</button>
+								<div class="form-group">
+									<input type="text" class="form-control" id="certificateCode" placeholder="卡号" required autofocus>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="inputEmail3" placeholder="姓名">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="inputEmail3" placeholder="证件号码">
+								</div>
+								<div class="btn-group">
+								<button class="btn btn-primary olx-glyphicon glyphicon-info-sign olx-glyphicon-btn" data-toggle="modal">读取身份证</button>
+							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" data-target="#addModal">查询</button>
+							</div>
 							</form>
  						</div>
  					<div class="panel panel-default table-responsive olx-tablepan">
- 					  <table id="table1" data-olx-type="olx.grid" class="table table-bordered table-hover table-condensed table-striped olx-table" data-url="grid_2.html" data-current="2" data-pagesize="20" data-count="561">
-                        <thead>
-                          <tr class="olx-thcolor">
-                            <th >编号</th>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>卡号</th>
-                            <th>交易日期</th>
-                            <th>交易金额</th>
-                            <th>交易类型</th>
-                            <th>操作员</th>
-                            <th>充值网点</th>
-							<th>终端名</th>
-							<th>操作</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                           <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                           <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                          <tr>
-                            <td>001</td>
-                            <td>张潇潇 </td>
-                            <td>男</td>
-                            <td>2013122300045</td>
-                            <td>2012-12-15</td>
-                            <td class="olx-redcolor">￥20</td>
-                            <td>充值</td>
-                            <td>caozuoyuan_01</td>
-                            <td>公交总公司充值点</td>
-							<td>充值机001</td>
-							<td><a href="">撤销</a></td>
-                          </tr>
-                        </tbody>
-                      </table>
- 					</div>
-					
-			</div>
+ 						
+
+						<table id="table1" data-olx-type="olx.grid" class="table table-bordered table-hover table-condensed table-striped olx-table" data-url="grid_2.html" data-current="2" data-pagesize="20" data-count="561">
+							<thead>
+								<tr class="olx-thcolor">
+									<th>卡号</th>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>证件号码</th>
+									<th>开户日期</th>
+									<th>卡状态</th>
+									<th>卡类型</th>
+									<th>卡余额</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								<tr>
+									<td>2013123000001</td>
+									<td>张潇潇 </td>
+									<td>男</td>
+									<td>410105201312237779</td>
+									<td>2013-12-30</td>
+									<td>正常</td>
+									<td>普通消费卡</td>
+									<td class="olx-redcolor">￥25.68</td>
+									<td><a href="">挂失</a></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
 		</div>
 	</div>
 		<div id="addModal" class="modal fade" aria-hidden="true" aria-labelledby="addModalLabel" role="dialog" tabindex="-1">
