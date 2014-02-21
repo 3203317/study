@@ -22,8 +22,7 @@
 		<![endif]-->
 		
 	    <!-- Olx -->
-	    <link rel="stylesheet" type="text/css" href="/olxjs/css/olx.css" media="screen">
-	    <link rel="stylesheet" type="text/css" href="../../assets/css/themes/olx/olx.css" media="screen">
+	    <link rel="stylesheet" type="text/css" href="../../assets/css/olx/olx.css" media="screen">
 
 		<style>
 		.olx-table { font-size:12px;
@@ -33,10 +32,9 @@
 	<body>
 		<div class="navbar navbar-fixed-top" role="navigation">
 			<ul class="breadcrumb">
-				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
-				<li class="active">卡务管理平台</li>
-				<li class="active">客户管理</li>
-				<li><a href="javascript:void(0);" onClick="location.reload()">客户基本信息管理</a></li>				
+				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../index.html'">卡务管理平台</a></li>
+				<li class="active">消费卡管理</li>
+				<li><a href="javascript:void(0);" onClick="location.reload()">消费卡挂失</a></li>				
 			</ul>
 		</div>
 
@@ -102,13 +100,13 @@
 				<div class="panel-heading olx-head">
 							<form class="form-inline oxl-form" role="form">
 								<div class="form-group">
-									<input type="text" class="form-control" id="certificateCode" placeholder="请输入号码" required autofocus>
+									<input type="text" class="form-control" id="certificateCode" placeholder="卡号" required autofocus>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="inputEmail3" placeholder="客户姓名">
+									<input type="text" class="form-control" id="inputEmail3" placeholder="姓名">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="inputEmail3" placeholder="客户卡号">
+									<input type="text" class="form-control" id="inputEmail3" placeholder="证件号码">
 								</div>
 								<div class="btn-group">
 								<button class="btn btn-primary olx-glyphicon glyphicon-info-sign olx-glyphicon-btn" data-toggle="modal">读取身份证</button>
