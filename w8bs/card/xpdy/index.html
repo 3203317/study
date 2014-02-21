@@ -22,7 +22,7 @@
 		<![endif]-->
 		
 	    <!-- Olx -->
-	    <link rel="stylesheet" type="text/css" href="../assets/css/olx/olx.css" media="screen">
+	    <link rel="stylesheet" type="text/css" href="../../assets/css/olx/olx.css" media="screen">
 
 		<style>
 		.olx-table { font-size:12px;
@@ -32,19 +32,14 @@
 	<body>
 		<div class="navbar navbar-fixed-top" role="navigation">
 			<ul class="breadcrumb">
-				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="location.reload()">卡务管理平台</a></li>
+				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../index.html'">卡务管理平台</a></li>
+				<li class="active">消费卡管理</li>
+				<li><a href="javascript:void(0);" onClick="location.reload()">小票打印</a></li>				
 			</ul>
 		</div>
 
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12" style="margin-bottom:-10px">
-					<div id="info_alert" class="alert alert-info collapse">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<strong>小提示：</strong>如果要查询某个客户详细的基本信息，请选择查询条件。
-					</div>
-				</div>
-			</div>
+		
 			<div class="row">
 				<div class="col-md-12" style="margin-bottom:-10px">
  					<div class="panel panel-default table-responsive">
@@ -93,7 +88,186 @@
 					</div>
 				</div>
 			</div>
+				<div class="row">
+				<div class="col-md-12" style="margin-bottom:-10px">
+					<div id="info_alert" class="alert alert-info xlx-alert">
+						<strong>操作提示：</strong>请先点击<span class="olx-redcolor">“读卡”</span>查询客户账户信息
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="margin-bottom:-10px">
+				<div class="panel-heading olx-head">
+							<div class="olx-chelab"><input type="checkbox" value="1"><span>最近十笔</span></div>
+							<form class="form-inline oxl-form" role="form">
+								<div class="form-group">						
+									<select class="form-control" id="certificateType">
+										<option value="0">证件号码</option>
+										<option value="1">市民卡号</option>
+										<option value="2">在线帐户</option>
+										<option value="3">电话号码</option>
+									</select>
+								</div>
+								<div class="form-group">		
+									<select class="form-control" id="certificate">
+										<option value="0">身份证</option>
+										<option value="1">军官证</option>
+										<option value="2">护照</option>
+										<option value="3">其他证件</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="certificateCode" placeholder="请输入号码" required autofocus>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="inputEmail3" placeholder="客户姓名">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="inputEmail3" placeholder="客户卡号">
+								</div>
+								<button type="submit" class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn">读卡</button>
+							</form>
+ 						</div>
+ 					<div class="panel panel-default table-responsive olx-tablepan">
+ 						
 
+						<table id="table1" data-olx-type="olx.grid" class="table table-bordered table-hover table-condensed table-striped olx-table" data-url="grid_2.html" data-current="2" data-pagesize="20" data-count="561">
+							<thead>
+								<tr class="olx-thcolor">
+									<th>编号</th>
+									<th>用户名</th>
+									<th>卡号</th>
+									<th>交易日期</th>
+									<th>交易金额</th>
+									<th>交易类型</th>
+									<th>交易应答</th>
+									<th>是否打印</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>张潇潇 </td>
+									<td>2013123000001</td>
+									<td>2012-10-29 10:58:23</td>
+									<td class="olx-redcolor">￥30</td>
+									<td>发消费卡</td>
+									<td>成功</td>
+									<td>已打印</td>
+									<td><a href="">预览</a>｜<a href="">打印</a></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+					<div class="panel-heading ">
+							<div class="olx-chelab navbar-right olx-tablepan">
+								<button type="submit" class="btn btn-primary olx-glyphicon glyphicon-cog
+ olx-glyphicon-btn">打印设置</button>	
+ 						</div>
+				</div>
+			</div>
+		</div>
 	</div>
 		<div id="addModal" class="modal fade" aria-hidden="true" aria-labelledby="addModalLabel" role="dialog" tabindex="-1">
 			<div class="modal-dialog">
