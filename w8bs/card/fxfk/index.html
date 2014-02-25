@@ -100,16 +100,16 @@
 						<div class="olx-print-setup">
 							<ul class="olx-inputul">
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="卡号" required autofocus>
+									<input type="text" class="form-control" id="a" placeholder="卡号" required autofocus>
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="姓名" required autofocus>
+									<input type="text" class="form-control" id="b" placeholder="姓名" required autofocus>
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="手机号码" required autofocus>
+									<input type="text" class="form-control" id="c" placeholder="手机号码" required autofocus>
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="证件号码" required autofocus>
+									<input type="text" class="form-control" id="d" placeholder="证件号码" required autofocus>
 								</div></li>
 							</ul>
 						</div>
@@ -128,19 +128,19 @@
 						<div class="olx-print-setup">
 							<ul class="olx-inputul">
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="成本费" required autofocus>
+									<input type="text" class="form-control" id="certificateCode" placeholder="成本费" required autofocus value="10.00">
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="卡套费用" required autofocus>
+									<input type="text" class="form-control" id="certificateCode" placeholder="卡套费用" required autofocus value="1.00">
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="管理费" required autofocus>
+									<input type="text" class="form-control" id="certificateCode" placeholder="管理费" required autofocus value="20.00">
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="实收款" required autofocus>
+									<input type="text" class="form-control" id="certificateCode" placeholder="实收款" required autofocus value="50.00">
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="充值金额" required autofocus>
+									<input type="text" class="form-control" id="certificateCode" placeholder="充值金额" required autofocus value="0.00">
 								</div></li>
 							</ul>
 							<div style=" clear:both;"></div>
@@ -153,8 +153,8 @@
 					</div>
 					<div class="panel-heading olx-print-setup">
 						<div class="btn-group olx-delpadding">
-								<button class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn" data-toggle="modal">读卡</button>
-							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal">读取身份证</button>
+								<button class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn" data-toggle="modal" onclick="readCard();">读卡</button>
+							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" onclick="readIdCard()">读取身份证</button>
 								<button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal">发卡</button>
 							</div>
 				</div>
@@ -331,6 +331,18 @@
 
 		<!-- Own -->
 		<script type="text/javascript" src="index.js"></script>
+
+		<script>
+			function readCard(){
+				$("#a").val('410102014119600000');
+			}
+
+			function readIdCard(){
+				$("#b").val('张潇潇');
+				$("#c").val('1383838438');
+				$("#d").val('410102201401010001');
+			}
+		</script>
 
 	</body>
 </html>
