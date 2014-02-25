@@ -100,17 +100,17 @@
 				<div class="panel-heading olx-head">
 							<form class="form-inline oxl-form" role="form">
 								<div class="form-group">
-									<input type="text" class="form-control" id="certificateCode" placeholder="卡号" required autofocus>
+									<input type="text" class="form-control" id="a" placeholder="卡号" required autofocus>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="inputEmail3" placeholder="姓名">
+									<input type="text" class="form-control" id="b" placeholder="姓名">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="inputEmail3" placeholder="证件号码">
+									<input type="text" class="form-control" id="c" placeholder="证件号码">
 								</div>
 								<div class="btn-group">
-								<button class="btn btn-primary olx-glyphicon glyphicon-info-sign olx-glyphicon-btn" data-toggle="modal">读取身份证</button>
-							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" data-target="#addModal">查询</button>
+								<button class="btn btn-primary olx-glyphicon glyphicon-info-sign olx-glyphicon-btn" data-toggle="modal" onclick="readCard()">读取身份证</button>
+							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal">查询</button>
 							</div>
 							</form>
  						</div>
@@ -420,5 +420,12 @@
 		<!-- Own -->
 		<script type="text/javascript" src="index.js"></script>
 
+		<script>
+			function readCard(){
+				$('#a').val('2013123000001');
+				$('#b').val('张三');
+				$('#c').val('410105201312237779');
+			}
+		</script>
 	</body>
 </html>

@@ -107,16 +107,16 @@
 						<div class="olx-print-setup">
 							<ul class="olx-inputul">
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="姓名" required autofocus>
+									<input type="text" class="form-control" id="a" placeholder="姓名" required autofocus>
 								</div></li>
 								<li><div class="form-group olx-groupinp olx-sex">
-									<label>性别：</label><input name="" type="radio" value="" checked><span>男</span><input name="" type="radio" value=""><span>女</span>
+									<label>性别：</label><input name="sex" type="radio" value="" checked><span>男</span><input name="sex" type="radio" value=""><span>女</span>
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="卡号" required autofocus>
+									<input type="text" class="form-control" id="b" placeholder="卡号" required autofocus>
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="钱包余额" required autofocus>
+									<input type="text" class="form-control" id="c" placeholder="钱包余额" required autofocus>
 								</div></li>
 							</ul>
 						</div>
@@ -135,13 +135,13 @@
 						<div class="olx-print-setup">
 							<ul class="olx-inputul">
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="充值金额" required autofocus>
+									<input type="text" class="form-control" id="d" placeholder="充值金额" required autofocus value="20.00">
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="授权余额" required autofocus>
+									<input type="text" class="form-control" id="e" placeholder="授权余额" required autofocus>
 								</div></li>
 								<li><div class="form-group olx-groupinp">
-									<input type="text" class="form-control" id="certificateCode" placeholder="实收金额" required autofocus>
+									<input type="text" class="form-control" id="f" placeholder="实收金额" required autofocus value="50.00">
 								</div></li>
 								
 							</ul>
@@ -155,8 +155,8 @@
 					</div>
 					<div class="panel-heading olx-print-setup">
 						<div class="btn-group olx-delpadding">
-								<button class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn" data-toggle="modal">读卡</button>
-							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal">充值</button>
+								<button class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn" data-toggle="modal" onclick="readCard()">读卡</button>
+							    <button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" data-target="#delConfirmModal">充值</button>
 							
 							</div>
 				</div>
@@ -288,10 +288,11 @@
 						<h4 class="modal-title"><b>提示</b></h4>
 					</div>
 					<div class="modal-body">
-						<p>请选择需要删除的记录！</p>
+						<p>确定要充值金额￥20？</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="delConfirmModal_btn_submit">确认</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -333,6 +334,15 @@
 
 		<!-- Own -->
 		<script type="text/javascript" src="index.js"></script>
+
+		<script>
+			function readCard(){
+				$('#a').val('张潇潇');
+				$('#b').val('2013123000001');
+				$('#c').val('10.00');
+				$('#e').val('无授权');
+			}
+		</script>
 
 	</body>
 </html>

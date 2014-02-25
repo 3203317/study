@@ -98,34 +98,24 @@
 			<div class="row">
 				<div class="col-md-12" style="margin-bottom:-10px">
 				<div class="panel-heading olx-head">
-							<div class="olx-chelab"><input type="checkbox" value="1"><span>最近十笔</span></div>
+							<div class="olx-chelab"><input type="checkbox" value="1" checked><span>最近10笔</span></div>
 							<form class="form-inline oxl-form" role="form">
 								<div class="form-group">						
 									<select class="form-control" id="certificateType">
-										<option value="0">证件号码</option>
-										<option value="1">市民卡号</option>
-										<option value="2">在线帐户</option>
-										<option value="3">电话号码</option>
-									</select>
-								</div>
-								<div class="form-group">		
-									<select class="form-control" id="certificate">
-										<option value="0">身份证</option>
-										<option value="1">军官证</option>
-										<option value="2">护照</option>
-										<option value="3">其他证件</option>
+										<option value="0">发消费卡</option>
+										<option value="1">钱包充值</option>
+										<option value="2">钱包取款</option>
+										<option value="3">充值撤销</option>
+										<option value="3">消费纠错</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="certificateCode" placeholder="请输入号码" required autofocus>
+									<input type="text" class="form-control" id="inputEmail3" placeholder="消费时间起">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="inputEmail3" placeholder="客户姓名">
+									<input type="text" class="form-control" id="inputEmail3" placeholder="消费时间止">
 								</div>
-								<div class="form-group">
-									<input type="text" class="form-control" id="inputEmail3" placeholder="客户卡号">
-								</div>
-								<button type="submit" class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn">读卡</button>
+								<button type="button" class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn">读卡</button>
 							</form>
  						</div>
  					<div class="panel panel-default table-responsive olx-tablepan">
