@@ -121,13 +121,13 @@
 									   
 									</div>
 									<div class="olx-templateright">
-									<input type="text" class="form-control olx-groupinp" id="inputEmail3" placeholder="卡号">
-									<input type="text" class="form-control olx-groupinp" id="inputEmail3" placeholder="证件号码">
-									<input type="text" class="form-control olx-groupinp" id="inputEmail3" placeholder="姓名">
-									<input type="text" class="form-control olx-groupinp" id="inputEmail3" placeholder="性别">
-									<input type="text" class="form-control olx-groupinp" id="inputEmail3" placeholder="开户日期">
-									<input type="text" class="form-control olx-groupinp" id="inputEmail3" placeholder="手机号码">
-									<input type="text" class="form-control olx-groupinp" id="inputEmail3" placeholder="职务">
+									<input type="text" class="form-control olx-groupinp" id="cardCode" placeholder="卡号">
+									<input type="text" class="form-control olx-groupinp" id="a" placeholder="证件号码">
+									<input type="text" class="form-control olx-groupinp" id="b" placeholder="姓名">
+									<input type="text" class="form-control olx-groupinp" id="c" placeholder="性别">
+									<input type="text" class="form-control olx-groupinp" id="d" placeholder="开户日期">
+									<input type="text" class="form-control olx-groupinp" id="e" placeholder="手机号码">
+									<input type="text" class="form-control olx-groupinp" id="f" placeholder="职务">
 									</div>
 									
 									
@@ -136,9 +136,9 @@
 							</div>
 							<div class="panel-heading olx-print-setup olx-againediwidht">
 								<div class="btn-group olx-delpadding">
-										<button class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn" data-toggle="modal">照片采集</button>
-										<button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" data-target="#addModal">读卡</button>
-										<button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" data-target="#addModal">打印</button>
+										<a class="btn btn-primary olx-glyphicon glyphicon-credit-card olx-glyphicon-btn" data-toggle="modal" href="../zpcj/">照片采集</a>
+										<button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal" onclick="readCard()">读卡</button>
+										<button class="btn btn-default olx-glyphicon glyphicon-plus-sign olx-glyphicon-btn" data-toggle="modal">打印</button>
 									</div>
 						</div>
 					</div>
@@ -314,6 +314,18 @@
 
 		<!-- Own -->
 		<script type="text/javascript" src="index.js"></script>
+
+		<script>
+			function readCard(){
+				$("#cardCode").val('2013123000001');
+				$("#a").val('410105201312237779');
+				$("#b").val('张潇潇');
+				$("#c").val('男');
+				$("#d").val('20131230');
+				$("#e").val('15674811748');
+				$("#f").val('学生');
+			}
+		</script>
 
 	</body>
 </html>
