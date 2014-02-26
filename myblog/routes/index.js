@@ -12,6 +12,7 @@ module.exports = function(app) {
 		res.render('User/Login', { 
 			title: 'FOREWORLD 洪荒',
 			atitle: '登陆',
+			virtualPath: '/',
 			title1: category.GetAll()[0] 
 		});
 	});
