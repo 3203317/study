@@ -1,4 +1,4 @@
-﻿<title>${title}#if($!atitle) - ${atitle}#end</title>
+﻿<title><%= title %><% if(typeof atitle !== 'undefined') {%> - <%= atitle %><% } %></title>
 <meta charset="utf-8">
 <meta name="robots" content="all" />
 <meta name="author" content="3203317@qq.com,新" />
