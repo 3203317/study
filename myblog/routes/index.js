@@ -9,6 +9,9 @@ module.exports = function(app) {
 
 
 	app.get('/user/login', function (req, res) {
-		res.render('User/Login', { title: category.GetAll()[0] });
+		res.render('User/Login', { 
+			title: 'FOREWORLD 洪荒',
+			title1: category.GetAll()[0] 
+		});
 	});
 };
