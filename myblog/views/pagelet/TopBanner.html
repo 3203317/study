@@ -1,4 +1,4 @@
-﻿
+
 <div id="banner" class="navbar navbar-inverse navbar-fixed-top" role="banner">
 	<div class="container">
 		<div class="navbar-header">
@@ -13,17 +13,13 @@
 
 		<div id="navbar-collapse" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class='active'>
+				<li>
 					<a href="<%=virtualPath%>index.html">首页</a>
 				</li>
 				<li class="dropdown">
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">分类 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="<%=virtualPath%>archive/category/杂文">杂文</a></li>
-						<li><a href="<%=virtualPath%>archive/category/设计模式">设计模式</a></li>
-						<li><a href="<%=virtualPath%>archive/category/插件">插件</a></li>
-						<li><a href="<%=virtualPath%>archive/category/ASP.NET">ASP.NET</a></li>
-						<li><a href="<%=virtualPath%>archive/category/Java">Java</a></li>
+						<%- include topNavCategory.html -%>
 					</ul>
 				</li>
 				<li>
