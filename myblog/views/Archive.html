@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<%- include pagelet/IndexHeader.html -%>
+	</head>
+	<body>
+		<%- include pagelet/TopBanner.html -%>
+
+		<header id="header"></header>
+
+		<section class="container">
+			<div class="row">
+				<div id="articleIntros" class="col-sm-12 col-md-8">
+		            <!-- #parse('pagelet/TopMessage.html'); -->
+                    <div class="olx-article clearfix">	                    
+	                    <div class="article-content">
+                            <ol class="breadcrumb">
+                                <li><div class="glyphicon glyphicon-home"></div> <a href="<%=virtualPath%>index.html">首页</a></li>
+                                <li class="active">档案馆</li>
+                            </ol>		                    
+		                    <div class="olx-archives">	
+                                <!-- #include("pagelet/archiveList.html") -->
+		                    </div>
+                            <div>
+			                    <a href="javascript:;"><img src="<%=virtualPath%>asset/images/16x16/twitter.png"></a>
+			                    <a href="javascript:;"><img src="<%=virtualPath%>asset/images/16x16/qqwb.png"></a>
+			                    <a href="javascript:;"><img src="<%=virtualPath%>asset/images/16x16/sinawb.png"></a>
+			                    <a href="javascript:;"><img src="<%=virtualPath%>asset/images/16x16/baidu.png"></a>
+		                    </div>
+	                    </div>				
+                    </div>
+				</div>
+				
+				<div class="col-sm-12 col-md-4">
+				
+					<!-- #include("pagelet/top10ViewNums.html")
+
+					#include("pagelet/Top10Comments.html") -->
+
+
+					<div class="panel panel-default olx-panel">
+						<div class="panel-heading">
+							<ul class="nav nav-pills olx-nav-pills">
+								<li class="active"><a href="javascript:;">常用链接</a></li>
+								<li><a href="javascript:;">友情链接</a></li>
+							</ul>
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+					            <!-- #include("pagelet/UsefulLinks.html") -->
+							</div>
+						</div>
+					</div>
+
+					<div id="qrcode">
+						<figure>
+							<img src="<%=virtualPath%>asset/images/archive.png" alt="二维码" title="档案馆">
+						</figure>
+					</div>
+				</div>				
+			</div>
+		</section>
+
+		<%- include pagelet/IndexFooter.html -%>
+
+        <!-- #parse('pagelet/IndexBackTop.html'); -->
+
+		<%- include pagelet/IndexJs.html -%>
+
+		<!-- Own -->
+		<script type="text/javascript" src="<%=virtualPath%>article/article.js"></script>
+
+	</body>
+</html>

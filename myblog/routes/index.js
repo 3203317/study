@@ -16,4 +16,12 @@ module.exports = function(app) {
 			title1: category.GetAll()[0] 
 		});
 	});
+
+	app.get('/archive/', function (req, res) {
+		res.render('Archive', { 
+			title: 'FOREWORLD 洪荒',
+			atitle: '档案馆',
+			virtualPath: '../'
+		});
+	});
 };
