@@ -21,7 +21,8 @@ module.exports = function(app) {
 		res.render('Archive', { 
 			title: 'FOREWORLD 洪荒',
 			atitle: '档案馆',
-			virtualPath: '../'
+			virtualPath: '../',
+			topMessage: '欢迎您。今天是2014年02月28日。'
 		});
 	});
 };
