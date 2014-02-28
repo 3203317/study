@@ -38,6 +38,7 @@ module.exports = function(app) {
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 		res.render('Archive', { 
+			moduleName: 'archives',
 			title: 'FOREWORLD 洪荒',
 			atitle: '档案馆',
 			virtualPath: '../',
