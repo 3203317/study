@@ -12,6 +12,8 @@ module.exports = function(app) {
 		res.render('User/Login', { 
 			title: 'FOREWORLD 洪荒',
 			atitle: '登陆',
+			description: '个人博客',
+			keywords: ',登陆,Bootstrap3',
 			virtualPath: '/',
 			title1: category.GetAll()[0] 
 		});
@@ -41,6 +43,8 @@ module.exports = function(app) {
 			moduleName: 'archives',
 			title: 'FOREWORLD 洪荒',
 			atitle: '档案馆',
+			description: '个人博客',
+			keywords: ',登陆,Bootstrap3',
 			virtualPath: '../',
 			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
 		});

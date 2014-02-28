@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
-		<%- include ../pagelet/IndexHeader.html -%>
+		#parse('pagelet/IndexHeader.html')
 		<style>
 		    #footer 
 		    {
@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		<%- include ../pagelet/TopBanner.html -%>
+		#parse('pagelet/TopBanner.html')
 
 		<header id="header"></header>
 
@@ -39,9 +39,9 @@
 		    </div>
 		</section>
 
-		<%- include ../pagelet/IndexFooter.html -%>
+		#parse('pagelet/IndexFooter.html')
 
-		<%- include ../pagelet/IndexJs.html -%>
+		#parse('pagelet/IndexJs.html')
 
 		<!-- Own -->
 
