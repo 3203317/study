@@ -73,4 +73,29 @@ module.exports = function(app) {
 			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
 		});
 	});
+
+	/**
+	 * 首页
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	*/
+	app.get('/index.html', function (req, res) {
+		var time = new Date();
+		var year = time.getFullYear();
+		var month = p(time.getMonth() + 1);
+		var day = p(time.getDate());
+		res.render('Index', { 
+			moduleName: 'index',
+			title: 'FOREWORLD 洪荒',
+			description: '个人博客',
+			keywords: ',Bootstrap3',
+			virtualPath: '',
+			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
+		});
+	});
+
+
 };
