@@ -2,6 +2,9 @@
 var Category = require('../modules/Category.js'),
 	category = new Category();
 
+var Pagination = require('../modules/Pagination.js'),
+	pagination = new Pagination(1, 20); 
+
 module.exports = function(app) {
 	var indexUI = function (req, res) {
 		var time = new Date();
