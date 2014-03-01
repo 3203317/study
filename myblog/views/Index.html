@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		#parse('pagelet/IndexHeader.html')
+	</head>
+	<body>
+		#parse('pagelet/TopBanner.html')
+
+		<header id="header"></header>
+
+		<section class="container">
+			<div class="row">
+				<div id="articleIntros" class="col-sm-12 col-md-8">
+		            #parse('pagelet/TopMessage.html')
+					#parse("pagelet/topMarks.html")
+		            #parse('pagelet/ArticleIntros.html')
+				</div>
+				<div class="col-sm-12 col-md-4">
+
+					#parse("pagelet/top10ViewNums.html")
+
+					#parse("pagelet/top10Comments.html")
+
+
+					<div class="panel panel-default olx-panel">
+						<div class="panel-heading">
+							<ul class="nav nav-pills olx-nav-pills">
+								<li class="active"><a href="javascript:;">常用链接</a></li>
+								<li><a href="javascript:;">友情链接</a></li>
+							</ul>
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+					            #parse("pagelet/usefulLinks.html")
+							</div>
+						</div>
+					</div>
+
+					<div id="qrcode">
+						<figure>
+							<img src="${virtualPath}asset/images/foreworld.png" alt="二维码" title="洪荒世界">
+						</figure>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-md-8">
+					<a id="loadMore" href="javascript:;" data-current-page="1" class="btn btn-block olx-btn" data-url="${virtualPath}index/more">加载更多...</a>
+				</div>
+			</div>
+		</section>
+
+        #parse('pagelet/IndexFooter.html')
+
+        #parse('pagelet/IndexBackTop.html')
+
+        #parse('pagelet/IndexJs.html')
+
+		<!-- Own -->
+		<script type="text/javascript" src="${virtualPath}index/index.js"></script>
+
+	</body>
+</html>
