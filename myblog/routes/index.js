@@ -3,9 +3,31 @@ var Category = require('../modules/Category.js'),
 	category = new Category();
 
 module.exports = function(app) {
-	app.get('/', function (req, res) {
-		res.render('index', { title: category.GetAll()[0] });
-	});
+	var indexUI = function (req, res) {
+		var time = new Date();
+		var year = time.getFullYear();
+		var month = p(time.getMonth() + 1);
+		var day = p(time.getDate());
+		res.render('Index', { 
+			moduleName: 'index',
+			title: 'FOREWORLD 洪荒',
+			description: '个人博客',
+			keywords: ',Bootstrap3',
+			virtualPath: '',
+			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
+		});
+	};
+
+	/**
+	 * 首页
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	*/
+	app.get('/index.html', indexUI);
+	app.get('/', indexUI);
 
 
 	app.get('/user/login', function (req, res) {
@@ -70,29 +92,6 @@ module.exports = function(app) {
 			description: '个人博客',
 			keywords: ',标签,Bootstrap3',
 			virtualPath: '../../',
-			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
-		});
-	});
-
-	/**
-	 * 首页
-	 *
-	 * @method
-	 * @params req
-	 * @params res
-	 * @return
-	*/
-	app.get('/index.html', function (req, res) {
-		var time = new Date();
-		var year = time.getFullYear();
-		var month = p(time.getMonth() + 1);
-		var day = p(time.getDate());
-		res.render('Index', { 
-			moduleName: 'index',
-			title: 'FOREWORLD 洪荒',
-			description: '个人博客',
-			keywords: ',Bootstrap3',
-			virtualPath: '',
 			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
 		});
 	});
