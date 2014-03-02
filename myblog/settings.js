@@ -1,5 +1,5 @@
 module.exports = { 
-	cookieSecret: 'myblog', 
-	db: 'myblog', 
+	cookieSecret: 'foreworld',
+	db: 'foreworld',
 	host: '127.0.0.1'
 };
