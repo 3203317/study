@@ -33,7 +33,14 @@ module.exports = function(app) {
 	app.get('/index.html', indexUI);
 	app.get('/', indexUI);
 
-
+	/**
+	 * 登陆
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	*/
 	app.get('/user/login', function (req, res) {
 		res.render('User/Login', { 
 			title: 'FOREWORLD 洪荒',
