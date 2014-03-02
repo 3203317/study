@@ -2,8 +2,8 @@
 var Category = require('../modules/Category.js'),
 	category = new Category();
 
-var Pagination = require('../modules/Pagination.js'),
-	pagination = new Pagination(1, 20); 
+var Article = require('../modules/Article.js'),
+	article = new Article();
 
 module.exports = function(app) {
 	var indexUI = function (req, res) {
@@ -11,6 +11,7 @@ module.exports = function(app) {
 		var year = time.getFullYear();
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
+		
 		res.render('Index', { 
 			moduleName: 'index',
 			title: 'FOREWORLD 洪荒',
