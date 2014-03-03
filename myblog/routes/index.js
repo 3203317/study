@@ -1,6 +1,5 @@
 
-var Category = require('../modules/Category.js'),
-	category = new Category();
+var Category = require('../modules/Category.js');
 
 var Article = require('../modules/Article.js'),
 	article = new Article();
@@ -42,14 +41,17 @@ module.exports = function(app) {
 	 * @return
 	*/
 	app.get('/user/login', function (req, res) {
-		res.render('User/Login', { 
-			title: 'FOREWORLD 洪荒',
-			atitle: '登陆',
-			description: '个人博客',
-			keywords: ',登陆,Bootstrap3',
-			virtualPath: '/',
-			title1: category.GetAll()[0] 
-		});
+		Category.getAll(function(err, rows){
+
+			res.render('User/Login', { 
+				title: 'FOREWORLD 洪荒',
+				atitle: '登陆',
+				description: '个人博客',
+				keywords: ',登陆,Bootstrap3',
+				virtualPath: '/',
+				categorys: rows
+			});
+		})
 	});
 
 	/**

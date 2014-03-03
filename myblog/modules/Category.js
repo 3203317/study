@@ -1,11 +1,39 @@
-
+var mongodb = require('./db');
 
 function Category(){
 
 }
 
-Category.prototype.GetAll = function() {
-	return [1,2];
+/**
+ * 获取类型
+ *
+ * @method
+ * @params cb
+ * @return
+*/
+Category.getAll = function(cb) {
+	mongodb.open(function (err, db) {
+		if(err){
+			mongodb.close();
+			return cb(err);
+		}
+
+		db.collection('category', function(err, collection){
+			if(err){
+				mongodb.close();
+				return cb(err);
+			}
+
+			collection.find().toArray(function(err, docs){
+				mongodb.close();
+				if(err){
+					cb(err);
+				}else{
+					cb(null, docs);
+				}
+			});
+		})
+	});
 };
 
 exports = module.exports = Category;
