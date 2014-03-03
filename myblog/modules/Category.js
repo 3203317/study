@@ -24,7 +24,7 @@ Category.getAll = function(cb) {
 				return cb(err);
 			}
 
-			collection.find().toArray(function(err, docs){
+			collection.find().sort({categoryOrder: 1}).toArray(function(err, docs){
 				mongodb.close();
 				if(err){
 					cb(err);
