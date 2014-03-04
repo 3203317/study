@@ -1,30 +1,31 @@
-var mysql = require('mysql');
-var conn = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: '123456',
-	database:'fw_blog',
-	port: 3306
-});
+var mongodb = require('./db');
 
 function Article(){
 
 }
 
-Article.prototype.findArticles = function(pagination, values, cb) {
-	var sql = 'SELECT * FROM F_ARTICLE ORDER BY PostTime DESC limit ?,?';
-
-	conn.connect();
-	conn.query(sql, values, function(err, rows, fields) {
-		if(err) {
-			throw err;
-			conn.end();
-			return;
-		}else{
-			console.log(rows)
-			cb(rows);
+Article.findArticles = function(pagination, cb) {	
+	mongodb.open(function (err, db) {
+		if(err){
+			mongodb.close();
+			return cb(err);
 		}
-		conn.end();
+
+		db.collection('article', function(err, collection){
+			if(err){
+				mongodb.close();
+				return cb(err);
+			}
+
+			collection.find().sort({CategoryOrder: 1}).limit(20).toArray(function(err, docs){
+				mongodb.close();
+				if(err){
+					cb(err);
+				}else{
+					cb(null, docs);
+				}
+			});
+		})
 	});
 };
 
