@@ -1,4 +1,4 @@
 
 
-mongoimport -d foreworld -c article d:\GitHub\study\db\sql\f_article.json --jsonArray
-mongoimport -d foreworld -c category d:\GitHub\study\db\sql\f_category.json --jsonArray
+mongoimport -d foreworld -c article d:\GitHub\study\db\f_article.json --jsonArray
+mongoimport -d foreworld -c category d:\GitHub\study\db\f_category.json --jsonArray

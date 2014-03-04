@@ -17,7 +17,7 @@ Article.findArticles = function(pagination, cb) {
 				return cb(err);
 			}
 
-			collection.find().sort({CategoryOrder: 1}).limit(20).toArray(function(err, docs){
+			collection.find().sort({PostTime: -1}).limit(pagination[1]).toArray(function(err, docs){
 				mongodb.close();
 				if(err){
 					cb(err);
