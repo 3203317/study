@@ -11,7 +11,7 @@ module.exports = function(app) {
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 
-		Article.findArticles([0,20], function(err, rows){			
+		Article.findArticles([0,10], function(err, rows){			
 			res.render('Index', { 
 				moduleName: 'index',
 				title: 'FOREWORLD 洪荒',
