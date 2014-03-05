@@ -5,6 +5,19 @@ var Article = require('../modules/Article.js'),
 	article = new Article();
 
 module.exports = function(app) {
+
+	/**
+	 * 404
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	*/
+	app.use(function (req, res) {
+		res.render("404");
+	});
+
 	var indexUI = function (req, res) {
 		var time = new Date();
 		var year = time.getFullYear();
