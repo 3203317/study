@@ -10,6 +10,7 @@
     "ejs": "*",
     "mysql": "*",
     "mongodb": "*",
+    "mongoose": "*",
     "velocityjs": "*",
     "connect-mongo": "*",
     "connect-flash": "*"
