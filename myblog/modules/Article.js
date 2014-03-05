@@ -24,6 +24,24 @@ var ArticleSchema = new Schema({
 	},
 	ArticleContent: {
 		type: String
+	},
+	PostTime: {
+		type: Date
+	},
+	ViewNums: {
+		type: String
+	},
+	ArticleTag: {
+		type: String
+	},
+	Bookmark: {
+		type: String
+	},
+	TopMark: {
+		type: String
+	},
+	ArticleImage: {
+		type: String
 	}
 }, {
 	versionKey: false
