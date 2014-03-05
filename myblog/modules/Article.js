@@ -29,16 +29,16 @@ var ArticleSchema = new Schema({
 		type: Date
 	},
 	ViewNums: {
-		type: String
+		type: Number
 	},
 	ArticleTag: {
 		type: String
 	},
 	Bookmark: {
-		type: String
+		type: Number
 	},
 	TopMark: {
-		type: String
+		type: Number
 	},
 	ArticleImage: {
 		type: String
@@ -46,6 +46,19 @@ var ArticleSchema = new Schema({
 }, {
 	versionKey: false
 });
+
+ArticleSchema.virtual('ViewNumsToFormat').get(function(){
+	return threeSeparator(this.ViewNums);
+});
+
+function threeSeparator(num) {
+	num = num + "";
+	var re = /(-?\d+)(\d{3})/;
+	while (re.test(num)) {
+		num = num.replace(re, "$1,$2");
+	}
+	return num;
+}
 
 mongoose.model('article', ArticleSchema);
 
