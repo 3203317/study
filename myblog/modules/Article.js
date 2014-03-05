@@ -1,6 +1,7 @@
 var db = require('./mongodb');
 
-var Schema = db.mongoose.Schema,
+var mongoose = db.mongoose,
+	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
 var ArticleSchema = new Schema({
@@ -28,9 +29,9 @@ var ArticleSchema = new Schema({
 	versionKey: false
 });
 
-db.mongoose.model('article', ArticleSchema);
+mongoose.model('article', ArticleSchema);
 
-var Article = db.mongoose.model('article');
+var Article = mongoose.model('article');
 
 Article.findArticles = function(pagination, cb) {
 	Article.find(null, null, {sort: {PostTime: -1}, skip: pagination[0], limit: pagination[1]}, function(err, docs){
