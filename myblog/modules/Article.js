@@ -1,31 +1,44 @@
-var mongodb = require('./db');
+var db = require('./mongodb');
 
-function Article(){
+var Schema = db.mongoose.Schema,
+	ObjectId = Schema.Types.ObjectId;
 
-}
+var ArticleSchema = new Schema({
+	Id: {
+		type: String,
+		unique: true,
+		index: true
+	},
+	CategoryId: {
+		type: String
+	},
+	ArticleTitle: {
+		type: String
+	},
+	ArticleIntro: {
+		type: String
+	},
+	ArticleAuthor: {
+		type: String
+	},
+	ArticleContent: {
+		type: String
+	}
+}, {
+	versionKey: false
+});
 
-Article.findArticles = function(pagination, cb) {	
-	mongodb.open(function (err, db) {
+db.mongoose.model('article', ArticleSchema);
+
+var Article = db.mongoose.model('article');
+
+Article.findArticles = function(pagination, cb) {
+	Article.find(null, null, {sort: {PostTime: -1}, skip: pagination[0], limit: pagination[1]}, function(err, docs){
 		if(err){
-			mongodb.close();
-			return cb(err);
+			cb(err);
+		}else{
+			cb(null, docs);
 		}
-
-		db.collection('article', function(err, collection){
-			if(err){
-				mongodb.close();
-				return cb(err);
-			}
-
-			collection.find().sort({PostTime: -1}).skip(pagination[0]).limit(pagination[1]).toArray(function(err, docs){
-				mongodb.close();
-				if(err){
-					cb(err);
-				}else{
-					cb(null, docs);
-				}
-			});
-		})
 	});
 };
 

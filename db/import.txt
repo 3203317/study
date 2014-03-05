@@ -1,13 +1,15 @@
 
 
-mongoimport -d foreworld -c article d:\GitHub\study\db\f_article.json --jsonArray
+mongoimport -d foreworld -c articles d:\GitHub\study\db\f_article.json --jsonArray
 
 
-var cursor = db.article.find();
+var cursor = db.articles.find();
 cursor.forEach(function(x){ 
-	db.article.update(x, {$set:{PostTime:new Date(x.PostTime)}}) 
+	db.articles.update(x, {$set:{PostTime:new Date(x.PostTime)}}) 
 });
-db.article.findOne()
+db.articles.findOne()
 
 
-mongoimport -d foreworld -c category d:\GitHub\study\db\f_category.json --jsonArray
+mongoimport -d foreworld -c categorys d:\GitHub\study\db\f_category.json --jsonArray
+
+mongoimport -d foreworld -c tags d:\GitHub\study\db\f_tag.json --jsonArray
