@@ -59,7 +59,7 @@ module.exports = function(app) {
 	app.get('/index/more', function (req, res) {
 		var data = eval('('+ req.query.data +')');
 
-		Article.findArticles(null, [data.current,10], function(err, rows){
+		Article.findArticles(null, [data.Current,10], function(err, rows){
 			res.render('Index_More', {
 				virtualPath: '',
 				articles: rows
