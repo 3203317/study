@@ -51,6 +51,24 @@ ArticleSchema.virtual('ViewNumsToFormat').get(function(){
 	return threeSeparator(this.ViewNums);
 });
 
+ArticleSchema.virtual('PostTime_Month').get(function(){
+	return p(this.PostTime.getMonth()+1)
+});
+
+ArticleSchema.virtual('PostTime_Day').get(function(){
+	return p(this.PostTime.getDate())
+});
+
+
+
+/**
+ * 日期小于10补0
+ **/
+function p(s) {
+	return 10 > s ? '0' + s : s;
+}
+
+
 function threeSeparator(num) {
 	num = num + "";
 	var re = /(-?\d+)(\d{3})/;
