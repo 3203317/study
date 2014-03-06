@@ -15,7 +15,7 @@ module.exports = function(app) {
 	 * @return
 	*/
 	app.use(function (req, res) {
-		res.render("404");
+		res.render('404');
 	});
 
 	var indexUI = function (req, res) {
@@ -188,7 +188,7 @@ module.exports = function(app) {
 		var day = p(time.getDate());
 
 		var params = {
-			ArticleTag: new RegExp(","+ req.params.id +",")
+			ArticleTag: new RegExp(','+ req.params.id +',', 'i')
 		};
 
 		Article.findArticles(params, [1,10], function(err, rows){			
