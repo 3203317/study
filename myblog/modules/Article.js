@@ -101,8 +101,8 @@ mongoose.model('article', ArticleSchema);
 
 var Article = mongoose.model('article');
 
-Article.findArticles = function(pagination, cb) {
-	Article.find(null, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
+Article.findArticles = function(params, pagination, cb) {
+	Article.find(params, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
 		}else{

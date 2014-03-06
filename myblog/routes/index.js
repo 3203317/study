@@ -24,7 +24,7 @@ module.exports = function(app) {
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 
-		Article.findArticles([1,10], function(err, rows){			
+		Article.findArticles(null, [1,10], function(err, rows){			
 			res.render('Index', { 
 				moduleName: 'index',
 				title: 'FOREWORLD 洪荒',
@@ -59,7 +59,7 @@ module.exports = function(app) {
 	app.get('/index/more', function (req, res) {
 		var data = eval('('+ req.query.data +')');
 
-		Article.findArticles([data.Current,10], function(err, rows){			
+		Article.findArticles(null, [data.current,10], function(err, rows){
 			res.render('Index_More', {
 				virtualPath: '',
 				articles: rows
@@ -75,13 +75,19 @@ module.exports = function(app) {
 	 * @params res
 	 * @return
 	*/
-	app.get('/archive/category/*', function (req, res) {
+	app.get('/archive/category/:id', function (req, res) {
 		var time = new Date();
 		var year = time.getFullYear();
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 
-		Article.findArticles([1,10], function(err, rows){			
+		var params = {
+			// CategoryId: new RegExp(","+ req.params.id +",")
+		};
+
+		console.log(params)
+
+		Article.findArticles(params, [1,10], function(err, rows){			
 			res.render('Category', { 
 				moduleName: 'category',
 				title: 'FOREWORLD 洪荒',
@@ -164,6 +170,37 @@ module.exports = function(app) {
 			keywords: ',标签,Bootstrap3',
 			virtualPath: '../../',
 			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
+		});
+	});
+
+	/**
+	 * 标签模块
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	*/
+	app.get('/archive/tag/:id', function (req, res) {
+		var time = new Date();
+		var year = time.getFullYear();
+		var month = p(time.getMonth() + 1);
+		var day = p(time.getDate());
+
+		var params = {
+			ArticleTag: new RegExp(","+ req.params.id +",")
+		};
+
+		Article.findArticles(params, [1,10], function(err, rows){			
+			res.render('Tag', { 
+				moduleName: 'tag',
+				title: 'FOREWORLD 洪荒',
+				description: '个人博客',
+				keywords: ',标签,Bootstrap3',
+				virtualPath: '../../',
+				topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。',
+				articles: rows
+			});
 		});
 	});
 
