@@ -49,6 +49,23 @@ module.exports = function(app) {
 	app.get('/', indexUI);
 
 	/**
+	 * 首页更多
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	*/
+	app.get('/index/more', function (req, res) {
+		Article.findArticles([11,20], function(err, rows){			
+			res.render('MoreIndex', { 
+				virtualPath: '',
+				articles: rows
+			});
+		});
+	});
+
+	/**
 	 * 登陆
 	 *
 	 * @method
