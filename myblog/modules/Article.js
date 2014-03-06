@@ -51,12 +51,31 @@ ArticleSchema.virtual('ViewNumsToFormat').get(function(){
 	return threeSeparator(this.ViewNums);
 });
 
+ArticleSchema.virtual('PostTime_Year').get(function(){
+	return this.PostTime.getFullYear()
+});
+
 ArticleSchema.virtual('PostTime_Month').get(function(){
 	return p(this.PostTime.getMonth()+1)
 });
 
 ArticleSchema.virtual('PostTime_Day').get(function(){
 	return p(this.PostTime.getDate())
+});
+
+ArticleSchema.virtual('Tags').get(function(){
+	var str = this.ArticleTag;
+	if(0 === str.length) return '';
+
+	var strs = str.split(',');
+
+	var result = [];
+
+	for(var s in strs){
+		if('' !== strs[s]) result.push({'TagName': strs[s]});
+	}
+
+	return result;
 });
 
 
