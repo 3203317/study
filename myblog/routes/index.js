@@ -199,6 +199,25 @@ module.exports = function(app) {
 				keywords: ',标签,Bootstrap3',
 				virtualPath: '../../',
 				topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。',
+				articles: rows,
+				tagName: req.params.id
+			});
+		});
+	});
+
+	/**
+	 * 标签更多
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	*/
+	app.get('/archive/tag/:id/more', function (req, res) {
+		var data = eval('('+ req.query.data +')');
+
+		Article.findArticles(null, [data.Current,10], function(err, rows){
+			res.render('Tag_More', {
 				articles: rows
 			});
 		});
