@@ -24,7 +24,7 @@ module.exports = function(app) {
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 
-		Article.findArticles([0,10], function(err, rows){			
+		Article.findArticles([1,10], function(err, rows){			
 			res.render('Index', { 
 				moduleName: 'index',
 				title: 'FOREWORLD 洪荒',
@@ -57,8 +57,10 @@ module.exports = function(app) {
 	 * @return
 	*/
 	app.get('/index/more', function (req, res) {
-		Article.findArticles([11,20], function(err, rows){			
-			res.render('MoreIndex', { 
+		var data = eval('('+ req.query.data +')');
+
+		Article.findArticles([data.Current,10], function(err, rows){			
+			res.render('MoreIndex', {
 				virtualPath: '',
 				articles: rows
 			});
