@@ -124,11 +124,11 @@ module.exports = function(app) {
 	 */
 	app.get('/user/login', function (req, res) {
 		res.render('User/Login', { 
-			title: 'FOREWORLD 洪荒',
+			title: title,
 			atitle: '登陆',
 			description: '个人博客',
 			keywords: ',登陆,Bootstrap3',
-			virtualPath: '/'
+			virtualPath: virtualPath +'/'
 		});
 	});
 
