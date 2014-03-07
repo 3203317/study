@@ -24,7 +24,7 @@ module.exports = function(app) {
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 
-		Article.findArticles(null, [1,10], function(err, rows){			
+		Article.findArticles([1,10], function(err, rows){			
 			res.render('Index', { 
 				moduleName: 'index',
 				title: 'FOREWORLD 洪荒',
@@ -59,7 +59,7 @@ module.exports = function(app) {
 	app.get('/index/more', function (req, res) {
 		var data = eval('('+ req.query.data +')');
 
-		Article.findArticles(null, [data.Current,10], function(err, rows){
+		Article.findArticles([data.Current,10], function(err, rows){
 			res.render('Index_More', {
 				virtualPath: '',
 				articles: rows
@@ -87,7 +87,7 @@ module.exports = function(app) {
 
 		console.log(params)
 
-		Article.findArticles(params, [1,10], function(err, rows){			
+		Article.findArticles([1,10], function(err, rows){			
 			res.render('Category', { 
 				moduleName: 'category',
 				title: 'FOREWORLD 洪荒',
@@ -187,11 +187,9 @@ module.exports = function(app) {
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 
-		var params = {
-			ArticleTag: new RegExp(','+ req.params.id +',', 'i')
-		};
+		var tagName = req.params.id;
 
-		Article.findArticles(params, [1,10], function(err, rows){			
+		Article.findArticlesByTagName(tagName, [1,10], function(err, rows){			
 			res.render('Tag', { 
 				moduleName: 'tag',
 				title: 'FOREWORLD 洪荒',
@@ -200,7 +198,7 @@ module.exports = function(app) {
 				virtualPath: '../../',
 				topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。',
 				articles: rows,
-				tagName: req.params.id
+				tagName: tagName
 			});
 		});
 	});
@@ -216,7 +214,9 @@ module.exports = function(app) {
 	app.get('/archive/tag/:id/more', function (req, res) {
 		var data = eval('('+ req.query.data +')');
 
-		Article.findArticles(null, [data.Current,10], function(err, rows){
+		var tagName = req.params.id;
+
+		Article.findArticlesByTagName(tagName, [data.Current,10], function(err, rows){
 			res.render('Tag_More', {
 				articles: rows
 			});
