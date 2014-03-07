@@ -7,20 +7,8 @@ var Article = require('../modules/Article.js'),
 module.exports = function(app) {
 
 	/**
-	 * 404
-	 *
-	 * @method
-	 * @params req
-	 * @params res
-	 * @return
-	*/
-	app.use(function (req, res) {
-		res.render('404');
-	});
-
-	/**
 	 * 日期小于10补0
-	 **/
+	 */
 	function p(s) {
 		return 10 > s ? '0' + s : s;
 	}
@@ -34,14 +22,29 @@ module.exports = function(app) {
 		return '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。';
 	};
 
+	var virtualPath = '';
+	var title = 'FOREWORLD 洪荒';
+
+	/**
+	 * 404
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	 */
+	app.use(function (req, res) {
+		res.render('404');
+	});
+
 	var indexUI = function (req, res) {
 		Article.findArticles([1,10], function(err, rows){			
 			res.render('Index', { 
 				moduleName: 'index',
-				title: 'FOREWORLD 洪荒',
+				title: title,
 				description: '个人博客',
 				keywords: ',Bootstrap3',
-				virtualPath: '',
+				virtualPath: virtualPath,
 				topMessage: getTopMessage(),
 				articles: rows
 			});
@@ -55,7 +58,7 @@ module.exports = function(app) {
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/index.html', indexUI);
 	app.get('/', indexUI);
 
@@ -66,13 +69,13 @@ module.exports = function(app) {
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/index/more', function (req, res) {
 		var data = eval('('+ req.query.data +')');
 
 		Article.findArticles([data.Current,10], function(err, rows){
 			res.render('Index_More', {
-				virtualPath: '',
+				virtualPath: virtualPath,
 				articles: rows
 			});
 		});
@@ -85,7 +88,7 @@ module.exports = function(app) {
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/archive/category/:id', function (req, res) {
 		var time = new Date();
 		var year = time.getFullYear();
@@ -118,7 +121,7 @@ module.exports = function(app) {
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/user/login', function (req, res) {
 		res.render('User/Login', { 
 			title: 'FOREWORLD 洪荒',
@@ -130,13 +133,13 @@ module.exports = function(app) {
 	});
 
 	/**
-	 * 档案馆
+	 * 档案馆 
 	 *
 	 * @method
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/archive/', function (req, res) {
 		res.render('Archive', { 
 			moduleName: 'archives',
@@ -156,7 +159,7 @@ module.exports = function(app) {
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/archive/tag/', function (req, res) {
 		res.render('Tags', { 
 			moduleName: 'tag',
@@ -176,7 +179,7 @@ module.exports = function(app) {
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/archive/tag/:id', function (req, res) {
 		var tagName = req.params.id;
 
@@ -201,7 +204,7 @@ module.exports = function(app) {
 	 * @params req
 	 * @params res
 	 * @return
-	*/
+	 */
 	app.get('/archive/tag/:id/more', function (req, res) {
 		var data = eval('('+ req.query.data +')');
 
