@@ -18,12 +18,23 @@ module.exports = function(app) {
 		res.render('404');
 	});
 
-	var indexUI = function (req, res) {
+	/**
+	 * 日期小于10补0
+	 **/
+	function p(s) {
+		return 10 > s ? '0' + s : s;
+	}
+
+	function getTopMessage(){
 		var time = new Date();
 		var year = time.getFullYear();
 		var month = p(time.getMonth() + 1);
 		var day = p(time.getDate());
 
+		return '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。';
+	};
+
+	var indexUI = function (req, res) {
 		Article.findArticles([1,10], function(err, rows){			
 			res.render('Index', { 
 				moduleName: 'index',
@@ -31,7 +42,7 @@ module.exports = function(app) {
 				description: '个人博客',
 				keywords: ',Bootstrap3',
 				virtualPath: '',
-				topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。',
+				topMessage: getTopMessage(),
 				articles: rows
 			});
 		});
@@ -119,13 +130,6 @@ module.exports = function(app) {
 	});
 
 	/**
-	 * 日期小于10补0
-	 **/
-	function p(s) {
-		return 10 > s ? '0' + s : s;
-	}
-
-	/**
 	 * 档案馆
 	 *
 	 * @method
@@ -134,10 +138,6 @@ module.exports = function(app) {
 	 * @return
 	*/
 	app.get('/archive/', function (req, res) {
-		var time = new Date();
-		var year = time.getFullYear();
-		var month = p(time.getMonth() + 1);
-		var day = p(time.getDate());
 		res.render('Archive', { 
 			moduleName: 'archives',
 			title: 'FOREWORLD 洪荒',
@@ -145,7 +145,7 @@ module.exports = function(app) {
 			description: '个人博客',
 			keywords: ',档案馆,Bootstrap3',
 			virtualPath: '../',
-			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
+			topMessage: getTopMessage()
 		});
 	});
 
@@ -158,10 +158,6 @@ module.exports = function(app) {
 	 * @return
 	*/
 	app.get('/archive/tag/', function (req, res) {
-		var time = new Date();
-		var year = time.getFullYear();
-		var month = p(time.getMonth() + 1);
-		var day = p(time.getDate());
 		res.render('Tags', { 
 			moduleName: 'tag',
 			title: 'FOREWORLD 洪荒',
@@ -169,7 +165,7 @@ module.exports = function(app) {
 			description: '个人博客',
 			keywords: ',标签,Bootstrap3',
 			virtualPath: '../../',
-			topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。'
+			topMessage: getTopMessage()
 		});
 	});
 
@@ -182,11 +178,6 @@ module.exports = function(app) {
 	 * @return
 	*/
 	app.get('/archive/tag/:id', function (req, res) {
-		var time = new Date();
-		var year = time.getFullYear();
-		var month = p(time.getMonth() + 1);
-		var day = p(time.getDate());
-
 		var tagName = req.params.id;
 
 		Article.findArticlesByTagName(tagName, [1,10], function(err, rows){			
@@ -196,7 +187,7 @@ module.exports = function(app) {
 				description: '个人博客',
 				keywords: ',标签,Bootstrap3',
 				virtualPath: '../../',
-				topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。',
+				topMessage: getTopMessage(),
 				articles: rows,
 				tagName: tagName
 			});
