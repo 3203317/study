@@ -143,17 +143,17 @@ module.exports = function(app) {
 	app.get('/archive/', function (req, res) {
 		res.render('Archive', { 
 			moduleName: 'archives',
-			title: 'FOREWORLD 洪荒',
+			title: title,
 			atitle: '档案馆',
 			description: '个人博客',
 			keywords: ',档案馆,Bootstrap3',
-			virtualPath: '../',
+			virtualPath: virtualPath +'../',
 			topMessage: getTopMessage()
 		});
 	});
 
 	/**
-	 * 标签
+	 * 标签馆
 	 *
 	 * @method
 	 * @params req
@@ -163,11 +163,11 @@ module.exports = function(app) {
 	app.get('/archive/tag/', function (req, res) {
 		res.render('Tags', { 
 			moduleName: 'tag',
-			title: 'FOREWORLD 洪荒',
+			title: title,
 			atitle: '标签',
 			description: '个人博客',
 			keywords: ',标签,Bootstrap3',
-			virtualPath: '../../',
+			virtualPath: virtualPath +'../../',
 			topMessage: getTopMessage()
 		});
 	});
