@@ -1,38 +1,53 @@
-var mongodb = require('./db');
+var db = require('./mongodb');
 
-function Category(){
+var mongoose = db.mongoose,
+	Schema = mongoose.Schema,
+	ObjectId = Schema.Types.ObjectId;
 
-}
+var CategorySchema = new Schema({
+	Id: {
+		type: String,
+		unique: true,
+		index: true
+	},
+	CategoryName: {
+		type: String
+	},
+	CategoryOrder: {
+		type: Number
+	},
+	CategoryIntro: {
+		type: String
+	},
+	CategoryCount: {
+		type: Number
+	}
+}, {
+	versionKey: false
+});
+
+mongoose.model('category', CategorySchema);
+
+var Category = mongoose.model('category');
 
 /**
- * 获取类型
+ * 获取分类
  *
  * @method
  * @params cb
  * @return
 */
-Category.getAll = function(cb) {
-	mongodb.open(function (err, db) {
+Category.findCategoryByName = function(categoryName, cb) {
+	Category.findOne({CategoryName: categoryName}, null, null, function(err, docs){
 		if(err){
-			mongodb.close();
-			return cb(err);
-		}
-
-		db.collection('category', function(err, collection){
-			if(err){
-				mongodb.close();
-				return cb(err);
+			cb(err);
+		}else{
+			if(null === docs){
+				cb('null');
+			}else{
+				cb(null, docs);
 			}
-
-			collection.find().sort({CategoryOrder: 1}).toArray(function(err, docs){
-				mongodb.close();
-				if(err){
-					cb(err);
-				}else{
-					cb(null, docs);
-				}
-			});
-		})
+		}
 	});
 };
 

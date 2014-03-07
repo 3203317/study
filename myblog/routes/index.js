@@ -90,25 +90,38 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/category/:id', function (req, res) {
-		var time = new Date();
-		var year = time.getFullYear();
-		var month = p(time.getMonth() + 1);
-		var day = p(time.getDate());
+		var categoryName = req.params.id;
 
-		var params = {
-			// CategoryId: new RegExp(","+ req.params.id +",")
-		};
-
-		console.log(params)
-
-		Article.findArticles([1,10], function(err, rows){			
+		Article.findArticlesByCategoryName(categoryName, [1,10], function(err, rows){			
 			res.render('Category', { 
 				moduleName: 'category',
-				title: 'FOREWORLD 洪荒',
+				title: title,
+				atitle: categoryName,
+				categoryName: categoryName,
 				description: '个人博客',
 				keywords: ',Bootstrap3',
-				virtualPath: '../../',
-				topMessage: '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。',
+				virtualPath: virtualPath +'../../',
+				topMessage: getTopMessage(),
+				articles: rows
+			});
+		});
+	});
+
+	/**
+	 * 分类更多
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	 */
+	app.get('/archive/category/:id/more', function (req, res) {
+		var data = eval('('+ req.query.data +')');
+		var categoryName = req.params.id;
+
+		Article.findArticlesByCategoryName(categoryName, [data.Current,10], function(err, rows){			
+			res.render('Category_More', {
+				virtualPath: virtualPath +'../../',
 				articles: rows
 			});
 		});

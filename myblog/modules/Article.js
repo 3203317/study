@@ -1,5 +1,7 @@
 var db = require('./mongodb');
 
+var Category = require('./Category');
+
 var mongoose = db.mongoose,
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
@@ -125,6 +127,23 @@ Article.findArticlesByTagName = function(tagName, pagination, cb) {
 			cb(err);
 		}else{
 			cb(null, docs);
+		}
+	});
+};
+
+Article.findArticlesByCategoryName = function(categoryName, pagination, cb) {
+
+	Category.findCategoryByName(categoryName, function(err, doc){
+		if(err){
+			cb(err);
+		}else{
+			Article.find({CategoryId: doc.Id}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
+				if(err){
+					cb(err);
+				}else{
+					cb(null, docs);
+				}
+			});
 		}
 	});
 };

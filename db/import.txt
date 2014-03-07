@@ -10,6 +10,6 @@ cursor.forEach(function(x){
 db.articles.findOne()
 
 
-mongoimport -d foreworld -c categorys d:\GitHub\study\db\f_category.json --jsonArray
+mongoimport -d foreworld -c categories d:\GitHub\study\db\f_category.json --jsonArray
 
 mongoimport -d foreworld -c tags d:\GitHub\study\db\f_tag.json --jsonArray
