@@ -26,10 +26,6 @@ var CategorySchema = new Schema({
 	versionKey: false
 });
 
-mongoose.model('category', CategorySchema);
-
-var Category = mongoose.model('category');
-
 /**
  * 获取分类
  *
@@ -37,8 +33,8 @@ var Category = mongoose.model('category');
  * @params cb
  * @return
 */
-Category.findCategoryByName = function(categoryName, cb) {
-	Category.findOne({CategoryName: categoryName}, null, null, function(err, docs){
+CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
+	this.findOne({CategoryName: categoryName}, null, null, function(err, docs){
 		if(err){
 			cb(err);
 		}else{
@@ -51,4 +47,4 @@ Category.findCategoryByName = function(categoryName, cb) {
 	});
 };
 
-exports = module.exports = Category;
+exports = module.exports = mongoose.model('category', CategorySchema);

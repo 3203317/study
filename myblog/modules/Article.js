@@ -103,12 +103,8 @@ function threeSeparator(num) {
 	return num;
 }
 
-mongoose.model('article', ArticleSchema);
-
-var Article = mongoose.model('article');
-
-Article.findArticles = function(pagination, cb) {
-	Article.find(null, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
+ArticleSchema.statics.findArticles = function(pagination, cb) {
+	this.find(null, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
 		}else{
@@ -117,7 +113,7 @@ Article.findArticles = function(pagination, cb) {
 	});
 };
 
-Article.findArticlesByTagName = function(tagName, pagination, cb) {
+ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) {
 	if ('' === tagName) {
 		cb('请求参数异常');
 	};
@@ -126,7 +122,7 @@ Article.findArticlesByTagName = function(tagName, pagination, cb) {
 		ArticleTag: new RegExp(','+ tagName +',', 'i')
 	};
 
-	Article.find(params, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
+	this.find(params, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
 		}else{
@@ -135,13 +131,14 @@ Article.findArticlesByTagName = function(tagName, pagination, cb) {
 	});
 };
 
-Article.findArticlesByCategoryName = function(categoryName, pagination, cb) {
+ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagination, cb) {
+	var that = this;
 
 	Category.findCategoryByName(categoryName, function(err, doc){
 		if(err){
 			cb(err);
 		}else{
-			Article.find({CategoryId: doc.Id}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
+			that.find({CategoryId: doc.Id}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 				if(err){
 					cb(err);
 				}else{
@@ -152,8 +149,8 @@ Article.findArticlesByCategoryName = function(categoryName, pagination, cb) {
 	});
 };
 
-Article.findArticleById = function(articleId, cb) {
-	Article.findOne({Id: articleId}, null, null, function(err, docs){
+ArticleSchema.statics.findArticleById = function(articleId, cb) {
+	this.findOne({Id: articleId}, null, null, function(err, docs){
 		if(err){
 			cb(err);
 		}else{
@@ -162,4 +159,4 @@ Article.findArticleById = function(articleId, cb) {
 	});
 };
 
-exports = module.exports = Article;
+exports = module.exports = mongoose.model('article', ArticleSchema);
