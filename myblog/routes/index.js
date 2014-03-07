@@ -186,13 +186,14 @@ module.exports = function(app) {
 		Article.findArticlesByTagName(tagName, [1,10], function(err, rows){			
 			res.render('Tag', { 
 				moduleName: 'tag',
-				title: 'FOREWORLD 洪荒',
+				title: title,
+				atitle: tagName,
+				tagName: tagName,
 				description: '个人博客',
 				keywords: ',标签,Bootstrap3',
-				virtualPath: '../../',
+				virtualPath: virtualPath +'../../',
 				topMessage: getTopMessage(),
-				articles: rows,
-				tagName: tagName
+				articles: rows
 			});
 		});
 	});
@@ -212,6 +213,7 @@ module.exports = function(app) {
 
 		Article.findArticlesByTagName(tagName, [data.Current,10], function(err, rows){
 			res.render('Tag_More', {
+				virtualPath: virtualPath +'../../',
 				articles: rows
 			});
 		});

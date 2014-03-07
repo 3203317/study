@@ -112,6 +112,10 @@ Article.findArticles = function(pagination, cb) {
 };
 
 Article.findArticlesByTagName = function(tagName, pagination, cb) {
+	if ('' === tagName) {
+		cb('请求参数异常');
+	};
+
 	var params = {
 		ArticleTag: new RegExp(','+ tagName +',', 'i')
 	};
