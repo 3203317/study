@@ -65,6 +65,10 @@ ArticleSchema.virtual('PostTime_Day').get(function(){
 	return p(this.PostTime.getDate())
 });
 
+ArticleSchema.virtual('PostTime_Date').get(function(){
+	return this.PostTime.getFullYear() +'-'+ p(this.PostTime.getMonth()+1) +'-'+ p(this.PostTime.getDate())
+});
+
 ArticleSchema.virtual('Tags').get(function(){
 	var str = this.ArticleTag;
 	if(0 === str.length) return '';
@@ -144,6 +148,16 @@ Article.findArticlesByCategoryName = function(categoryName, pagination, cb) {
 					cb(null, docs);
 				}
 			});
+		}
+	});
+};
+
+Article.findArticleById = function(articleId, cb) {
+	Article.findOne({Id: articleId}, null, null, function(err, docs){
+		if(err){
+			cb(err);
+		}else{
+			cb(null, docs);
 		}
 	});
 };

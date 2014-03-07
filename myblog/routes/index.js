@@ -232,5 +232,32 @@ module.exports = function(app) {
 		});
 	});
 
+	/**
+	 * 文章
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	 */
+	app.get('/archive/:id.html', function (req, res) {
+		var articleId = req.params.id;
+
+		Article.findArticleById(articleId, function(err, rows){
+			var article = rows;
+
+			res.render('Article', { 
+				moduleName: 'archives',
+				title: title,
+				atitle: article.ArticleTitle,
+				description: "个人博客," + article.ArticleTitle,
+				keywords: ',Bootstrap3',
+				virtualPath: virtualPath +'../',
+				topMessage: getTopMessage(),
+				article: article
+			});
+		});
+	});
+
 
 };
