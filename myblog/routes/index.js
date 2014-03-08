@@ -250,7 +250,7 @@ module.exports = function(app) {
 				moduleName: 'archives',
 				title: title,
 				atitle: article.ArticleTitle,
-				description: "个人博客," + article.ArticleTitle,
+				description: '个人博客,' + article.ArticleTitle,
 				keywords: ',Bootstrap3',
 				virtualPath: virtualPath +'../',
 				topMessage: getTopMessage(),
