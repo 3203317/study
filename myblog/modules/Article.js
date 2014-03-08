@@ -95,10 +95,10 @@ function p(s) {
 
 
 function threeSeparator(num) {
-	num = num + "";
+	num = num + '';
 	var re = /(-?\d+)(\d{3})/;
 	while (re.test(num)) {
-		num = num.replace(re, "$1,$2");
+		num = num.replace(re, '$1,$2');
 	}
 	return num;
 }
