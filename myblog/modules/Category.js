@@ -11,7 +11,8 @@ var CategorySchema = new Schema({
 		index: true
 	},
 	CategoryName: {
-		type: String
+		type: String,
+		required: true
 	},
 	CategoryOrder: {
 		type: Number
@@ -45,6 +46,17 @@ CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
 			}
 		}
 	});
+};
+
+/**
+ * 添加新分类
+ *
+ * @method
+ * @params cb
+ * @return
+*/
+CategorySchema.statics.saveNew = function(category, cb) {
+
 };
 
 exports = module.exports = mongoose.model('category', CategorySchema);
