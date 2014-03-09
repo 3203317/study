@@ -28,8 +28,11 @@ var CategorySchema = new Schema({
 });
 
 CategorySchema.pre('save', function(next, done){
-	console.log('save 前拦截')
 	next();
+});
+
+CategorySchema.post('save', function(doc){
+	console.log(doc)
 });
 
 /**
