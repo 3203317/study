@@ -279,4 +279,28 @@ module.exports = function(app) {
 			res.send(JSON.stringify(result));
 		});
 	});
+
+	app.get('/category/add.do', function (req, res) {
+
+		var category = {
+			Id: 12345,
+			CategoryName: 'haha',
+			CategoryOrder: 1,
+			CategoryIntro: '',
+			CategoryCount: 1
+		};
+
+		Category.saveNew(category, function(err, doc){
+			var result = { Success: true };
+
+			if(err) {
+				result.Success = false;
+				result.err = err;
+			}else{
+				result.data = doc;
+			}
+
+			res.send(JSON.stringify(result));
+		});
+	});
 };

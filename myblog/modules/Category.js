@@ -56,7 +56,15 @@ CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
  * @return
 */
 CategorySchema.statics.saveNew = function(category, cb) {
-
+	CategoryModel.create(category, function(err, doc){
+		if(err){
+			cb(err)
+		}else{
+			cb(null, doc);
+		}
+	});
 };
 
-exports = module.exports = mongoose.model('category', CategorySchema);
+var CategoryModel = mongoose.model('category', CategorySchema);
+
+exports = module.exports = CategoryModel;
