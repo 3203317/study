@@ -1,8 +1,7 @@
 
 var Category = require('../modules/Category.js');
 
-var Article = require('../modules/Article.js'),
-	article = new Article();
+var Article = require('../modules/Article.js');
 
 module.exports = function(app) {
 
@@ -259,5 +258,29 @@ module.exports = function(app) {
 		});
 	});
 
+	/**
+	 * 添加新文章
+	 *
+	 * @method
+	 * @params req
+	 * @params res
+	 * @return
+	 */
+	app.get('/article/add.do', function (req, res) {
+
+		var article = new Article();
+
+		Article.saveNew(article, function(err, rows){
+
+			/* 1.保存到mongodb中 */
+			/* 2.模板与数据生成文件 */
+
+			var result = {
+				Success: true
+			};
+
+			res.send(JSON.stringify(result));
+		});
+	});
 
 };

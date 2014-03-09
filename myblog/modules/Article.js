@@ -159,4 +159,19 @@ ArticleSchema.statics.findArticleById = function(articleId, cb) {
 	});
 };
 
+
+
+/**
+ * 保存新文章
+ *
+ * @method
+ * @params req
+ * @params res
+ * @return
+ */
+ArticleSchema.statics.saveNew = function(article, cb) {
+	console.log(this);
+	cb('abc');
+};
+
 exports = module.exports = mongoose.model('article', ArticleSchema);
