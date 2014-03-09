@@ -170,8 +170,10 @@ ArticleSchema.statics.findArticleById = function(articleId, cb) {
  * @return
  */
 ArticleSchema.statics.saveNew = function(article, cb) {
-	console.log(this);
-	cb('abc');
+	console.log(article);
+
+	var err;
+	cb(err);
 };
 
 exports = module.exports = mongoose.model('article', ArticleSchema);

@@ -270,17 +270,13 @@ module.exports = function(app) {
 
 		var article = new Article();
 
-		Article.saveNew(article, function(err, rows){
+		Article.saveNew(article, function(err){
 
-			/* 1.保存到mongodb中 */
-			/* 2.模板与数据生成文件 */
+			var result = { Success: true };
 
-			var result = {
-				Success: true
-			};
+			if(err) result.Success = false;
 
 			res.send(JSON.stringify(result));
 		});
 	});
-
 };
