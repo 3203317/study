@@ -27,6 +27,11 @@ var CategorySchema = new Schema({
 	versionKey: false
 });
 
+CategorySchema.pre('save', function(next, done){
+	console.log('save 前拦截')
+	next();
+});
+
 /**
  * 获取分类
  *
