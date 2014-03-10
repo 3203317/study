@@ -132,30 +132,31 @@ ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) 
 
 var categorys = {};
 
+ArticleSchema.statics._findArticlesByCategoryId = function(categoryId, pagination, cb) {
+	this.find({CategoryId: categoryId}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
+		if(err){
+			cb(err);
+		}else{
+			cb(null, docs);
+		}
+	});
+};
+
 ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagination, cb) {
 	var that = this;
 	pagination[0] = pagination[0] || 1;
 
-	function findData(categoryId){
-		that.find({CategoryId: categoryId}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
-			if(err){
-				cb(err);
-			}else{
-				cb(null, docs);
-			}
-		});
-	}
+	var categoryId = categorys[categoryName];
 
-	if(categorys[categoryName]){
-		var categoryId = categorys[categoryName];
-		findData(categoryId);
+	if(categoryId){
+		that._findArticlesByCategoryId(categoryId, pagination, cb);
 	}else{
 		Category.findCategoryByName(categoryName, function(err, doc){
 			if(err){
 				cb(err);
 			}else{
-				findData(doc.Id);
 				categorys[categoryName] = doc.Id;
+				that._findArticlesByCategoryId(doc.Id, pagination, cb);
 			}
 		});
 	}
