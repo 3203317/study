@@ -332,7 +332,6 @@ module.exports = function(app) {
 	app.get('/category/add.do', function (req, res) {
 
 		var category = {
-			Id: 12345,
 			CategoryName: 'haha',
 			CategoryOrder: 1,
 			CategoryIntro: '',
