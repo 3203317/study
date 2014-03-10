@@ -105,7 +105,6 @@ function threeSeparator(num) {
 
 ArticleSchema.statics.findArticles = function(pagination, cb) {
 	pagination[0] = pagination[0] || 1;
-	pagination[1] = pagination[1] || 10;
 
 	this.find(null, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
@@ -117,13 +116,10 @@ ArticleSchema.statics.findArticles = function(pagination, cb) {
 };
 
 ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) {
-	if ('' === tagName) {
-		cb('请求参数异常');
-	};
-
 	var params = {
 		ArticleTag: new RegExp(','+ tagName +',', 'i')
 	};
+	pagination[0] = pagination[0] || 1;
 
 	this.find(params, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
@@ -137,7 +133,6 @@ ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) 
 ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagination, cb) {
 	var that = this;
 	pagination[0] = pagination[0] || 1;
-	pagination[1] = pagination[1] || 10;
 
 	Category.findCategoryByName(categoryName, function(err, doc){
 		if(err){
@@ -155,11 +150,11 @@ ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagina
 };
 
 ArticleSchema.statics.findArticleById = function(articleId, cb) {
-	this.findOne({Id: articleId}, null, null, function(err, docs){
+	this.findOne({Id: articleId}, null, null, function(err, doc){
 		if(err){
 			cb(err);
 		}else{
-			cb(null, docs);
+			cb(null, doc);
 		}
 	});
 };

@@ -223,20 +223,25 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/tag/:id', function (req, res) {
-		var tagName = req.params.id;
+		var tagName = req.params.id.trim();
 
-		Article.findArticlesByTagName(tagName, [1,10], function(err, rows){			
-			res.render('Tag', { 
-				moduleName: 'tag',
-				title: title,
-				atitle: tagName,
-				tagName: tagName,
-				description: '个人博客',
-				keywords: ',标签,Bootstrap3',
-				virtualPath: virtualPath +'../../',
-				topMessage: getTopMessage(),
-				articles: rows
-			});
+		Article.findArticlesByTagName(tagName, [1,10], function(err, docs){		
+			if(err){
+				console.log(err)
+				res.render('404')
+			}else{
+				res.render('Tag', { 
+					moduleName: 'tag',
+					title: title,
+					atitle: tagName,
+					tagName: tagName,
+					description: '个人博客',
+					keywords: ',标签,Bootstrap3',
+					virtualPath: virtualPath +'../../',
+					topMessage: getTopMessage(),
+					articles: docs
+				});
+			}
 		});
 	});
 
@@ -249,16 +254,25 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/tag/:id/more', function (req, res) {
-		var data = eval('('+ req.query.data +')');
+		var tagName = req.params.id.trim();
 
-		var tagName = req.params.id;
+		try{
+			var data = eval('('+ req.query.data +')');
 
-		Article.findArticlesByTagName(tagName, [data.Current,10], function(err, rows){
-			res.render('Tag_More', {
-				virtualPath: virtualPath +'../../',
-				articles: rows
+			Article.findArticlesByTagName(tagName, [data.Current,10], function(err, docs){
+				if(err){
+					console.log(err)
+					res.send('');
+				}
+				res.render('Tag_More', {
+					virtualPath: virtualPath +'../../',
+					articles: docs
+				});
 			});
-		});
+		}catch(e){
+			console.log(e);
+			res.send('')
+		}
 	});
 
 	/**
@@ -270,21 +284,26 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/:id.html', function (req, res) {
-		var articleId = req.params.id;
+		var articleId = req.params.id.trim();
 
-		Article.findArticleById(articleId, function(err, rows){
-			var article = rows;
+		Article.findArticleById(articleId, function(err, doc){
+			if(err){
+				console.log(err)
+				res.render('404')
+			}else{
+				var article = doc;
 
-			res.render('Article', { 
-				moduleName: 'archives',
-				title: title,
-				atitle: article.ArticleTitle,
-				description: '个人博客,' + article.ArticleTitle,
-				keywords: ',Bootstrap3',
-				virtualPath: virtualPath +'../',
-				topMessage: getTopMessage(),
-				article: article
-			});
+				res.render('Article', { 
+					moduleName: 'archives',
+					title: title,
+					atitle: article.ArticleTitle,
+					description: '个人博客,' + article.ArticleTitle,
+					keywords: ',Bootstrap3',
+					virtualPath: virtualPath +'../',
+					topMessage: getTopMessage(),
+					article: article
+				});
+			}
 		});
 	});
 

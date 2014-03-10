@@ -43,14 +43,14 @@ CategorySchema.post('save', function(doc){
  * @return
 */
 CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
-	this.findOne({CategoryName: categoryName}, null, null, function(err, docs){
+	this.findOne({CategoryName: categoryName}, null, null, function(err, doc){
 		if(err){
 			cb(err);
 		}else{
-			if(null === docs){
-				cb('null');
+			if(null === doc){
+				cb('Not found');
 			}else{
-				cb(null, docs);
+				cb(null, doc);
 			}
 		}
 	});
