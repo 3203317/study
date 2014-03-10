@@ -134,15 +134,26 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/category/:id/more', function (req, res) {
-		var data = eval('('+ req.query.data +')');
-		var categoryName = req.params.id;
+		var categoryName = req.params.id.trim();
 
-		Article.findArticlesByCategoryName(categoryName, [data.Current,10], function(err, rows){			
-			res.render('Category_More', {
-				virtualPath: virtualPath +'../../',
-				articles: rows
-			});
-		});
+		try{
+			var data = eval('('+ req.query.data +')');
+
+			Article.findArticlesByCategoryName(categoryName, [data.Current, 10], function(err, docs){
+				if(err){
+					console.log(err)
+					res.send('')
+				}else{
+					res.render('Category_More', {
+						virtualPath: virtualPath +'../../',
+						articles: docs
+					});					
+				}
+			});			
+		}catch(e){
+			console.log(e)
+			res.send('')
+		}
 	});
 
 	/**
