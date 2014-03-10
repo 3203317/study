@@ -37,16 +37,20 @@ module.exports = function(app) {
 	});
 
 	var indexUI = function (req, res) {
-		Article.findArticles([1,10], function(err, rows){			
-			res.render('Index', { 
-				moduleName: 'index',
-				title: title,
-				description: '个人博客',
-				keywords: ',Bootstrap3',
-				virtualPath: virtualPath,
-				topMessage: getTopMessage(),
-				articles: rows
-			});
+		Article.findArticles([1, 10], function(err, docs){
+			if(err){
+				res.render('404');
+			}else{
+				res.render('Index', { 
+					moduleName: 'index',
+					title: title,
+					description: '个人博客',
+					keywords: ',Bootstrap3',
+					virtualPath: virtualPath,
+					topMessage: getTopMessage(),
+					articles: docs
+				});				
+			}
 		});
 	};
 
@@ -70,14 +74,19 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/index/more', function (req, res) {
-		var data = eval('('+ req.query.data +')');
+		try{
+			var data = eval('('+ req.query.data +')');
 
-		Article.findArticles([data.Current,10], function(err, rows){
-			res.render('Index_More', {
-				virtualPath: virtualPath,
-				articles: rows
+			Article.findArticles([data.Current, 10], function(err, docs){
+				res.render('Index_More', {
+					virtualPath: virtualPath,
+					articles: docs
+				});
 			});
-		});
+		}catch(e){
+			console.log(e);
+			res.send('');
+		}
 	});
 
 	/**

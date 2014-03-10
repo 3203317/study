@@ -104,6 +104,9 @@ function threeSeparator(num) {
 }
 
 ArticleSchema.statics.findArticles = function(pagination, cb) {
+	pagination[0] = pagination[0] || 1;
+	pagination[1] = pagination[1] || 10;
+
 	this.find(null, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
