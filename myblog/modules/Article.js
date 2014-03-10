@@ -130,23 +130,35 @@ ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) 
 	});
 };
 
+var categorys = {};
+
 ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagination, cb) {
 	var that = this;
 	pagination[0] = pagination[0] || 1;
 
-	Category.findCategoryByName(categoryName, function(err, doc){
-		if(err){
-			cb(err);
-		}else{
-			that.find({CategoryId: doc.Id}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
-				if(err){
-					cb(err);
-				}else{
-					cb(null, docs);
-				}
-			});
-		}
-	});
+	function findData(categoryId){
+		that.find({CategoryId: categoryId}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
+			if(err){
+				cb(err);
+			}else{
+				cb(null, docs);
+			}
+		});
+	}
+
+	if(categorys[categoryName]){
+		var categoryId = categorys[categoryName];
+		findData(categoryId);
+	}else{
+		Category.findCategoryByName(categoryName, function(err, doc){
+			if(err){
+				cb(err);
+			}else{
+				findData(doc.Id);
+				categorys[categoryName] = doc.Id;
+			}
+		});
+	}
 };
 
 ArticleSchema.statics.findArticleById = function(articleId, cb) {
