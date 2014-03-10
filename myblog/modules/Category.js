@@ -63,10 +63,10 @@ CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
 			cb(err);
 			console.log(err);
 		}else{
-			if(null === doc){
-				cb('Not found');
-			}else{
+			if(doc){
 				cb(null, doc);
+			}else{
+				cb('Not found');
 			}
 		}
 	});

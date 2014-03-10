@@ -132,8 +132,6 @@ ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) 
 	});
 };
 
-var categorys = {};
-
 ArticleSchema.statics._findArticlesByCategoryId = function(categoryId, pagination, cb) {
 	this.find({CategoryId: categoryId}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
@@ -149,21 +147,18 @@ ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagina
 	var that = this;
 	pagination[0] = pagination[0] || 1;
 
-	var categoryId = categorys[categoryName];
-
-	if(categoryId){
-		that._findArticlesByCategoryId(categoryId, pagination, cb);
-	}else{
-		Category.findCategoryByName(categoryName, function(err, doc){
-			if(err){
-				cb(err);
-				console.log(err);
-			}else{
-				categorys[categoryName] = doc.Id;
+	Category.findCategoryByName(categoryName, function(err, doc){
+		if(err){
+			cb(err);
+			console.log(err);
+		}else{
+			if(doc){
 				that._findArticlesByCategoryId(doc.Id, pagination, cb);
+			}else{
+				cb('Not found');
 			}
-		});
-	}
+		}
+	});
 };
 
 ArticleSchema.statics.findArticleById = function(articleId, cb) {
@@ -172,7 +167,11 @@ ArticleSchema.statics.findArticleById = function(articleId, cb) {
 			cb(err);
 			console.log(err);
 		}else{
-			cb(null, doc);
+			if(doc){
+				cb(null, doc);
+			}else{
+				cb('Not found')
+			}
 		}
 	});
 };
