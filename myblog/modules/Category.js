@@ -61,6 +61,7 @@ CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
 	this.findOne({CategoryName: categoryName}, null, null, function(err, doc){
 		if(err){
 			cb(err);
+			console.log(err);
 		}else{
 			if(null === doc){
 				cb('Not found');
@@ -76,6 +77,7 @@ CategorySchema.statics.findCategorys = function(cb) {
 	this.find(null, null, {sort: {CategoryOrder: -1}}, function(err, docs){
 		if(err){
 			cb(err);
+			console.log(err);
 		}else{
 			cb(null, docs);
 		}
@@ -94,6 +96,7 @@ CategorySchema.statics.saveNew = function(category, cb) {
 	CategoryModel.create(category, function(err, doc){
 		if(err){
 			cb(err)
+			console.log(err);
 		}else{
 			cb(null, doc);
 		}

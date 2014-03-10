@@ -79,7 +79,6 @@ module.exports = function(app) {
 
 			Article.findArticles([data.Current, 10], function(err, docs){
 				if(err){
-					console.log(err)
 					res.send('')
 				}else{
 					res.render('Index_More', {
@@ -89,8 +88,8 @@ module.exports = function(app) {
 				}
 			});
 		}catch(e){
-			console.log(e);
 			res.send('');
+			console.log(e);
 		}
 	});
 
@@ -107,7 +106,6 @@ module.exports = function(app) {
 
 		Article.findArticlesByCategoryName(categoryName, [1, 10], function(err, docs){
 			if(err){
-				console.log(err)
 				res.render('404')
 			}else{
 				res.render('Category', { 
@@ -141,7 +139,6 @@ module.exports = function(app) {
 
 			Article.findArticlesByCategoryName(categoryName, [data.Current, 10], function(err, docs){
 				if(err){
-					console.log(err)
 					res.send('')
 				}else{
 					res.render('Category_More', {
@@ -151,8 +148,8 @@ module.exports = function(app) {
 				}
 			});			
 		}catch(e){
-			console.log(e)
 			res.send('')
+			console.log(e)
 		}
 	});
 
@@ -227,7 +224,6 @@ module.exports = function(app) {
 
 		Article.findArticlesByTagName(tagName, [1,10], function(err, docs){		
 			if(err){
-				console.log(err)
 				res.render('404')
 			}else{
 				res.render('Tag', { 
@@ -261,7 +257,6 @@ module.exports = function(app) {
 
 			Article.findArticlesByTagName(tagName, [data.Current,10], function(err, docs){
 				if(err){
-					console.log(err)
 					res.send('');
 				}
 				res.render('Tag_More', {
@@ -270,8 +265,8 @@ module.exports = function(app) {
 				});
 			});
 		}catch(e){
-			console.log(e);
 			res.send('')
+			console.log(e);
 		}
 	});
 
@@ -288,7 +283,6 @@ module.exports = function(app) {
 
 		Article.findArticleById(articleId, function(err, doc){
 			if(err){
-				console.log(err)
 				res.render('404')
 			}else{
 				var article = doc;

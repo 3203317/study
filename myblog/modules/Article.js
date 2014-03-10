@@ -109,6 +109,7 @@ ArticleSchema.statics.findArticles = function(pagination, cb) {
 	this.find(null, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
+			console.log(err);
 		}else{
 			cb(null, docs);
 		}
@@ -124,6 +125,7 @@ ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) 
 	this.find(params, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
+			console.log(err);
 		}else{
 			cb(null, docs);
 		}
@@ -136,6 +138,7 @@ ArticleSchema.statics._findArticlesByCategoryId = function(categoryId, paginatio
 	this.find({CategoryId: categoryId}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
+			console.log(err);
 		}else{
 			cb(null, docs);
 		}
@@ -154,6 +157,7 @@ ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagina
 		Category.findCategoryByName(categoryName, function(err, doc){
 			if(err){
 				cb(err);
+				console.log(err);
 			}else{
 				categorys[categoryName] = doc.Id;
 				that._findArticlesByCategoryId(doc.Id, pagination, cb);
@@ -166,6 +170,7 @@ ArticleSchema.statics.findArticleById = function(articleId, cb) {
 	this.findOne({Id: articleId}, null, null, function(err, doc){
 		if(err){
 			cb(err);
+			console.log(err);
 		}else{
 			cb(null, doc);
 		}
