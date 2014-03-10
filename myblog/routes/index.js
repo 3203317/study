@@ -78,10 +78,15 @@ module.exports = function(app) {
 			var data = eval('('+ req.query.data +')');
 
 			Article.findArticles([data.Current, 10], function(err, docs){
-				res.render('Index_More', {
-					virtualPath: virtualPath,
-					articles: docs
-				});
+				if(err){
+					console.log(err)
+					res.send('')
+				}else{
+					res.render('Index_More', {
+						virtualPath: virtualPath,
+						articles: docs
+					});					
+				}
 			});
 		}catch(e){
 			console.log(e);
