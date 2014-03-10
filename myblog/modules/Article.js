@@ -136,6 +136,8 @@ ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) 
 
 ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagination, cb) {
 	var that = this;
+	pagination[0] = pagination[0] || 1;
+	pagination[1] = pagination[1] || 10;
 
 	Category.findCategoryByName(categoryName, function(err, doc){
 		if(err){

@@ -103,20 +103,25 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/category/:id', function (req, res) {
-		var categoryName = req.params.id;
+		var categoryName = req.params.id.trim();
 
-		Article.findArticlesByCategoryName(categoryName, [1,10], function(err, rows){			
-			res.render('Category', { 
-				moduleName: 'category',
-				title: title,
-				atitle: categoryName,
-				categoryName: categoryName,
-				description: '个人博客',
-				keywords: ',Bootstrap3',
-				virtualPath: virtualPath +'../../',
-				topMessage: getTopMessage(),
-				articles: rows
-			});
+		Article.findArticlesByCategoryName(categoryName, [1, 10], function(err, docs){
+			if(err){
+				console.log(err)
+				res.render('404')
+			}else{
+				res.render('Category', { 
+					moduleName: 'category',
+					title: title,
+					atitle: categoryName,
+					categoryName: categoryName,
+					description: '个人博客',
+					keywords: ',Bootstrap3',
+					virtualPath: virtualPath +'../../',
+					topMessage: getTopMessage(),
+					articles: docs
+				});
+			}
 		});
 	});
 
