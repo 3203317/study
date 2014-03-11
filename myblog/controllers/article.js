@@ -23,7 +23,7 @@ function getTopMessage(){
 
 
 exports.id = function(req, res, next) {
-	var proxy = EventProxy.create('article', 'categorys', function(article, categorys){
+	var proxy = EventProxy.create('article', 'categorys', 'nextArticle', 'prevArticle', function(article, categorys, nextArticle, prevArticle){
 		res.render('Article', { 
 			moduleName: 'archives',
 			title: title,
@@ -33,7 +33,9 @@ exports.id = function(req, res, next) {
 			virtualPath: virtualPath +'../',
 			topMessage: getTopMessage(),
 			article: article,
-			categorys: categorys
+			categorys: categorys,
+			nextArticle: nextArticle,
+			prevArticle: prevArticle
 		});
 	});
 
@@ -50,7 +52,22 @@ exports.id = function(req, res, next) {
 		if(err){
 			console.log(err);
 		}
-		proxy.emit('article', doc);
+		var article = doc;
+		proxy.emit('article', article);
+
+		Article.findNextArticle(article, function(err, doc){
+			if(err){
+				console.log(err);
+			}
+			proxy.emit('nextArticle', doc);
+		});
+
+		Article.findPrevArticle(article, function(err, doc){
+			if(err){
+				console.log(err);
+			}
+			proxy.emit('prevArticle', doc);
+		});
 	});
 };
 
