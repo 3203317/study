@@ -5,6 +5,7 @@ var Article = require('../modules/Article.js');
 
 var site = require('../controllers/site');
 var category = require('../controllers/category');
+var user = require('../controllers/user');
 
 module.exports = function(app) {
 
@@ -70,15 +71,7 @@ module.exports = function(app) {
 	 * @params res
 	 * @return
 	 */
-	app.get('/user/login', function (req, res) {
-		res.render('User/Login', { 
-			title: title,
-			atitle: '登陆',
-			description: '个人博客',
-			keywords: ',登陆,Bootstrap3',
-			virtualPath: virtualPath +'/'
-		});
-	});
+	app.get('/user/login', user.login);
 
 	/**
 	 * 档案馆 
