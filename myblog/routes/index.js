@@ -47,7 +47,7 @@ module.exports = function(app) {
 				topMessage: getTopMessage(),
 				articles: articles,
 				categorys: categorys
-			});	
+			});
 		});
 
 		Category.findCategorys(function(err, docs){
@@ -115,22 +115,33 @@ module.exports = function(app) {
 	app.get('/archive/category/:id', function (req, res) {
 		var categoryName = req.params.id.trim();
 
+		var proxy = EventProxy.create('articles', 'categorys', function(articles, categorys){
+			res.render('Category', { 
+				moduleName: 'category',
+				title: title,
+				atitle: categoryName,
+				categoryName: categoryName,
+				description: '个人博客',
+				keywords: ',Bootstrap3',
+				virtualPath: virtualPath +'../../',
+				topMessage: getTopMessage(),
+				articles: articles,
+				categorys: categorys
+			});
+		});
+
+		Category.findCategorys(function(err, docs){
+			if(err){
+				console.log(err);
+			}
+			proxy.emit('categorys', docs);
+		});
+
 		Article.findArticlesByCategoryName(categoryName, [1, 10], function(err, docs){
 			if(err){
-				res.render('404')
-			}else{
-				res.render('Category', { 
-					moduleName: 'category',
-					title: title,
-					atitle: categoryName,
-					categoryName: categoryName,
-					description: '个人博客',
-					keywords: ',Bootstrap3',
-					virtualPath: virtualPath +'../../',
-					topMessage: getTopMessage(),
-					articles: docs
-				});
+				console.log(err);
 			}
+			proxy.emit('articles', docs);
 		});
 	});
 
