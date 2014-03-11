@@ -3,6 +3,8 @@ var Category = require('../modules/Category.js');
 
 var Article = require('../modules/Article.js');
 
+var site = require('../controllers/site');
+
 module.exports = function(app) {
 
 	/**
@@ -36,35 +38,6 @@ module.exports = function(app) {
 		res.render('404');
 	});
 
-	var indexUI = function (req, res) {
-		var proxy = EventProxy.create('articles', 'categorys', function(articles, categorys){
-			res.render('Index', { 
-				moduleName: 'index',
-				title: title,
-				description: '个人博客',
-				keywords: ',Bootstrap3',
-				virtualPath: virtualPath,
-				topMessage: getTopMessage(),
-				articles: articles,
-				categorys: categorys
-			});
-		});
-
-		Category.findCategorys(function(err, docs){
-			if(err){
-				console.log(err);
-			}
-			proxy.emit('categorys', docs);
-		});
-
-		Article.findArticles([1, 10], function(err, docs){
-			if(err){
-				console.log(err);
-			}
-			proxy.emit('articles', docs);
-		});
-	};
-
 	/**
 	 * 首页
 	 *
@@ -73,36 +46,9 @@ module.exports = function(app) {
 	 * @params res
 	 * @return
 	 */
-	app.get('/index.html', indexUI);
-	app.get('/', indexUI);
-
-	/**
-	 * 首页更多
-	 *
-	 * @method
-	 * @params req
-	 * @params res
-	 * @return
-	 */
-	app.get('/index/more', function (req, res) {
-		try{
-			var data = eval('('+ req.query.data +')');
-
-			Article.findArticles([data.Current, 10], function(err, docs){
-				if(err){
-					res.send('')
-				}else{
-					res.render('Index_More', {
-						virtualPath: virtualPath,
-						articles: docs
-					});					
-				}
-			});
-		}catch(e){
-			res.send('');
-			console.log(e);
-		}
-	});
+	app.get('/index.html', site.index);
+	app.get('/', site.index);
+	app.get('/index/more', site.index_more);
 
 	/**
 	 * 分类
