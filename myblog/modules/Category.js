@@ -72,16 +72,22 @@ CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
 	});
 };
 
+var categorys;
 
 CategorySchema.statics.findCategorys = function(cb) {
-	this.find(null, null, {sort: {CategoryOrder: 1}}, function(err, docs){
-		if(err){
-			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
-		}
-	});
+	if(categorys){
+		cb(null, categorys);
+	}else{
+		this.find(null, null, {sort: {CategoryOrder: 1}}, function(err, docs){
+			if(err){
+				cb(err);
+				console.log(err);
+			}else{
+				categorys = docs;
+				cb(null, categorys);
+			}
+		});
+	}
 };
 
 /**
