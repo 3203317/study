@@ -52,18 +52,16 @@ module.exports = function(app) {
 
 		Category.findCategorys(function(err, docs){
 			if(err){
-				res.render('404')
-			}else{
-				proxy.emit('categorys', docs);
+				console.log(err);
 			}
+			proxy.emit('categorys', docs);
 		});
 
 		Article.findArticles([1, 10], function(err, docs){
 			if(err){
-				res.render('404');
-			}else{
-				proxy.emit('articles', docs);	
+				console.log(err);
 			}
+			proxy.emit('articles', docs);
 		});
 	};
 
