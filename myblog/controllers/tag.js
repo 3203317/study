@@ -1,4 +1,7 @@
+var EventProxy = require('eventproxy');
 var Category = require('../modules/Category.js');
+
+var Article = require('../modules/Article.js');
 
 
 var virtualPath = '';
@@ -33,7 +36,42 @@ exports.index = function(req, res, next) {
 			description: '个人博客',
 			keywords: ',标签,Bootstrap3',
 			virtualPath: virtualPath +'../../',
-			topMessage: getTopMessage()
+			topMessage: getTopMessage(),
+			categorys: docs
 		});
+	});
+};
+
+
+exports.id = function(req, res, next) {
+	var proxy = EventProxy.create('articles', 'categorys', function(articles, categorys){
+		res.render('Tag', { 
+			moduleName: 'tag',
+			title: title,
+			atitle: tagName,
+			tagName: tagName,
+			description: '个人博客',
+			keywords: ',标签,Bootstrap3',
+			virtualPath: virtualPath +'../../',
+			topMessage: getTopMessage(),
+			articles: articles,
+			categorys: categorys
+		});
+	});
+
+	Category.findCategorys(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('categorys', docs);
+	});
+
+	var tagName = req.params.id.trim();
+
+	Article.findArticlesByTagName(tagName, [1,10], function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('articles', docs);
 	});
 };

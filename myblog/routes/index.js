@@ -94,36 +94,7 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/tag/', tag.index);
-
-	/**
-	 * 标签模块
-	 *
-	 * @method
-	 * @params req
-	 * @params res
-	 * @return
-	 */
-	app.get('/archive/tag/:id', function (req, res) {
-		var tagName = req.params.id.trim();
-
-		Article.findArticlesByTagName(tagName, [1,10], function(err, docs){		
-			if(err){
-				res.render('404')
-			}else{
-				res.render('Tag', { 
-					moduleName: 'tag',
-					title: title,
-					atitle: tagName,
-					tagName: tagName,
-					description: '个人博客',
-					keywords: ',标签,Bootstrap3',
-					virtualPath: virtualPath +'../../',
-					topMessage: getTopMessage(),
-					articles: docs
-				});
-			}
-		});
-	});
+	app.get('/archive/tag/:id', tag.id);
 
 	/**
 	 * 标签更多
