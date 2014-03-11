@@ -29,7 +29,7 @@ exports.id = function(req, res, next) {
 			title: title,
 			atitle: article.ArticleTitle,
 			description: '个人博客,' + article.ArticleTitle,
-			keywords: ',Bootstrap3',
+			keywords: (0 === article.ArticleTag.length ? "," : article.ArticleTag) + 'Bootstrap3',
 			virtualPath: virtualPath +'../',
 			topMessage: getTopMessage(),
 			article: article,
