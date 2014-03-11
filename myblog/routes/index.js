@@ -120,26 +120,5 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/category/add.do', function (req, res) {
-
-		var category = {
-			CategoryName: 'haha',
-			CategoryOrder: 1,
-			CategoryIntro: '',
-			CategoryCount: 1
-		};
-
-		Category.saveNew(category, function(err, doc){
-			var result = { Success: true };
-
-			if(err) {
-				result.Success = false;
-				result.err = err;
-			}else{
-				result.data = doc;
-			}
-
-			res.send(JSON.stringify(result));
-		});
-	});
+	app.post('/category/add.do', category.add);
 };

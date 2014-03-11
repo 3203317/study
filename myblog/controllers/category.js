@@ -78,3 +78,26 @@ exports.index_more = function(req, res, next) {
 		console.log(e)
 	}
 };
+
+
+exports.add = function(req, res, next) {
+	var category = {
+		CategoryName: 'haha',
+		CategoryOrder: 1,
+		CategoryIntro: '',
+		CategoryCount: 1
+	};
+
+	Category.saveNew(category, function(err, doc){
+		var result = { Success: true };
+
+		if(err) {
+			result.Success = false;
+			result.err = err;
+		}else{
+			result.data = doc;
+		}
+
+		res.send(JSON.stringify(result));
+	});	
+};
