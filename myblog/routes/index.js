@@ -7,6 +7,7 @@ var site = require('../controllers/site');
 var category = require('../controllers/category');
 var user = require('../controllers/user');
 var archive = require('../controllers/archive');
+var tag = require('../controllers/tag');
 
 module.exports = function(app) {
 
@@ -92,17 +93,7 @@ module.exports = function(app) {
 	 * @params res
 	 * @return
 	 */
-	app.get('/archive/tag/', function (req, res) {
-		res.render('Tags', { 
-			moduleName: 'tag',
-			title: title,
-			atitle: '标签',
-			description: '个人博客',
-			keywords: ',标签,Bootstrap3',
-			virtualPath: virtualPath +'../../',
-			topMessage: getTopMessage()
-		});
-	});
+	app.get('/archive/tag/', tag.index);
 
 	/**
 	 * 标签模块
