@@ -6,6 +6,7 @@ var Article = require('../modules/Article.js');
 var site = require('../controllers/site');
 var category = require('../controllers/category');
 var user = require('../controllers/user');
+var archive = require('../controllers/archive');
 
 module.exports = function(app) {
 
@@ -81,17 +82,7 @@ module.exports = function(app) {
 	 * @params res
 	 * @return
 	 */
-	app.get('/archive/', function (req, res) {
-		res.render('Archive', { 
-			moduleName: 'archives',
-			title: title,
-			atitle: '档案馆',
-			description: '个人博客',
-			keywords: ',档案馆,Bootstrap3',
-			virtualPath: virtualPath +'../',
-			topMessage: getTopMessage()
-		});
-	});
+	app.get('/archive/', archive.index);
 
 	/**
 	 * 标签馆
