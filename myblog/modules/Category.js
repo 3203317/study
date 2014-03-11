@@ -74,7 +74,7 @@ CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
 
 
 CategorySchema.statics.findCategorys = function(cb) {
-	this.find(null, null, {sort: {CategoryOrder: -1}}, function(err, docs){
+	this.find(null, null, {sort: {CategoryOrder: 1}}, function(err, docs){
 		if(err){
 			cb(err);
 			console.log(err);

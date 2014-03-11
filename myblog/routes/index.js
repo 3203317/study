@@ -37,19 +37,28 @@ module.exports = function(app) {
 	});
 
 	var indexUI = function (req, res) {
-		Article.findArticles([1, 10], function(err, docs){
+		Category.findCategorys(function(err, docs){
 			if(err){
-				res.render('404');
+				res.render('404')
 			}else{
-				res.render('Index', { 
-					moduleName: 'index',
-					title: title,
-					description: '个人博客',
-					keywords: ',Bootstrap3',
-					virtualPath: virtualPath,
-					topMessage: getTopMessage(),
-					articles: docs
-				});				
+				var categorys = docs;
+
+				Article.findArticles([1, 10], function(err, docs){
+					if(err){
+						res.render('404');
+					}else{
+						res.render('Index', { 
+							moduleName: 'index',
+							title: title,
+							description: '个人博客',
+							keywords: ',Bootstrap3',
+							virtualPath: virtualPath,
+							topMessage: getTopMessage(),
+							articles: docs,
+							categorys: categorys
+						});				
+					}
+				});
 			}
 		});
 	};
