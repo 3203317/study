@@ -4,6 +4,7 @@ var Category = require('../modules/Category.js');
 var Article = require('../modules/Article.js');
 
 var site = require('../controllers/site');
+var category = require('../controllers/category');
 
 module.exports = function(app) {
 
@@ -58,68 +59,8 @@ module.exports = function(app) {
 	 * @params res
 	 * @return
 	 */
-	app.get('/archive/category/:id', function (req, res) {
-		var categoryName = req.params.id.trim();
-
-		var proxy = EventProxy.create('articles', 'categorys', function(articles, categorys){
-			res.render('Category', { 
-				moduleName: 'category',
-				title: title,
-				atitle: categoryName,
-				categoryName: categoryName,
-				description: '个人博客',
-				keywords: ',Bootstrap3',
-				virtualPath: virtualPath +'../../',
-				topMessage: getTopMessage(),
-				articles: articles,
-				categorys: categorys
-			});
-		});
-
-		Category.findCategorys(function(err, docs){
-			if(err){
-				console.log(err);
-			}
-			proxy.emit('categorys', docs);
-		});
-
-		Article.findArticlesByCategoryName(categoryName, [1, 10], function(err, docs){
-			if(err){
-				console.log(err);
-			}
-			proxy.emit('articles', docs);
-		});
-	});
-
-	/**
-	 * 分类更多
-	 *
-	 * @method
-	 * @params req
-	 * @params res
-	 * @return
-	 */
-	app.get('/archive/category/:id/more', function (req, res) {
-		var categoryName = req.params.id.trim();
-
-		try{
-			var data = eval('('+ req.query.data +')');
-
-			Article.findArticlesByCategoryName(categoryName, [data.Current, 10], function(err, docs){
-				if(err){
-					res.send('')
-				}else{
-					res.render('Category_More', {
-						virtualPath: virtualPath +'../../',
-						articles: docs
-					});					
-				}
-			});			
-		}catch(e){
-			res.send('')
-			console.log(e)
-		}
-	});
+	app.get('/archive/category/:id', category.index);
+	app.get('/archive/category/:id/more', category.index_more);
 
 	/**
 	 * 登陆
