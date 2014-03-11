@@ -176,8 +176,8 @@ ArticleSchema.statics.findArticleById = function(articleId, cb) {
 	});
 };
 
-ArticleSchema.statics.findNextArticle = function(article, cb) {
-	this.findOne({PostTime: { $gt: article.PostTime }}, null, {sort: {PostTime: -1}}, function(err, doc){
+ArticleSchema.statics.findPrevArticle = function(article, cb) {
+	this.findOne({PostTime: { $gt: article.PostTime }}, null, {sort: {PostTime: 1}}, function(err, doc){
 		if(err){
 			cb(err);
 			console.log(err);
@@ -187,8 +187,8 @@ ArticleSchema.statics.findNextArticle = function(article, cb) {
 	});
 };
 
-ArticleSchema.statics.findPrevArticle = function(article, cb) {
-	this.findOne({PostTime: { $lt: article.PostTime }}, null, {sort: {PostTime: 1}}, function(err, doc){
+ArticleSchema.statics.findNextArticle = function(article, cb) {
+	this.findOne({PostTime: { $lt: article.PostTime }}, null, {sort: {PostTime: -1}}, function(err, doc){
 		if(err){
 			cb(err);
 			console.log(err);
