@@ -84,6 +84,7 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/', archive.index);
+	app.get('/archive/:id.html', archive.id);
 
 	/**
 	 * 标签馆
@@ -96,37 +97,6 @@ module.exports = function(app) {
 	app.get('/archive/tag/', tag.index);
 	app.get('/archive/tag/:id', tag.id);
 	app.get('/archive/tag/:id/more', tag.id_more);
-
-	/**
-	 * 文章
-	 *
-	 * @method
-	 * @params req
-	 * @params res
-	 * @return
-	 */
-	app.get('/archive/:id.html', function (req, res) {
-		var articleId = req.params.id.trim();
-
-		Article.findArticleById(articleId, function(err, doc){
-			if(err){
-				res.render('404')
-			}else{
-				var article = doc;
-
-				res.render('Article', { 
-					moduleName: 'archives',
-					title: title,
-					atitle: article.ArticleTitle,
-					description: '个人博客,' + article.ArticleTitle,
-					keywords: ',Bootstrap3',
-					virtualPath: virtualPath +'../',
-					topMessage: getTopMessage(),
-					article: article
-				});
-			}
-		});
-	});
 
 	/**
 	 * 添加新文章
