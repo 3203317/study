@@ -39,36 +39,3 @@ exports.index = function(req, res, next) {
 		});
 	});
 };
-
-
-exports.id = function(req, res, next) {
-	var proxy = EventProxy.create('article', 'categorys', function(article, categorys){
-		res.render('Article', { 
-			moduleName: 'archives',
-			title: title,
-			atitle: article.ArticleTitle,
-			description: '个人博客,' + article.ArticleTitle,
-			keywords: ',Bootstrap3',
-			virtualPath: virtualPath +'../',
-			topMessage: getTopMessage(),
-			article: article,
-			categorys: categorys
-		});
-	});
-
-	Category.findCategorys(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('categorys', docs);
-	});
-
-	var articleId = req.params.id.trim();
-
-	Article.findArticleById(articleId, function(err, doc){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('article', doc);
-	});
-};

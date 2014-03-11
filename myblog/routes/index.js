@@ -1,35 +1,11 @@
-var EventProxy = require('eventproxy');
-var Category = require('../modules/Category.js');
-
-var Article = require('../modules/Article.js');
-
 var site = require('../controllers/site');
 var category = require('../controllers/category');
 var user = require('../controllers/user');
 var archive = require('../controllers/archive');
 var tag = require('../controllers/tag');
+var article = require('../controllers/article');
 
 module.exports = function(app) {
-
-	/**
-	 * 日期小于10补0
-	 */
-	function p(s) {
-		return 10 > s ? '0' + s : s;
-	}
-
-	function getTopMessage(){
-		var time = new Date();
-		var year = time.getFullYear();
-		var month = p(time.getMonth() + 1);
-		var day = p(time.getDate());
-
-		return '欢迎您。今天是'+ year +'年'+ month +'月'+ day +'日。';
-	};
-
-	var virtualPath = '';
-	var title = 'FOREWORLD 洪荒';
-
 	/**
 	 * 404
 	 *
@@ -84,7 +60,7 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.get('/archive/', archive.index);
-	app.get('/archive/:id.html', archive.id);
+	app.get('/archive/:id.html', article.id);
 
 	/**
 	 * 标签馆
@@ -106,19 +82,7 @@ module.exports = function(app) {
 	 * @params res
 	 * @return
 	 */
-	app.get('/article/add.do', function (req, res) {
-
-		var article = new Article();
-
-		Article.saveNew(article, function(err){
-
-			var result = { Success: true };
-
-			if(err) result.Success = false;
-
-			res.send(JSON.stringify(result));
-		});
-	});
+	app.post('/article/add.do', article.add);
 
 	app.post('/category/add.do', category.add);
 };
