@@ -75,3 +75,24 @@ exports.id = function(req, res, next) {
 		proxy.emit('articles', docs);
 	});
 };
+
+exports.id_more = function(req, res, next) {
+	var tagName = req.params.id.trim();
+
+	try{
+		var data = eval('('+ req.query.data +')');
+
+		Article.findArticlesByTagName(tagName, [data.Current,10], function(err, docs){
+			if(err){
+				res.send('');
+			}
+			res.render('Tag_More', {
+				virtualPath: virtualPath +'../../',
+				articles: docs
+			});
+		});
+	}catch(e){
+		res.send('')
+		console.log(e);
+	}
+};

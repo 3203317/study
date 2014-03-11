@@ -95,35 +95,7 @@ module.exports = function(app) {
 	 */
 	app.get('/archive/tag/', tag.index);
 	app.get('/archive/tag/:id', tag.id);
-
-	/**
-	 * 标签更多
-	 *
-	 * @method
-	 * @params req
-	 * @params res
-	 * @return
-	 */
-	app.get('/archive/tag/:id/more', function (req, res) {
-		var tagName = req.params.id.trim();
-
-		try{
-			var data = eval('('+ req.query.data +')');
-
-			Article.findArticlesByTagName(tagName, [data.Current,10], function(err, docs){
-				if(err){
-					res.send('');
-				}
-				res.render('Tag_More', {
-					virtualPath: virtualPath +'../../',
-					articles: docs
-				});
-			});
-		}catch(e){
-			res.send('')
-			console.log(e);
-		}
-	});
+	app.get('/archive/tag/:id/more', tag.id_more);
 
 	/**
 	 * 文章
