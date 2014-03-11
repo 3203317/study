@@ -1,4 +1,4 @@
-
+var EventProxy = require('eventproxy');
 var Category = require('../modules/Category.js');
 
 var Article = require('../modules/Article.js');
@@ -37,28 +37,32 @@ module.exports = function(app) {
 	});
 
 	var indexUI = function (req, res) {
+		var proxy = EventProxy.create('articles', 'categorys', function(articles, categorys){
+			res.render('Index', { 
+				moduleName: 'index',
+				title: title,
+				description: '个人博客',
+				keywords: ',Bootstrap3',
+				virtualPath: virtualPath,
+				topMessage: getTopMessage(),
+				articles: articles,
+				categorys: categorys
+			});	
+		});
+
 		Category.findCategorys(function(err, docs){
 			if(err){
 				res.render('404')
 			}else{
-				var categorys = docs;
+				proxy.emit('categorys', docs);
+			}
+		});
 
-				Article.findArticles([1, 10], function(err, docs){
-					if(err){
-						res.render('404');
-					}else{
-						res.render('Index', { 
-							moduleName: 'index',
-							title: title,
-							description: '个人博客',
-							keywords: ',Bootstrap3',
-							virtualPath: virtualPath,
-							topMessage: getTopMessage(),
-							articles: docs,
-							categorys: categorys
-						});				
-					}
-				});
+		Article.findArticles([1, 10], function(err, docs){
+			if(err){
+				res.render('404');
+			}else{
+				proxy.emit('articles', docs);	
 			}
 		});
 	};
