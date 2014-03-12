@@ -6,7 +6,7 @@ var mongoose = db.mongoose,
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var CommentsChema = new Schema({
+var CommentSchema = new Schema({
 	Id: {
 		type: String,
 		unique: true,
@@ -32,7 +32,7 @@ var CommentsChema = new Schema({
 	versionKey: false
 });
 
-CommentsChema.statics.findComments = function(pagination, cb) {
+CommentSchema.statics.findComments = function(pagination, cb) {
 	var option = {
 		sort: {PostTime: -1}
 	};
@@ -52,6 +52,6 @@ CommentsChema.statics.findComments = function(pagination, cb) {
 	});
 };
 
-var CommentmOdel = mongoose.model('comment', CommentsChema);
+var CommentModel = mongoose.model('comment', CommentSchema);
 
-exports = module.exports = CommentmOdel;
+exports = module.exports = CommentModel;

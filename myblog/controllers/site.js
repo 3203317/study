@@ -6,6 +6,7 @@ var Article = require('../modules/Article.js');
 
 var Comment = require('../modules/Comment.js');
 
+var Link = require('../modules/Link.js');
 
 var virtualPath = '';
 var title = 'FOREWORLD 洪荒';
@@ -27,7 +28,7 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', 'top10Comments', function(articles, categorys, top10ViewNums, top10Comments){
+	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', 'top10Comments', 'usefulLinks', function(articles, categorys, top10ViewNums, top10Comments, usefulLinks){
 		res.render('Index', { 
 			moduleName: 'index',
 			title: title,
@@ -38,7 +39,8 @@ exports.index = function(req, res, next) {
 			articles: articles,
 			categorys: categorys,
 			top10ViewNums: top10ViewNums,
-			top10Comments: top10Comments
+			top10Comments: top10Comments,
+			usefulLinks: usefulLinks
 		});
 	});
 
@@ -68,6 +70,13 @@ exports.index = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('top10Comments', docs);
+	});
+
+	Link.findLinks(1, function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('usefulLinks', docs);
 	});
 };
 
