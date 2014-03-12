@@ -1,6 +1,9 @@
 var EventProxy = require('eventproxy');
 var Category = require('../modules/Category.js');
 var Article = require('../modules/Article.js');
+var Comment = require('../modules/Comment.js');
+var Link = require('../modules/Link.js');
+
 
 var virtualPath = '';
 var title = 'FOREWORLD 洪荒';
@@ -23,7 +26,7 @@ function getTopMessage(){
 
 
 exports.id = function(req, res, next) {
-	var proxy = EventProxy.create('article', 'categorys', 'nextArticle', 'prevArticle', function(article, categorys, nextArticle, prevArticle){
+	var proxy = EventProxy.create('article', 'categorys', 'nextArticle', 'prevArticle', 'top10ViewNums', 'top10Comments', 'usefulLinks', function(article, categorys, nextArticle, prevArticle, top10ViewNums, top10Comments, usefulLinks){
 		res.render('Article', { 
 			moduleName: 'archives',
 			title: title,
@@ -35,7 +38,10 @@ exports.id = function(req, res, next) {
 			article: article,
 			categorys: categorys,
 			nextArticle: nextArticle,
-			prevArticle: prevArticle
+			prevArticle: prevArticle,
+			top10ViewNums: top10ViewNums,
+			top10Comments: top10Comments,
+			usefulLinks: usefulLinks
 		});
 	});
 
@@ -44,6 +50,27 @@ exports.id = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('categorys', docs);
+	});
+
+	Article.findTop10ViewNums(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('top10ViewNums', docs);
+	});
+
+	Comment.findComments([1, 10], function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('top10Comments', docs);
+	});
+
+	Link.findLinks(1, function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('usefulLinks', docs);
 	});
 
 	var articleId = req.params.id.trim();
