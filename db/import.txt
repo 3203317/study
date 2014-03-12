@@ -4,9 +4,7 @@ mongoimport -d foreworld -c articles d:\GitHub\study\db\f_article.json --jsonArr
 
 var cursor = db.articles.find();
 cursor.forEach(function(x){ 
-	db.articles.update(x, {$set:{PostTime:new Date(x.PostTime)}}) 
-	db.articles.update(x, {$set:{ViewNums:parseInt(x.ViewNums)}}) 
-	db.articles.update(x, {$set:{TopMark:parseInt(x.TopMark)}}) 
+	db.articles.update(x, {$set:{PostTime:new Date(x.PostTime), ViewNums:parseInt(x.ViewNums), TopMark:parseInt(x.TopMark)}}); 
 });
 db.articles.findOne()
 
@@ -29,9 +27,6 @@ mongoimport -d foreworld -c links d:\GitHub\study\db\f_link.json --jsonArray
 
 var cursor = db.links.find();
 cursor.forEach(function(x){ 
-	db.links.update(x, {$set:{LinkType:parseInt(x.LinkType)}}) 
-	db.links.update(x, {$set:{LinkOrder:parseInt(x.LinkOrder)}}) 
+	db.links.update(x, {$set:{LinkType:parseInt(x.LinkType), LinkOrder:parseInt(x.LinkOrder)}}) 
 });
 db.links.findOne()
-
-mongoimport -d foreworld -c tags d:\GitHub\study\db\f_tag.json --jsonArray
