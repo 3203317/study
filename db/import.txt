@@ -14,3 +14,15 @@ db.articles.findOne()
 mongoimport -d foreworld -c categories d:\GitHub\study\db\f_category.json --jsonArray
 
 mongoimport -d foreworld -c tags d:\GitHub\study\db\f_tag.json --jsonArray
+
+mongoimport -d foreworld -c comments d:\GitHub\study\db\f_comment.json --jsonArray
+var cursor = db.comments.find();
+cursor.forEach(function(x){ 
+	db.comments.update(x, {$set:{PostTime:new Date(x.PostTime)}}) 
+});
+db.comments.findOne()
+
+
+mongoimport -d foreworld -c links d:\GitHub\study\db\f_link.json --jsonArray
+
+mongoimport -d foreworld -c tags d:\GitHub\study\db\f_tag.json --jsonArray
