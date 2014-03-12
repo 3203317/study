@@ -73,7 +73,7 @@ exports.index = function(req, res, next) {
 
 
 exports.id = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'categorys', function(articles, categorys){
+	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', 'top10Comments', 'usefulLinks', 'topMarks', function(articles, categorys, top10ViewNums, top10Comments, usefulLinks, topMarks){
 		res.render('Tag', { 
 			moduleName: 'tag',
 			title: title,
@@ -84,7 +84,11 @@ exports.id = function(req, res, next) {
 			virtualPath: virtualPath +'../../',
 			topMessage: getTopMessage(),
 			articles: articles,
-			categorys: categorys
+			categorys: categorys,
+			top10ViewNums: top10ViewNums,
+			top10Comments: top10Comments,
+			topMarks: topMarks,
+			usefulLinks: usefulLinks
 		});
 	});
 
@@ -102,6 +106,34 @@ exports.id = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('articles', docs);
+	});
+
+	Article.findTop10ViewNums(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('top10ViewNums', docs);
+	});
+
+	Article.findTopMarks(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('topMarks', docs);
+	});
+
+	Comment.findComments([1, 10], function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('top10Comments', docs);
+	});
+
+	Link.findLinks(1, function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('usefulLinks', docs);
 	});
 };
 
