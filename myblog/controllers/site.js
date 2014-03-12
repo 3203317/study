@@ -28,7 +28,7 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', 'top10Comments', 'usefulLinks', function(articles, categorys, top10ViewNums, top10Comments, usefulLinks){
+	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', 'top10Comments', 'usefulLinks', 'topMarks', function(articles, categorys, top10ViewNums, top10Comments, usefulLinks, topMarks){
 		res.render('Index', { 
 			moduleName: 'index',
 			title: title,
@@ -40,6 +40,7 @@ exports.index = function(req, res, next) {
 			categorys: categorys,
 			top10ViewNums: top10ViewNums,
 			top10Comments: top10Comments,
+			topMarks: topMarks,
 			usefulLinks: usefulLinks
 		});
 	});
@@ -63,6 +64,13 @@ exports.index = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('top10ViewNums', docs);
+	});
+
+	Article.findTopMarks(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('topMarks', docs);
 	});
 
 	Comment.findComments([1, 10], function(err, docs){

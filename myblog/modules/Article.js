@@ -127,6 +127,17 @@ ArticleSchema.statics.findTop10ViewNums = function(cb) {
 	});
 };
 
+ArticleSchema.statics.findTopMarks = function(cb) {
+	this.find({TopMark: 1}, null, {sort: {PostTime: -1}}, function(err, docs){
+		if(err){
+			cb(err);
+			console.log(err);
+		}else{
+			cb(null, docs);
+		}
+	});
+};
+
 ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) {
 	var params = {
 		ArticleTag: new RegExp(','+ tagName +',', 'i')
