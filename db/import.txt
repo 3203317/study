@@ -6,6 +6,7 @@ mongoimport -d foreworld -c articles d:\GitHub\study\db\f_article.json --jsonArr
 var cursor = db.articles.find();
 cursor.forEach(function(x){ 
 	db.articles.update(x, {$set:{PostTime:new Date(x.PostTime)}}) 
+	db.articles.update(x, {$set:{ViewNums:parseInt(x.ViewNums)}}) 
 });
 db.articles.findOne()
 

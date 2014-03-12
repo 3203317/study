@@ -25,7 +25,7 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'categorys', function(articles, categorys){
+	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', function(articles, categorys, top10ViewNums){
 		res.render('Index', { 
 			moduleName: 'index',
 			title: title,
@@ -34,7 +34,8 @@ exports.index = function(req, res, next) {
 			virtualPath: virtualPath,
 			topMessage: getTopMessage(),
 			articles: articles,
-			categorys: categorys
+			categorys: categorys,
+			top10ViewNums: top10ViewNums
 		});
 	});
 
@@ -50,6 +51,13 @@ exports.index = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('articles', docs);
+	});
+
+	Article.findTop10ViewNums(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		proxy.emit('top10ViewNums', docs);
 	});
 };
 

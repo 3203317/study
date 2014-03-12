@@ -116,6 +116,17 @@ ArticleSchema.statics.findArticles = function(pagination, cb) {
 	});
 };
 
+ArticleSchema.statics.findTop10ViewNums = function(cb) {
+	this.find(null, null, {sort: {ViewNums: -1}, skip: 0, limit: 10}, function(err, docs){
+		if(err){
+			cb(err);
+			console.log(err);
+		}else{
+			cb(null, docs);
+		}
+	});
+};
+
 ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) {
 	var params = {
 		ArticleTag: new RegExp(','+ tagName +',', 'i')
