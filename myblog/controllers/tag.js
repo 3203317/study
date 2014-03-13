@@ -1,9 +1,4 @@
-var EventProxy = require('eventproxy');
-var Category = require('../modules/Category.js');
 var Article = require('../modules/Article.js');
-var Comment = require('../modules/Comment.js');
-var Link = require('../modules/Link.js');
-
 
 var virtualPath = '';
 var title = 'FOREWORLD 洪荒';
@@ -26,106 +21,37 @@ function getTopMessage(){
 
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('top10ViewNums', 'top10Comments', 'usefulLinks', function(top10ViewNums, top10Comments, usefulLinks){
-		res.render('Tags', { 
-			moduleName: 'tag',
-			title: title,
-			atitle: '标签',
-			description: '个人博客',
-			keywords: ',标签,Bootstrap3',
-			virtualPath: virtualPath +'../../',
-			topMessage: getTopMessage(),
-			top10ViewNums: top10ViewNums,
-			top10Comments: top10Comments,
-			usefulLinks: usefulLinks
-		});
-	});
-
-	Article.findTop10ViewNums(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10ViewNums', docs);
-	});
-
-	Comment.findComments([1, 10], function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10Comments', docs);
-	});
-
-	Link.findLinks(1, function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('usefulLinks', docs);
+	res.render('Tags', { 
+		moduleName: 'tag',
+		title: title,
+		atitle: '标签',
+		description: '个人博客',
+		keywords: ',标签,Bootstrap3',
+		virtualPath: virtualPath +'../../',
+		topMessage: getTopMessage()
 	});
 };
 
 
 exports.id = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', 'top10Comments', 'usefulLinks', 'topMarks', function(articles, categorys, top10ViewNums, top10Comments, usefulLinks, topMarks){
-		res.render('Tag', { 
-			moduleName: 'tag',
-			title: title,
-			atitle: tagName,
-			tagName: tagName,
-			description: '个人博客',
-			keywords: ',标签,Bootstrap3',
-			virtualPath: virtualPath +'../../',
-			topMessage: getTopMessage(),
-			articles: articles,
-			categorys: categorys,
-			top10ViewNums: top10ViewNums,
-			top10Comments: top10Comments,
-			topMarks: topMarks,
-			usefulLinks: usefulLinks
-		});
-	});
-
-	Category.findCategorys(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('categorys', docs);
-	});
-
 	var tagName = req.params.id.trim();
 
 	Article.findArticlesByTagName(tagName, [1,10], function(err, docs){
 		if(err){
 			console.log(err);
+		}else{
+			res.render('Tag', { 
+				moduleName: 'tag',
+				title: title,
+				atitle: tagName,
+				tagName: tagName,
+				description: '个人博客',
+				keywords: ',标签,Bootstrap3',
+				virtualPath: virtualPath +'../../',
+				topMessage: getTopMessage(),
+				articles: docs
+			});			
 		}
-		proxy.emit('articles', docs);
-	});
-
-	Article.findTop10ViewNums(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10ViewNums', docs);
-	});
-
-	Article.findTopMarks(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('topMarks', docs);
-	});
-
-	Comment.findComments([1, 10], function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10Comments', docs);
-	});
-
-	Link.findLinks(1, function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('usefulLinks', docs);
 	});
 };
 
@@ -138,11 +64,12 @@ exports.id_more = function(req, res, next) {
 		Article.findArticlesByTagName(tagName, [data.Current,10], function(err, docs){
 			if(err){
 				res.send('');
+			}else{
+				res.render('Tag_More', {
+					virtualPath: virtualPath +'../../',
+					articles: docs
+				});				
 			}
-			res.render('Tag_More', {
-				virtualPath: virtualPath +'../../',
-				articles: docs
-			});
 		});
 	}catch(e){
 		res.send('')
