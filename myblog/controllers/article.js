@@ -26,7 +26,7 @@ function getTopMessage(){
 
 
 exports.id = function(req, res, next) {
-	var proxy = EventProxy.create('article', 'categorys', 'nextArticle', 'prevArticle', 'top10ViewNums', 'top10Comments', 'usefulLinks', function(article, categorys, nextArticle, prevArticle, top10ViewNums, top10Comments, usefulLinks){
+	var proxy = EventProxy.create('article', 'nextArticle', 'prevArticle', 'top10ViewNums', 'top10Comments', 'usefulLinks', function(article, nextArticle, prevArticle, top10ViewNums, top10Comments, usefulLinks){
 		res.render('Article', { 
 			moduleName: 'archives',
 			title: title,
@@ -36,20 +36,12 @@ exports.id = function(req, res, next) {
 			virtualPath: virtualPath +'../',
 			topMessage: getTopMessage(),
 			article: article,
-			categorys: categorys,
 			nextArticle: nextArticle,
 			prevArticle: prevArticle,
 			top10ViewNums: top10ViewNums,
 			top10Comments: top10Comments,
 			usefulLinks: usefulLinks
 		});
-	});
-
-	Category.findCategorys(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('categorys', docs);
 	});
 
 	Article.findTop10ViewNums(function(err, docs){

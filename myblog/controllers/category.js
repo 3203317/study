@@ -27,7 +27,7 @@ function getTopMessage(){
 exports.index = function(req, res, next) {	
 	var categoryName = req.params.id.trim();
 
-	var proxy = EventProxy.create('articles', 'categorys', 'top10ViewNums', 'top10Comments', 'topMarks', 'usefulLinks', function(articles, categorys, top10ViewNums, top10Comments, topMarks, usefulLinks){
+	var proxy = EventProxy.create('articles', 'top10ViewNums', 'top10Comments', 'topMarks', 'usefulLinks', function(articles, top10ViewNums, top10Comments, topMarks, usefulLinks){
 		res.render('Category', { 
 			moduleName: 'category',
 			title: title,
@@ -38,19 +38,11 @@ exports.index = function(req, res, next) {
 			virtualPath: virtualPath +'../../',
 			topMessage: getTopMessage(),
 			articles: articles,
-			categorys: categorys,
 			top10ViewNums: top10ViewNums,
 			top10Comments: top10Comments,
 			topMarks: topMarks,
 			usefulLinks: usefulLinks
 		});
-	});
-
-	Category.findCategorys(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('categorys', docs);
 	});
 
 	Article.findArticlesByCategoryName(categoryName, [1, 10], function(err, docs){

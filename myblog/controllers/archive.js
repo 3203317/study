@@ -26,7 +26,7 @@ function getTopMessage(){
 
 exports.index = function(req, res, next) {	
 
-	var proxy = EventProxy.create('categorys', 'top10ViewNums', 'top10Comments', 'usefulLinks', function(categorys, top10ViewNums, top10Comments, usefulLinks){
+	var proxy = EventProxy.create('top10ViewNums', 'top10Comments', 'usefulLinks', function(top10ViewNums, top10Comments, usefulLinks){
 		res.render('Archive', { 
 			moduleName: 'archives',
 			title: title,
@@ -35,19 +35,10 @@ exports.index = function(req, res, next) {
 			keywords: ',档案馆,Bootstrap3',
 			virtualPath: virtualPath +'../',
 			topMessage: getTopMessage(),
-			categorys: categorys,
 			top10ViewNums: top10ViewNums,
 			top10Comments: top10Comments,
 			usefulLinks: usefulLinks
 		});
-	});
-
-
-	Category.findCategorys(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('categorys', docs);
 	});
 
 	Article.findTop10ViewNums(function(err, docs){
