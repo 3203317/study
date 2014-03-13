@@ -28,7 +28,7 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'topMarks', function(articles, topMarks){
+	var proxy = EventProxy.create('articles', function(articles){
 		res.render('Index', { 
 			moduleName: 'index',
 			title: title,
@@ -36,8 +36,7 @@ exports.index = function(req, res, next) {
 			keywords: ',Bootstrap3',
 			virtualPath: virtualPath,
 			topMessage: getTopMessage(),
-			articles: articles,
-			topMarks: topMarks
+			articles: articles
 		});
 	});
 
@@ -46,13 +45,6 @@ exports.index = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('articles', docs);
-	});
-
-	Article.findTopMarks(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('topMarks', docs);
 	});
 };
 
@@ -178,6 +170,31 @@ exports.install = function(req, res, next) {
 					});
 				}
 			});		
+		}
+	});
+
+	Article.findTopMarks(function(err, docs){
+		if(err){
+			console.log(err);
+		}else{
+			fs.readFile(cwd + path +'TopMarks.vm.html', 'utf8', function(err, data){
+				if(err){
+					console.log(err)
+				}else{
+					var template = data;
+
+					var html = velocity.render(template, {
+						virtualPath: '/',
+						topMarks: docs
+					});
+
+					fs.writeFile(cwd + path +'topMarks.html', html, 'utf8', function(err){
+						if(err){
+							console.log(err)
+						}
+					});
+				}
+			});
 		}
 	});
 
