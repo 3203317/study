@@ -1,9 +1,3 @@
-var EventProxy = require('eventproxy');
-var Category = require('../modules/Category.js');
-var Article = require('../modules/Article.js');
-var Comment = require('../modules/Comment.js');
-var Link = require('../modules/Link.js');
-
 var virtualPath = '';
 var title = 'FOREWORLD 洪荒';
 
@@ -25,40 +19,13 @@ function getTopMessage(){
 
 
 exports.index = function(req, res, next) {	
-
-	var proxy = EventProxy.create('top10ViewNums', 'top10Comments', 'usefulLinks', function(top10ViewNums, top10Comments, usefulLinks){
-		res.render('Archive', { 
-			moduleName: 'archives',
-			title: title,
-			atitle: '档案馆',
-			description: '个人博客',
-			keywords: ',档案馆,Bootstrap3',
-			virtualPath: virtualPath +'../',
-			topMessage: getTopMessage(),
-			top10ViewNums: top10ViewNums,
-			top10Comments: top10Comments,
-			usefulLinks: usefulLinks
-		});
-	});
-
-	Article.findTop10ViewNums(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10ViewNums', docs);
-	});
-
-	Comment.findComments([1, 10], function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10Comments', docs);
-	});
-
-	Link.findLinks(1, function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('usefulLinks', docs);
+	res.render('Archive', { 
+		moduleName: 'archives',
+		title: title,
+		atitle: '档案馆',
+		description: '个人博客',
+		keywords: ',档案馆,Bootstrap3',
+		virtualPath: virtualPath +'../',
+		topMessage: getTopMessage()
 	});
 };
