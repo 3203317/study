@@ -28,23 +28,13 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', function(articles){
-		res.render('Index', { 
-			moduleName: 'index',
-			title: title,
-			description: '个人博客',
-			keywords: ',Bootstrap3',
-			virtualPath: virtualPath,
-			topMessage: getTopMessage(),
-			articles: articles
-		});
-	});
-
-	Article.findArticles([1, 10], function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('articles', docs);
+	res.render('Index', { 
+		moduleName: 'index',
+		title: title,
+		description: '个人博客',
+		keywords: ',Bootstrap3',
+		virtualPath: virtualPath,
+		topMessage: getTopMessage()
 	});
 };
 
@@ -189,6 +179,31 @@ exports.install = function(req, res, next) {
 					});
 
 					fs.writeFile(cwd + path +'topMarks.html', html, 'utf8', function(err){
+						if(err){
+							console.log(err)
+						}
+					});
+				}
+			});
+		}
+	});
+
+	Article.findArticles([1, 10], function(err, docs){
+		if(err){
+			console.log(err);
+		}else{
+			fs.readFile(cwd + path +'ArticleIntros.vm.html', 'utf8', function(err, data){
+				if(err){
+					console.log(err)
+				}else{
+					var template = data;
+
+					var html = velocity.render(template, {
+						virtualPath: '/',
+						articles: docs
+					});
+
+					fs.writeFile(cwd + path +'articleIntros.index.top10.html', html, 'utf8', function(err){
 						if(err){
 							console.log(err)
 						}
