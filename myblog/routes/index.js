@@ -29,6 +29,7 @@ module.exports = function(app) {
 	app.get('/index.html', site.index);
 	app.get('/', site.index);
 	app.get('/index/more', site.index_more);
+	app.get('/install', site.install);
 
 	/**
 	 * 分类

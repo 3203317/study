@@ -1,12 +1,12 @@
 var EventProxy = require('eventproxy');
-
 var Category = require('../modules/Category.js');
-
 var Article = require('../modules/Article.js');
-
 var Comment = require('../modules/Comment.js');
-
 var Link = require('../modules/Link.js');
+
+var fs = require('fs')
+var velocity = require('velocityjs')
+var cwd = process.cwd();
 
 var virtualPath = '';
 var title = 'FOREWORLD 洪荒';
@@ -107,4 +107,39 @@ exports.index_more = function(req, res, next) {
 		res.send('');
 		console.log(e);
 	}
+};
+
+
+exports.install = function(req, res, next) {	
+	var path = '/views/pagelet/';
+
+	Category.findCategorys(function(err, docs){
+		if(err){
+			res.send('Search data of categorys error.')
+			console.log(err);
+		}else{
+			fs.readFile(cwd + path +'TopNavCategory.vm.html', 'utf8', function(err, data){
+				if(err){
+					res.send('Read file of TopNavCategory.vm.html error.');
+					console.log(err)
+				}else{
+					var template = data;
+
+					var html = velocity.render(template, {
+						virtualPath: '../',
+						categorys: docs
+					});
+
+					fs.writeFile(cwd + path +'topNavCategory.html', html, 'utf8', function(err){
+						if(err){
+							res.send('Create file of topNavCategory.html error.');
+							console.log(err)
+						}else{
+							res.send('Create file of topNavCategory.html success.');
+						}
+					});
+				}
+			});	
+		}	
+	});
 };
