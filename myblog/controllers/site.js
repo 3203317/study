@@ -203,7 +203,7 @@ exports.install = function(req, res, next) {
 						articles: docs
 					});
 
-					fs.writeFile(cwd + path +'articleIntros.index.top10.html', html, 'utf8', function(err){
+					fs.writeFile(cwd + path +'articleIntros.top10.html', html, 'utf8', function(err){
 						if(err){
 							console.log(err)
 						}
