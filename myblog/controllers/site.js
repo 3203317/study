@@ -28,7 +28,7 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'top10ViewNums', 'top10Comments', 'usefulLinks', 'topMarks', function(articles, top10ViewNums, top10Comments, usefulLinks, topMarks){
+	var proxy = EventProxy.create('articles', 'top10Comments', 'usefulLinks', 'topMarks', function(articles, top10Comments, usefulLinks, topMarks){
 		res.render('Index', { 
 			moduleName: 'index',
 			title: title,
@@ -37,7 +37,6 @@ exports.index = function(req, res, next) {
 			virtualPath: virtualPath,
 			topMessage: getTopMessage(),
 			articles: articles,
-			top10ViewNums: top10ViewNums,
 			top10Comments: top10Comments,
 			topMarks: topMarks,
 			usefulLinks: usefulLinks
@@ -49,13 +48,6 @@ exports.index = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('articles', docs);
-	});
-
-	Article.findTop10ViewNums(function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10ViewNums', docs);
 	});
 
 	Article.findTopMarks(function(err, docs){
@@ -107,12 +99,10 @@ exports.install = function(req, res, next) {
 
 	Category.findCategorys(function(err, docs){
 		if(err){
-			res.send('Search data of categorys error.')
 			console.log(err);
 		}else{
 			fs.readFile(cwd + path +'TopNavCategory.vm.html', 'utf8', function(err, data){
 				if(err){
-					res.send('Read file of TopNavCategory.vm.html error.');
 					console.log(err)
 				}else{
 					var template = data;
@@ -124,14 +114,38 @@ exports.install = function(req, res, next) {
 
 					fs.writeFile(cwd + path +'topNavCategory.html', html, 'utf8', function(err){
 						if(err){
-							res.send('Create file of topNavCategory.html error.');
 							console.log(err)
-						}else{
-							res.send('Create file of topNavCategory.html success.');
 						}
 					});
 				}
 			});	
 		}	
+	});
+
+	Article.findTop10ViewNums(function(err, docs){
+		if(err){
+			console.log(err);
+		}else{
+			fs.readFile(cwd + path +'Top10ViewNums.vm.html', 'utf8', function(err, data){
+				if(err){
+					console.log(err)
+				}else{
+					var template = data;
+
+					var html = velocity.render(template, {
+						virtualPath: '/',
+						top10ViewNums: docs
+					});
+
+					fs.writeFile(cwd + path +'top10ViewNums.html', html, 'utf8', function(err){
+						if(err){
+							console.log(err)
+						}
+					});
+				}
+			});			
+		}
+
+		res.send('ok.');
 	});
 };
