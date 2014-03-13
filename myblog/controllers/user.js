@@ -1,6 +1,3 @@
-var Category = require('../modules/Category.js');
-
-
 var virtualPath = '';
 var title = 'FOREWORLD 洪荒';
 
