@@ -217,3 +217,4 @@ w8bs/assets/css/olx/olx.css
 myblog/public/asset/css/olx/olx.css
 myblog/views/pagelet/topNavCategory.html
 myblog/views/pagelet/top10ViewNums.html
+myblog/views/pagelet/top10Comments.html

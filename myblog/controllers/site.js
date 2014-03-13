@@ -28,7 +28,7 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'top10Comments', 'usefulLinks', 'topMarks', function(articles, top10Comments, usefulLinks, topMarks){
+	var proxy = EventProxy.create('articles', 'usefulLinks', 'topMarks', function(articles, usefulLinks, topMarks){
 		res.render('Index', { 
 			moduleName: 'index',
 			title: title,
@@ -37,7 +37,6 @@ exports.index = function(req, res, next) {
 			virtualPath: virtualPath,
 			topMessage: getTopMessage(),
 			articles: articles,
-			top10Comments: top10Comments,
 			topMarks: topMarks,
 			usefulLinks: usefulLinks
 		});
@@ -55,13 +54,6 @@ exports.index = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('topMarks', docs);
-	});
-
-	Comment.findComments([1, 10], function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('top10Comments', docs);
 	});
 
 	Link.findLinks(1, function(err, docs){
@@ -145,7 +137,32 @@ exports.install = function(req, res, next) {
 				}
 			});			
 		}
-
-		res.send('ok.');
 	});
+
+	Comment.findComments([1, 10], function(err, docs){
+		if(err){
+			console.log(err);
+		}else{
+			fs.readFile(cwd + path +'Top10Comments.vm.html', 'utf8', function(err, data){
+				if(err){
+					console.log(err)
+				}else{
+					var template = data;
+
+					var html = velocity.render(template, {
+						virtualPath: '/',
+						top10Comments: docs
+					});
+
+					fs.writeFile(cwd + path +'top10Comments.html', html, 'utf8', function(err){
+						if(err){
+							console.log(err)
+						}
+					});
+				}
+			});			
+		}
+	});
+
+	res.send('ok.');
 };
