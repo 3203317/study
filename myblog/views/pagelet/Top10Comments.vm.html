@@ -4,8 +4,7 @@
 	</div>
 	<div class="panel-body">
 		<div class="list-group">
-		    #foreach($comment in $top10Comments)
-			<a href="${virtualPath}archive/${comment.ArticleId}.html#$comment.Id" class="list-group-item olx-text-ellipsis">$comment.Content</a>
+		    #foreach($comment in $top10Comments)<a href="${virtualPath}archive/${comment.ArticleId}.html#$comment.Id" class="list-group-item olx-text-ellipsis">$comment.Content</a>
 			#end
 		</div>
 	</div>

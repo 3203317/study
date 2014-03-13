@@ -4,8 +4,7 @@
 	</div>
 	<div class="panel-body">
 		<ul class="list-group olx-list-group">
-		    #foreach($top10ViewNum in $top10ViewNums)	
-		    <li class="list-group-item">					
+		    #foreach($top10ViewNum in $top10ViewNums)<li class="list-group-item">					
 		        <span class="badge">$top10ViewNum.ViewNums</span>
 			    <a href="${virtualPath}archive/${top10ViewNum.Id}.html" title="$top10ViewNum.ArticleTitle">
 			        <div>$top10ViewNum.ArticleTitle</div>
