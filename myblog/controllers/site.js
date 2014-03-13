@@ -28,7 +28,7 @@ function getTopMessage(){
 };
 
 exports.index = function(req, res, next) {
-	var proxy = EventProxy.create('articles', 'usefulLinks', 'topMarks', function(articles, usefulLinks, topMarks){
+	var proxy = EventProxy.create('articles', 'topMarks', function(articles, topMarks){
 		res.render('Index', { 
 			moduleName: 'index',
 			title: title,
@@ -37,8 +37,7 @@ exports.index = function(req, res, next) {
 			virtualPath: virtualPath,
 			topMessage: getTopMessage(),
 			articles: articles,
-			topMarks: topMarks,
-			usefulLinks: usefulLinks
+			topMarks: topMarks
 		});
 	});
 
@@ -54,13 +53,6 @@ exports.index = function(req, res, next) {
 			console.log(err);
 		}
 		proxy.emit('topMarks', docs);
-	});
-
-	Link.findLinks(1, function(err, docs){
-		if(err){
-			console.log(err);
-		}
-		proxy.emit('usefulLinks', docs);
 	});
 };
 
@@ -161,6 +153,31 @@ exports.install = function(req, res, next) {
 					});
 				}
 			});			
+		}
+	});
+
+	Link.findLinks(1, function(err, docs){
+		if(err){
+			console.log(err);
+		}else{
+			fs.readFile(cwd + path +'UsefulLinks.vm.html', 'utf8', function(err, data){
+				if(err){
+					console.log(err)
+				}else{
+					var template = data;
+
+					var html = velocity.render(template, {
+						virtualPath: '/',
+						usefulLinks: docs
+					});
+
+					fs.writeFile(cwd + path +'usefulLinks.html', html, 'utf8', function(err){
+						if(err){
+							console.log(err)
+						}
+					});
+				}
+			});		
 		}
 	});
 
