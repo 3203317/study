@@ -126,7 +126,7 @@ exports.install = function(req, res, next) {
 					var template = data;
 
 					var html = velocity.render(template, {
-						virtualPath: '../',
+						virtualPath: '/',
 						categorys: docs
 					});
 
