@@ -69,6 +69,10 @@ ArticleSchema.virtual('PostTime_Date').get(function(){
 	return this.PostTime.getFullYear() +'-'+ p(this.PostTime.getMonth()+1) +'-'+ p(this.PostTime.getDate())
 });
 
+ArticleSchema.virtual('PostTime_Time').get(function(){
+	return this.PostTime.getHours() +':'+ p(this.PostTime.getMinutes()) +':'+ p(this.PostTime.getSeconds())
+});
+
 ArticleSchema.virtual('Tags').get(function(){
 	var str = this.ArticleTag;
 	if(0 === str.length) return '';
@@ -102,6 +106,17 @@ function threeSeparator(num) {
 	}
 	return num;
 }
+
+ArticleSchema.statics.findAll = function(cb) {
+	this.find(null, null, {sort: {PostTime: -1}}, function(err, docs){
+		if(err){
+			cb(err);
+			console.log(err);
+		}else{
+			cb(null, docs);
+		}
+	});
+};
 
 ArticleSchema.statics.findArticles = function(pagination, cb) {
 	pagination[0] = pagination[0] || 1;

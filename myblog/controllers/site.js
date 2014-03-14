@@ -3,6 +3,7 @@ var Category = require('../modules/Category.js');
 var Article = require('../modules/Article.js');
 var Comment = require('../modules/Comment.js');
 var Link = require('../modules/Link.js');
+var Tag = require('../modules/Tag.js');
 
 var fs = require('fs')
 var velocity = require('velocityjs')
@@ -213,5 +214,68 @@ exports.install = function(req, res, next) {
 		}
 	});
 
+	createTagsFile();
+
 	res.send('ok.');
 };
+
+function createTagsFile(){	
+	var path = '/views/pagelet/';
+
+	Tag.findTags(function(err, docs){
+		if(err){
+			throw err;
+		}
+
+		var tags = docs;
+
+		Article.findAll(function(err, docs){
+			if(err){
+				throw err;
+			}
+
+			var articles = docs;
+
+			var tags_2 = [];
+
+			for(var i=0,j=tags.length; i<j; i++){
+				var tag = tags[i];
+
+				var tag_2 = {
+					Id: tag.Id,
+					TagName: tag.TagName,
+					Articles: []
+				};
+				tags_2.push(tag_2)
+				
+
+				for(var i_3=0,j_3=articles.length; i_3<j_3; i_3++){
+					var article = articles[i_3];
+
+					if(null != article.ArticleTag && 0 < article.ArticleTag.length && -1 < article.ArticleTag.indexOf(','+ tag.TagName +',')){
+						tag_2.Articles.push(article);
+					}
+				}
+			}
+
+			fs.readFile(cwd + path +'TagList.vm.html', 'utf8', function(err, data){
+				if(err){
+					console.log(err)
+				}else{
+					var template = data;
+
+					var html = velocity.render(template, {
+						virtualPath: '/',
+						tags: tags_2
+					});
+
+					fs.writeFile(cwd + path +'tagList.html', html, 'utf8', function(err){
+						if(err){
+							console.log(err)
+						}
+					});
+				}
+			});
+		});
+	});
+}
