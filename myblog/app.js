@@ -68,7 +68,10 @@ app.engine('.html',function(path,options,fn){
 
 // development only
 if ('development' == app.get('env')) {
-	app.use(express.errorHandler());
+	app.use(express.errorHandler({
+		showStack: true,
+		dumpExceptions: true
+	}));
 }
 
 // app.get('/', routes.index);
