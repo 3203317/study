@@ -38,41 +38,44 @@ exports.id = function(req, res, next) {
 
 	Article.findArticlesByTagName(tagName, [1,10], function(err, docs){
 		if(err){
-			console.log(err);
-		}else{
-			res.render('Tag', { 
-				moduleName: 'tag',
-				title: title,
-				atitle: tagName,
-				tagName: tagName,
-				description: '个人博客',
-				keywords: ',标签,Bootstrap3',
-				virtualPath: virtualPath +'../../',
-				topMessage: getTopMessage(),
-				articles: docs
-			});			
+			next(err);
+			return;
 		}
+
+		res.render('Tag', { 
+			moduleName: 'tag',
+			title: title,
+			atitle: tagName,
+			tagName: tagName,
+			description: '个人博客',
+			keywords: ',标签,Bootstrap3',
+			virtualPath: virtualPath +'../../',
+			topMessage: getTopMessage(),
+			articles: docs
+		});
 	});
 };
 
 exports.id_more = function(req, res, next) {
-	var tagName = req.params.id.trim();
+	var tagName = req.params.id.trim(),
+		data;
 
 	try{
-		var data = eval('('+ req.query.data +')');
-
-		Article.findArticlesByTagName(tagName, [data.Current,10], function(err, docs){
-			if(err){
-				res.send('');
-			}else{
-				res.render('Tag_More', {
-					virtualPath: virtualPath +'../../',
-					articles: docs
-				});				
-			}
-		});
+		data = eval('('+ req.query.data +')');
 	}catch(e){
 		res.send('')
-		console.log(e);
+		return;
 	}
+
+	Article.findArticlesByTagName(tagName, [data.Current, 10], function(err, docs){
+		if(err){
+			res.send('');
+			return;
+		}
+
+		res.render('Tag_More', {
+			virtualPath: virtualPath +'../../',
+			articles: docs
+		});
+	});
 };
