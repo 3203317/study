@@ -222,3 +222,4 @@ myblog/views/pagelet/usefulLinks.html
 myblog/views/pagelet/topMarks.html
 myblog/views/pagelet/articleIntros.top10.html
 myblog/views/pagelet/tagList.html
+myblog/views/pagelet/archiveList.html
