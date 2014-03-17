@@ -66,11 +66,15 @@ ArticleSchema.virtual('PostTime_Day').get(function(){
 });
 
 ArticleSchema.virtual('PostTime_Date').get(function(){
-	return this.PostTime.getFullYear() +'-'+ p(this.PostTime.getMonth()+1) +'-'+ p(this.PostTime.getDate())
+	return this.PostTime_Year +'-'+ this.PostTime_Month +'-'+ this.PostTime_Day;
 });
 
 ArticleSchema.virtual('PostTime_Time').get(function(){
 	return this.PostTime.getHours() +':'+ p(this.PostTime.getMinutes()) +':'+ p(this.PostTime.getSeconds())
+});
+
+ArticleSchema.virtual('sPostTime').get(function(){
+	return this.PostTime_Date +' '+ this.PostTime_Time;
 });
 
 ArticleSchema.virtual('Tags').get(function(){
