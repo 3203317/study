@@ -216,14 +216,13 @@ exports.install = function(req, res, next) {
 		}
 	});
 
-	createTagsFile();
+	createTagsFile(path);
+	createArchiveListFile(path);
 
 	res.send('ok.');
 };
 
-function createTagsFile(){	
-	var path = '/views/pagelet/';
-
+function createTagsFile(path){
 	Tag.findTags(function(err, docs){
 		if(err){
 			throw err;
@@ -279,5 +278,101 @@ function createTagsFile(){
 				}
 			});
 		});
+	});
+}
+
+function createArchiveListFile(path){
+	Article.findAll(function(err, docs){
+		if(err){
+			throw err;
+		}
+
+		var archives = [],
+			archive,
+			articles = docs,
+			article,
+			archiveChild;
+
+		for(var i=0,j=articles.length; i<j; i++){
+			article = articles[i];
+
+			if(0 < archives.length){
+				/* 获取最后一条记录年 */
+				archive = archives[archives.length - 1];
+
+				if(article.PostTime_Year == archive.Y4){
+					/* 获取最后一条记录月 */
+					archiveChild = archive.ArchiveChildren[archive.ArchiveChildren.length - 1];
+					if(article.PostTime_Month == archiveChild.M2){
+						archiveChild.Articles.push(article);
+					}else{
+						archiveChild = {
+							'M2': article.PostTime_Month,
+							'Articles': []
+						};
+
+						archiveChild.Articles.push(article);
+						archive.ArchiveChildren.push(archiveChild);
+					}
+
+				}else{
+					/* 添加年 */
+					archive = {
+						'Y4': article.PostTime_Year,
+						'ArchiveChildren': []
+					};
+
+					/* 添加月 */
+					archiveChild = {
+						'M2': article.PostTime_Month,
+						'Articles': []
+					}
+
+					archiveChild.Articles.push(article);
+
+					archive.ArchiveChildren.push(archiveChild);
+
+					archives.push(archive);
+				}
+			}else{
+				/* 添加年 */
+				archive = {
+					'Y4': article.PostTime_Year,
+					'ArchiveChildren': []
+				};
+
+				/* 添加月 */
+				archiveChild = {
+					'M2': article.PostTime_Month,
+					'Articles': []
+				}
+
+				archiveChild.Articles.push(article);
+
+				archive.ArchiveChildren.push(archiveChild);
+
+				archives.push(archive);
+			}
+		}
+
+		fs.readFile(cwd + path +'ArchiveList.vm.html', 'utf8', function(err, data){
+			if(err){
+				console.log(err)
+			}else{
+				var template = data;
+
+				var html = velocity.render(template, {
+					virtualPath: '/',
+					archives: archives
+				});
+
+				fs.writeFile(cwd + path +'archiveList.html', html, 'utf8', function(err){
+					if(err){
+						console.log(err)
+					}
+				});
+			}
+		});
+
 	});
 }
