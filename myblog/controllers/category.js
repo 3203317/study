@@ -25,43 +25,46 @@ exports.index = function(req, res, next) {
 
 	Article.findArticlesByCategoryName(categoryName, [1, 10], function(err, docs){
 		if(err){
-			console.log(err);
-		}else{			
-			res.render('Category', { 
-				moduleName: 'category',
-				title: title,
-				atitle: categoryName,
-				categoryName: categoryName,
-				description: '个人博客',
-				keywords: ',Bootstrap3',
-				virtualPath: virtualPath +'../../',
-				topMessage: getTopMessage(),
-				articles: docs
-			});
+			next(err);
+			return;
 		}
+
+		res.render('Category', { 
+			moduleName: 'category',
+			title: title,
+			atitle: categoryName,
+			categoryName: categoryName,
+			description: '个人博客',
+			keywords: ',Bootstrap3',
+			virtualPath: virtualPath +'../../',
+			topMessage: getTopMessage(),
+			articles: docs
+		});
 	});	
 };
 
 exports.index_more = function(req, res, next) {
-	var categoryName = req.params.id.trim();
+	var categoryName = req.params.id.trim(),
+		data;
 
 	try{
-		var data = eval('('+ req.query.data +')');
-
-		Article.findArticlesByCategoryName(categoryName, [data.Current, 10], function(err, docs){
-			if(err){
-				res.send('')
-			}else{
-				res.render('Category_More', {
-					virtualPath: virtualPath +'../../',
-					articles: docs
-				});					
-			}
-		});			
+		data = eval('('+ req.query.data +')');
 	}catch(e){
 		res.send('')
-		console.log(e)
+		return;
 	}
+
+	Article.findArticlesByCategoryName(categoryName, [data.Current, 10], function(err, docs){
+		if(err){
+			res.send('')
+			return;
+		}
+
+		res.render('Category_More', {
+			virtualPath: virtualPath +'../../',
+			articles: docs
+		});
+	});
 };
 
 
