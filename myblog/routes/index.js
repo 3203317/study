@@ -5,6 +5,9 @@ var archive = require('../controllers/archive');
 var tag = require('../controllers/tag');
 var article = require('../controllers/article');
 
+var virtualPath = '';
+var title = 'FOREWORLD 洪荒';
+
 module.exports = function(app) {
 	/**
 	 * 404
@@ -15,7 +18,15 @@ module.exports = function(app) {
 	 * @return
 	 */
 	app.use(function (req, res) {
-		res.render('404');
+		res.render('404', {
+			state: 404,
+			url: req.url,
+			title: title,
+			atitle: '404',
+			description: '个人博客',
+			keywords: ',个人博客,Bootstrap3',
+			virtualPath: virtualPath +'/'
+		});
 	});
 
 	/**
