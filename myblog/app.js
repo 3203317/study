@@ -50,18 +50,19 @@ app.engine('.html',function(path,options,fn){
 	fs.readFile(path, 'utf8', function(err, data){
 		if(err){
 			fn(err);
-		}else{
-			var macros = {  
-				parse: function(file) {  
-					var template = fs.readFileSync(cwd + '/views/' + file).toString()  
-					return this.eval(template);  
-				}
+			return;
+		}
+		
+		var macros = {  
+			parse: function(file) {  
+				var template = fs.readFileSync(cwd + '/views/' + file).toString()  
+				return this.eval(template);  
 			}
-			try{
-				fn(null, velocity.render(data, options, macros));
-			}catch(e){
-				fn(e);
-			}
+		}
+		try{
+			fn(null, velocity.render(data, options, macros));
+		}catch(e){
+			fn(e);
 		}
 	});
 });

@@ -41,23 +41,25 @@ exports.index = function(req, res, next) {
 
 
 exports.index_more = function(req, res, next) {
+	var data;
 	try{
-		var data = eval('('+ req.query.data +')');
-
-		Article.findArticles([data.Current, 10], function(err, docs){
-			if(err){
-				res.send('')
-			}else{
-				res.render('Index_More', {
-					virtualPath: virtualPath,
-					articles: docs
-				});					
-			}
-		});
+		data = eval('('+ req.query.data +')');
 	}catch(e){
 		res.send('');
-		console.log(e);
+		return;
 	}
+
+	Article.findArticles([data.Current, 10], function(err, docs){
+		if(err){
+			res.send('')
+			return;
+		}
+
+		res.render('Index_More', {
+			virtualPath: virtualPath,
+			articles: docs
+		});
+	});
 };
 
 
