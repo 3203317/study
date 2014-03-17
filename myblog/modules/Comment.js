@@ -45,10 +45,9 @@ CommentSchema.statics.findComments = function(pagination, cb) {
 	this.find(null, null, option, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 

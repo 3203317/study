@@ -61,13 +61,13 @@ CategorySchema.statics.findCategoryByName = function(categoryName, cb) {
 	this.findOne({CategoryName: categoryName}, null, null, function(err, doc){
 		if(err){
 			cb(err);
-			console.log(err);
+			return;
+		}
+
+		if(doc){
+			cb(null, doc);
 		}else{
-			if(doc){
-				cb(null, doc);
-			}else{
-				cb('Not found');
-			}
+			cb('Not found');
 		}
 	});
 };
@@ -77,17 +77,17 @@ var categorys;
 CategorySchema.statics.findCategorys = function(cb) {
 	if(categorys){
 		cb(null, categorys);
-	}else{
-		this.find(null, null, {sort: {CategoryOrder: 1}}, function(err, docs){
-			if(err){
-				cb(err);
-				console.log(err);
-			}else{
-				categorys = docs;
-				cb(null, categorys);
-			}
-		});
+		return;
 	}
+
+	this.find(null, null, {sort: {CategoryOrder: 1}}, function(err, docs){
+		if(err){
+			cb(err);
+			return;
+		}
+		categorys = docs;
+		cb(null, categorys);
+	});
 };
 
 /**
@@ -102,10 +102,9 @@ CategorySchema.statics.saveNew = function(category, cb) {
 	CategoryModel.create(category, function(err, doc){
 		if(err){
 			cb(err)
-			console.log(err);
-		}else{
-			cb(null, doc);
+			return;
 		}
+		cb(null, doc);
 	});
 };
 

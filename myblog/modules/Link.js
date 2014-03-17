@@ -43,10 +43,9 @@ LinkSchema.statics.findLinks = function(linkType, cb) {
 	this.find({LinkType: linkType}, null, option, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 

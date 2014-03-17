@@ -111,10 +111,9 @@ ArticleSchema.statics.findAll = function(cb) {
 	this.find(null, null, {sort: {PostTime: -1}}, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 
@@ -124,10 +123,9 @@ ArticleSchema.statics.findArticles = function(pagination, cb) {
 	this.find(null, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 
@@ -135,10 +133,9 @@ ArticleSchema.statics.findTop10ViewNums = function(cb) {
 	this.find(null, null, {sort: {ViewNums: -1}, skip: 0, limit: 10}, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 
@@ -146,10 +143,9 @@ ArticleSchema.statics.findTopMarks = function(cb) {
 	this.find({TopMark: 1}, null, {sort: {PostTime: -1}}, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 
@@ -162,10 +158,9 @@ ArticleSchema.statics.findArticlesByTagName = function(tagName, pagination, cb) 
 	this.find(params, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 
@@ -173,10 +168,9 @@ ArticleSchema.statics._findArticlesByCategoryId = function(categoryId, paginatio
 	this.find({CategoryId: categoryId}, null, {sort: {PostTime: -1}, skip: ((pagination[0] - 1) * pagination[1]), limit: pagination[1]}, function(err, docs){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, docs);
+			return;
 		}
+		cb(null, docs);
 	});
 };
 
@@ -187,13 +181,13 @@ ArticleSchema.statics.findArticlesByCategoryName = function(categoryName, pagina
 	Category.findCategoryByName(categoryName, function(err, doc){
 		if(err){
 			cb(err);
-			console.log(err);
+			return;
+		}
+
+		if(doc){
+			that._findArticlesByCategoryId(doc.Id, pagination, cb);
 		}else{
-			if(doc){
-				that._findArticlesByCategoryId(doc.Id, pagination, cb);
-			}else{
-				cb('Not found');
-			}
+			cb('Not found');
 		}
 	});
 };
@@ -202,13 +196,13 @@ ArticleSchema.statics.findArticleById = function(articleId, cb) {
 	this.findOne({Id: articleId}, null, null, function(err, doc){
 		if(err){
 			cb(err);
-			console.log(err);
+			return;
+		}
+
+		if(doc){
+			cb(null, doc);
 		}else{
-			if(doc){
-				cb(null, doc);
-			}else{
-				cb('Not found')
-			}
+			cb('Not found')
 		}
 	});
 };
@@ -217,10 +211,9 @@ ArticleSchema.statics.findPrevArticle = function(article, cb) {
 	this.findOne({PostTime: { $gt: article.PostTime }}, null, {sort: {PostTime: 1}}, function(err, doc){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, doc);
+			return;
 		}
+		cb(null, doc);
 	});
 };
 
@@ -228,10 +221,9 @@ ArticleSchema.statics.findNextArticle = function(article, cb) {
 	this.findOne({PostTime: { $lt: article.PostTime }}, null, {sort: {PostTime: -1}}, function(err, doc){
 		if(err){
 			cb(err);
-			console.log(err);
-		}else{
-			cb(null, doc);
+			return;
 		}
+		cb(null, doc);
 	});
 };
 
