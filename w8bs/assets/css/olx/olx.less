@@ -3,10 +3,62 @@
 ul,li{padding:0; margin:0;}
 li{ list-style-type:none;}
 
+.table thead tr {
+	/*background-color: red;*/
+}
+
+.container {
+	width: 100%;
+}
+
+.pagination {
+	margin: 0;
+}
+
+.navbar-btn {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.breadcrumb > li + li:before {
+    content: "> ";
+}
+
+/**/
+
+.olx-table-th-center {
+	text-align: center;
+}
+
+.olx-table-td-center {
+	text-align: center;
+}
+
+.olx-glyphicon {
+	position: relative;
+	display: inline-block;
+	font-family: "Glyphicons Halflings";
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-weight: normal;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.olx-glyphicon-btn:before {
+    float: left;
+    /*margin-top: 0px;*/
+}
+
+.olx-form-required {
+	color: red;
+}
 /*样式覆盖*/
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbod{background-color:#F7FBFF;}
 .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{ border:1px solid #BFD6EC;}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{ vertical-align:middle;}
+.table > tbody > tr > td, .table > tfoot > tr > td{ color:#7F7F7F;}
+.table-hover>tbody>tr:hover>td,.table-hover>tbody>tr:hover>th{ background-color:#FCF6D2;}
 .breadcrumb{ background:#ECF3FB; font-size:12px;border-radius:0;border-bottom:1px #BFD6EC solid; height:38px;}
 .glyphicon{ margin-right:6px;}
 .panel{border-radius:0;}
@@ -27,8 +79,8 @@ li{ list-style-type:none;}
 .glyphicon-remove-sign:before{margin-right:5px;margin-top:1px;}
 .glyphicon-export:before{margin-right:5px;margin-top:1px;}
 .panel-default > .panel-heading{background:#EFF5FB; height:32px; border-color:#BFD6EC;  color:#666666;}
-.btn-group{ padding-top:2px; padding-left:10px;}
-.navbar-btn{ margin-bottom:0; margin-right:10px;}
+.btn-group{ padding:2px 5px;}
+.navbar-btn{ margin-bottom:0; }
 .panel-default{border-color:#BFD6EC;}
 .olx-prompt{ line-height:32px; font-size:12px;}
 .olx-amount ul{padding:0; margin:0;}
@@ -74,3 +126,33 @@ li{ list-style-type:none;}
 .olx-sex span{ padding-right:10px;}
 .olx-redcolor{ color:#FF0000;}
 .olx-thcolor{ background:#EFF5FB;}
+.olx-titalert{color:#3A80BF; font-size:12px; font-weight:bold; margin-top:10px;margin-bottom:5px;}
+.bs-example{border:1px solid #BFD6EC}
+.olx-oprecord-setup{ max-width:410px;margin:0 auto;padding-top:10px;}
+.olx-maxwidth{ max-width:36px; display:inline-block;}
+.olx-dlstyle{ font-size:12px;margin-top:10px; margin-bottom:10px; color:#7F7F7F;overflow:hidden;}
+.olx-inputmax{ max-width:400px; display:inline-block;}
+.dl-horizontal dt{height:26px; line-height:26px; width:120px;}
+.dl-horizontal dd{margin-left:130px;}
+.olx-checkbox input{float:left;}
+.olx-checkbox span{float:left;padding:2px 10px 0px 5px;}
+.olx-marginbtn{margin-left:130px; margin-bottom:10px;}
+.olx-custom{margin:10px auto 0 auto; max-width:734px; overflow:hidden;}
+.olx-custom-essentialinfor{max-width:294px;}
+.olx-custom-essentialinfor small{color:#7F7F7F;}
+.olx-btngroupading{padding-left:0;}
+.olx-btn-mar{margin-top:30px;}
+.olx-gypadd{padding:5px; font-size:12px;color:#7F7F7F;}
+.olx-img-logo{margin:10px;}
+.olx-padgy{padding:10px;}
+.olx-dlstyle li{ float:left; padding:5px 10px;width:246px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;}
+.olx-loginlog{background:#F7FBFF;margin-top:10px;border:1px solid #BFD6EC;border-bottom:none;color:#418BCA; font-weight:bold;}
+.olx-log{background:#F7FBFF; border:1px solid #BFD6EC;border-bottom-left-radius:0;border-bottom-right-radius:0;margin-right:10px;margin-bottom:10px;}
+.olx-processguide{overflow:hidden;margin:5px;font-size:12px;color:#7F7F7F;}
+.olx-processguide li{float:left; padding:5px 10px;width:100px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden; background:url(../../../images/ico.jpg) no-repeat left;}
+.olx-icoul{overflow:hidden;margin:10px;}
+.olx-icoul li{float:left; padding:5px 10px;width:100px;font-size:12px;color:#7F7F7F; text-align:center;}
+.olx-icoul h6{margin-top:5px;}
+.olx-textls{ color:#418BCA;}
+.olx-role{padding-right:0px; padding-bottom:8px;}
+.olx-spansys{line-height:28px;}
