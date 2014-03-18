@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Off Canvas Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap-theme.min.css" media="screen">
+    <link rel="stylesheet" href="/cdn/js/bootstrap/3.0.3/docs-assets/css/docs.css" media="screen">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" role="navigation">
+      <ul class="breadcrumb">
+        <li><a href="javascript:void(0);" onclick="javascript:top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
+        <li class="active">运营管理管理</li>
+        <li class="active">卡管理</li>
+        <li><a href="javascript:void(0);" onclick="location.reload();">卡类型维护</a></li>
+      </ul>
+    </div>
+
+    <div class="container col-sm-12">
+
+      <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>提示：</strong>如果要维护卡类型信息，请选择“编辑”。
+      </div>
+
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">普通卡<span class="badge">14</span></a>
+            <a href="#" class="list-group-item">福利卡<span class="badge">2</span></a>
+            <a href="#" class="list-group-item">管理卡<span class="badge">3</span></a>
+          </div>
+        </div><!--/span-->
+
+        <div class="row-fluid">
+
+          <div class="col-xs-12 col-sm-9">
+            <div class="btn-group">
+              <button class="btn btn-default" data-toggle="modal" data-target="#myModal">编辑</button>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-9">
+              <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+              </p>
+
+              <p></p>
+
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover table-condensed table-striped">
+                  <thead>
+                    <tr>
+                      <th style="text-align:center"><input type="checkbox"></th>
+                      <th>#</th>
+                      <th>卡类型名称</th>
+                      <th>排序</th>
+                      <th>版本号</th>
+                      <th>参数值</th>
+                      <th>描述</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="text-align:center"><input type="checkbox"></td>
+                      <td>1</td>
+                      <td>B卡</td>
+                      <td>1</td>
+                      <td>11</td>
+                      <td></td>
+                      <td>小额支付</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><input type="checkbox"></td>
+                      <td>2</td>
+                      <td>A卡</td>
+                      <td>2</td>
+                      <td>11</td>
+                      <td></td>
+                      <td>公共服务</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><input type="checkbox"></td>
+                      <td>43</td>
+                      <td>管理充值卡</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>制卡中心客户参数</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div><!--/span-->
+        </div><!--/row-->
+      </div>
+
+
+      <footer>
+      </footer>
+
+    </div><!--/.container-->
+
+    <div id="myModal" class="modal fade" aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+            <h4 id="myModalLabel" class="modal-title">编辑</h4>
+          </div>
+          <div class="modal-body">            
+
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">卡类型名称</label>
+                <div class="col-sm-7">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="卡类型名称">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-3 control-label">排序</label>
+                <div class="col-sm-7">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="排序">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">版本号</label>
+                <div class="col-sm-7">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="版本号">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">参数</label>
+                <div class="col-sm-7">
+                <select class="form-control">
+                  <option>POS运行参数</option>
+                  <option>制卡中心启动参数</option>
+                  <option>制卡中心客户参数</option>
+                  <option>应用系统参数</option>
+                  <option>数据验证参数组</option>
+                </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">描述</label>
+                <div class="col-sm-7">
+                  <textarea class="form-control" rows="3" placeholder="描述"></textarea>
+                </div>
+              </div>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+            <button class="btn btn-primary" type="button">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/cdn/js/jquery/2.0.2/jquery.min.js"></script>
+    <script src="/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.min.js"></script>
+    <script src="offcanvas.js"></script>
+  </body>
+</html>

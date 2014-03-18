@@ -1,0 +1,257 @@
+<!-- -->
+<!DOCTYPE HTML>
+<HTML lang="zh-CN">
+	<HEAD>
+		<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<TITLE>框架</TITLE>
+		<link rel="STYLESHEET" type="text/css" href="/cdn/js/dhtmlx/3.6/dhtmlxTabbar/codebase/dhtmlxtabbar.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/dhtmlx/3.6/dhtmlxTree/codebase/dhtmlxtree.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/dhtmlx/3.6/dhtmlxAccordion/codebase/skins/dhtmlxaccordion_dhx_skyblue.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/dhtmlx/3.6/dhtmlxLayout/codebase/dhtmlxlayout.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/dhtmlx/3.6/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
+		<style type="text/css">
+			html{
+				_padding:103px 0 37px 0;
+				_overflow:hidden;
+				overflow:hidden;
+			}
+			html,body {
+				height:100%;
+				width:100%;
+				margin: 0;
+				padding: 0;
+				overflow:hidden;
+				_font-size: 12px;
+				_font-family:"宋体";
+			}
+			.fore #div_center {
+				width:100%;
+				overflow:hidden;
+				position:absolute;
+				z-index:20;
+				left:0;
+				top:65px;
+				bottom:29px;
+				_height:100%;
+			}
+			.fore #div_foot{
+				background:url("images/bg_cpyr.jpg") repeat-x scroll 0 0 transparent;
+				font-size:12px;
+				height:28px;
+				line-height:28px;
+				margin:0;
+				padding-right:5px;
+				text-align:right;
+				bottom: 0;
+				left: 0;
+				position: absolute;
+				width: 100%;
+				z-index: 110;
+			}
+			.fore #div_foot span{
+				margin-right:5px;
+			}
+			.fore #div_head{
+				background: #F6FCFE url("images/topbodybg.jpg") repeat-x left 0;
+				height:66px;
+				width:100%;
+				margin:-2px 0 0 0;
+				padding:0;
+				min-width: 960px;
+				z-index: 1110;				
+				position:absolute;
+			}
+			.fore #div_tree{
+				width:100%;
+				height:100%;
+			}
+			.fore .top_a a {
+				font-size: 12px;
+				color: #999;
+				text-decoration: none;
+			}
+			.fore .top_a a:hover {
+				color: #333;
+				text-decoration: underline;
+			}
+			.fore .top_a {
+				color: #999;
+				font-size: 12px;
+			}
+			.fore .quit_a a {
+				font-size: 12px;
+				color: #666;
+				text-decoration: none;
+			}
+			.fore .quit_a a:hover {
+				color: #333;
+				text-decoration: underline;
+			}
+			.fore .quit_a {
+				color: #666;
+				font-size: 12px;
+			}
+			.fore a.quit_a {
+				color: #ff6600;
+			}
+			.fore .top_logo {
+				background: url("images/topbg.jpg") no-repeat left top;
+				text-align: left;
+			}
+			.fore #div_loader {
+				padding: 0;
+				margin: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #ededed;
+				z-index: 9999;
+				vertical-align: middle;
+			}
+			.fore #div_loader div {
+				padding: 5px;
+				position: relative;
+				left: 0px;
+				top: 0px;
+				width: 175px;
+				background: #3c3;
+				color: #fff;
+				direction: ltr;
+				font-size:12px;
+			}
+		</style>		
+	<!--[if lt IE 8 ]>		 
+		<style>
+			.fore #div_center {
+				top:0; 
+				left:0;
+				height:100%; 
+				max-height:100%; 
+				width:100%; 
+				overflow:auto;
+				position:absolute; 
+				z-index:3; 
+				border-top:65px solid #fff; 
+				border-bottom:29px solid #fff;
+			}
+		</style>
+	<![endif]-->
+	</HEAD>
+	<BODY class="fore">
+		<div id="div_loader"><div>页面正在加载 ...</div></div>
+		<table id="div_head" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="top_logo">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="36%" height="66">&nbsp;</td>
+							<td width="25%" valign="top">&nbsp;</td>
+							<td width="39%" align="left">
+								<table width="100%" border="0" cellspacing="1" cellpadding="1">
+									<tr>
+										<td height="14" align="right" class="top_a">
+											<a href="javascript:void(0);" onclick="location.href='#page/welcomeUI.html'">首页</a>&nbsp;|
+											<a href="javascript:void(0);">语言设置</a>&nbsp;|
+											<a href="javascript:void(0);">皮肤设置</a>&nbsp;|
+											<a href="javascript:void(0);">修改密码</a>&nbsp;|
+											<a href="javascript:void(0);">使用帮助</a>&nbsp;|
+											<a href="javascript:void(0);" id="a_quit" class="quit_a" onclick="location.href='loginUI.html'">安全退出</a>
+										</td>
+										<td align="right">&nbsp;</td>
+									</tr>
+									<tr>
+										<td height="30" align="right" class="quit_a">系统管理员 上午好 工作辛苦了！</td>
+										<td align="right">&nbsp;</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<iframe id="ifr_mainTabs" frameborder="0" height="100%" width="100%" src=""></iframe>		
+		<div id="div_foot"><span>版权所有：郑州新开普电子股份有限公司</span></div>	
+		<div id="div_tree"></div>
+		<div id="div_center"></div>
+		<!--[if lt IE 10]> <script type="text/javascript" src="/cdn/js/html5shiv/3.6.2/html5.js"></script> <![endif]-->
+		<script type="text/javascript">
+		    var menuTree = [
+		    	{ModuleId: 1, PModuleId: 0, ModuleName: "平台管理"},
+		    	{ModuleId: 11, PModuleId: 1, ModuleName: "权限管理"},
+		    	{ModuleId: 12, PModuleId: 1, ModuleName: "用户管理"},
+		    	{ModuleId: 13, PModuleId: 1, ModuleName: "角色管理"},
+
+		    	{ModuleId: 2, PModuleId: 0, ModuleName: "资金清算平台"},
+		    	{ModuleId: 21, PModuleId: 2, ModuleName: "基础数据"},
+
+		    	{ModuleId: 4, PModuleId: 0, ModuleName: "运营管理平台"},
+		    	{ModuleId: 41, PModuleId: 4, ModuleName: "卡片管理"},
+		    	{ModuleId: 411, PModuleId: 41, ModuleName: "卡类型维护", ModuleUrl: "low/cardTypeSet/indexUI.html"},
+		    	{ModuleId: 412, PModuleId: 41, ModuleName: "卡参数设置", ModuleUrl: "low/cardParamSet/indexUI.html"},
+		    	{ModuleId: 51, PModuleId: 4, ModuleName: "客户管理"},
+		    	{ModuleId: 511, PModuleId: 51, ModuleName: "客户基本信息管理", ModuleUrl: "low/customerBaseInfo/indexUI.html"},
+		    	{ModuleId: 513, PModuleId: 51, ModuleName: "在线帐户信息管理", ModuleUrl: "low/customerInfoOnline/indexUI.html"},
+		    	{ModuleId: 512, PModuleId: 51, ModuleName: "卡帐户信息管理", ModuleUrl: "low/customerInfoCard/indexUI.html"},
+		    	{ModuleId: 514, PModuleId: 51, ModuleName: "圈存签约管理"},
+		    	{ModuleId: 5141, PModuleId: 514, ModuleName: "单个签约"},
+		    	{ModuleId: 5142, PModuleId: 514, ModuleName: "批量签约"},
+		    	{ModuleId: 5143, PModuleId: 514, ModuleName: "签约信息维护"},
+		    	{ModuleId: 515, PModuleId: 51, ModuleName: "客户信息查询"},
+		    	// {ModuleId: 5151, PModuleId: 515, ModuleName: "客户基本信息查询", ModuleUrl: "low/customerBaseInfoSearch/indexUI.html"},
+		    	{ModuleId: 5152, PModuleId: 515, ModuleName: "卡交易明细查询", ModuleUrl: "low/cardDealSearch/indexUI.html"},
+		    	// {ModuleId: 5153, PModuleId: 515, ModuleName: "在线帐户查询"},
+		    	{ModuleId: 5154, PModuleId: 515, ModuleName: "在线帐户交易明细", ModuleUrl: "low/cardOnlineDealSearch/indexUI.html"},
+		    	{ModuleId: 5155, PModuleId: 515, ModuleName: "卡异常交易查询", ModuleUrl: "low/cardExceptionSearch/indexUI.html"},
+
+		    	{ModuleId: 3, PModuleId: 0, ModuleName: "卡务平台"},
+		    	{ModuleId: 31, PModuleId: 3, ModuleName: "发卡"}
+
+		    ];
+			var	cdnPath = "/cdn/js/";
+			var dhxPath = "dhtmlx/3.6/";
+			var require = {
+				waitSeconds: 0,
+				urlArgs: "v="+ (new Date()).getTime(),
+				deps: [
+					cdnPath + dhxPath +"dhtmlxTabbar/codebase/dhtmlxcommon.js",
+					cdnPath + dhxPath +"dhtmlxTabbar/codebase/dhtmlxcontainer.js"
+				],
+				callback: function(){
+					//console.log(arguments);
+				}
+			};
+			var config = {
+				waitSeconds: 0,
+				locale: location.search.match(/locale=([\w\-]+)/) ? RegExp.$1 : "zh",
+				paths: {
+					jquery: cdnPath +"jquery/1.10.2/jquery.min",
+					i18n: cdnPath +"require/i18n",
+					underscore: cdnPath +"underscore/1.5.1/underscore.min",
+					backbone: cdnPath +"backbone/1.0.0/backbone.min",
+					dhtmlxtabbar: cdnPath + dhxPath +"dhtmlxTabbar/codebase/dhtmlxtabbar",
+					dhtmlxtree: cdnPath + dhxPath +"dhtmlxTree/codebase/dhtmlxtree",
+					dhtmlxtree_json: cdnPath + dhxPath +"dhtmlxTree/codebase/ext/dhtmlxtree_json",
+					dhtmlxaccordion: cdnPath + dhxPath +"dhtmlxAccordion/codebase/dhtmlxaccordion",
+					dhtmlxlayout: cdnPath + dhxPath +"dhtmlxLayout/codebase/dhtmlxlayout"
+				},
+				shim: {
+					dhtmlxtree_json: {
+						deps: ["dhtmlxtabbar","dhtmlxtree","dhtmlxaccordion"]
+					},
+					backbone: {
+                        deps: ["underscore"],
+                        exports: "Backbone"
+                    }
+				},
+				callback: function(){
+					//console.log(arguments);
+				}
+			};
+		</script>
+        <script data-main="indexUI" src="/cdn/js/require/2.1.6/require.js"></script>
+	</BODY>
+</HTML>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Off Canvas Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap-theme.min.css" media="screen">
+    <link rel="stylesheet" href="/cdn/js/bootstrap/3.0.3/docs-assets/css/docs.css" media="screen">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+
+	<!--[if lte IE 6]>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
+	<![endif]-->
+	<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
+	<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" role="navigation">
+      <ul class="breadcrumb">
+        <li><a href="javascript:void(0);" onclick="javascript:top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
+        <li class="active">运营管理管理</li>
+        <li class="active">客户管理</li>
+        <li><a href="javascript:void(0);" onclick="location.reload();">在线帐户信息管理</a></li>
+      </ul>
+    </div>
+
+    <div class="container col-sm-12">
+		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>提示：</strong>如果要查询某个在线帐户详细的基本信息，请选择查询条件。
+		</div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">在线帐户信息查询</h3>
+			</div>
+			<div class="panel-body">
+
+
+
+				<form class="form-inline" role="form">
+					<div class="form-group">						
+						<select class="form-control" id="certificateType">
+							<option value="0">证件号码</option>
+							<option value="1">市民卡号</option>
+							<option value="2">在线帐户</option>
+							<option value="3">电话号码</option>
+						</select>	
+					</div>
+					<div class="form-group">
+						
+						<select class="form-control" id="certificate">
+							<option value="0">身份证</option>
+							<option value="1">军官证</option>
+							<option value="2">护照</option>
+							<option value="3">其他证件</option>
+						</select>
+					</div>
+					<div class="form-group">
+                  		<input type="text" class="form-control" id="inputEmail3" placeholder="请输入号码" required autofocus>
+					</div>
+					<div class="form-group">
+                  		<input type="text" class="form-control" id="inputEmail3" placeholder="在线帐户" required autofocus>
+					</div>
+					<div class="form-group">
+                  		<input type="text" class="form-control" id="inputEmail3" placeholder="帐号" required autofocus>
+					</div>
+					<div class="form-group">
+                  		<input type="text" class="form-control" id="inputEmail3" placeholder="操作员" required autofocus>
+					</div>
+					<button type="submit" class="btn btn-default">查询</button>
+				</form>
+
+
+
+			</div>
+		</div>
+
+		<div class="row row-offcanvas row-offcanvas-right">
+	        
+
+	    	<div class="row-fluid">
+
+
+			        <div class="col-xs-11 col-sm-11">
+					    <div class="btn-group">
+						    <button class="btn btn-info">详细</button>
+						    <button class="btn btn-default">新增</button>
+						    <button class="btn btn-default" data-toggle="modal" data-target="#myModal">编辑</button>
+						    <button class="btn btn-warning">删除</button>
+						    <button class="btn btn-info">生成报表</button>
+					    </div>
+			        </div>
+
+
+			        <div class="col-xs-1 col-sm-1">
+						<div class="btn-group export" style="float:right !important">
+							<a class="dropdown-toggle btn btn-default btn-sm" href="#" data-toggle="dropdown">
+								<i class="icon-share"></i>
+								导出
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dLabel" role="menu">
+								<li>
+									<a data-target="#export-modal-xls" data-toggle="modal">
+										<i class="icon-circle-arrow-down"></i>
+										导出 报表
+									</a>
+								</li>
+								<li>
+									<a data-target="#export-modal-csv" data-toggle="modal">
+										<i class="icon-circle-arrow-down"></i>
+										导出 Excel
+									</a>
+								</li>
+								<li>
+									<a data-target="#export-modal-csv" data-toggle="modal">
+										<i class="icon-circle-arrow-down"></i>
+										导出 CSV
+									</a>
+								</li>
+								<li>
+									<a data-target="#export-modal-xml" data-toggle="modal">
+										<i class="icon-circle-arrow-down"></i>
+										导出 XML
+									</a>
+								</li>
+								<li>
+									<a data-target="#export-modal-json" data-toggle="modal">
+										<i class="icon-circle-arrow-down"></i>
+										导出 JSON
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+		        <div class="col-xs-12 col-sm-12">
+		        	<p></p>
+
+		            <div class="table-responsive">
+						<table class="table table-bordered table-hover table-condensed table-striped">
+							<thead>
+								<tr>
+									<th style="text-align:center"><input type="checkbox"></th>
+									<th>#</th>
+									<th>在线帐户</th>
+									<th>姓名</th>
+									<th>开户日期</th>
+									<th>证件类型</th>
+									<th>证件号码</th>
+									<th>账户余额</th>
+									<th>账户状态</th>
+									<th>开通方式</th>
+									<th>锁定时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="text-align:center"><input type="checkbox"></td>
+									<td>1</td>
+									<td>050300000011</td>
+									<td>张三</td>
+									<td>2013/12/11 10:50:57</td>
+									<td>身份证</td>
+									<td>443333333333333331</td>
+									<td>0</td>
+									<td>正常</td>
+									<td>随卡默认开通</td>
+									<td>2013/12/11 10:50:57</td>
+								</tr>
+								<tr>
+									<td style="text-align:center"><input type="checkbox"></td>
+									<td>2</td>
+									<td>050300000012</td>
+									<td>李四</td>
+									<td>2013/12/11 10:50:57</td>
+									<td>身份证</td>
+									<td>443333333333333332</td>
+									<td>110</td>
+									<td>正常</td>
+									<td>随卡默认开通</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td style="text-align:center"><input type="checkbox"></td>
+									<td>3</td>
+									<td>050300000013</td>
+									<td>王五</td>
+									<td>2013/12/11 10:50:57</td>
+									<td>身份证</td>
+									<td>443333333333333333</td>
+									<td>20</td>
+									<td>正常</td>
+									<td>随卡默认开通</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+
+
+		            </div>
+
+
+					<ul class="pagination" style="margin:0px">
+						<li>
+							<span>
+								<span class="text-success">373</span>
+								记录
+							</span>
+						</li>
+						<li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+						<li class="active"><a href="javascript:void(0);">1<span class="sr-only">(current)</span></a></li>
+						<li><a href="javascript:void(0);">2</a></li>
+						<li><a href="javascript:void(0);">3</a></li>
+						<li><a href="javascript:void(0);">4</a></li>
+						<li><a href="javascript:void(0);">5</a></li>
+						<li><a href="javascript:void(0);">&raquo;</a></li>
+					</ul>
+
+
+
+
+
+
+		        </div><!--/span-->
+			</div>
+		</div><!--/row-->
+
+		<footer></footer>
+
+    </div><!--/.container-->
+
+    <div id="myModal" class="modal fade" aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+		            <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+		            <h4 id="myModalLabel" class="modal-title">编辑</h4>
+				</div>
+				<div class="modal-body">
+		            <form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label">姓名</label>
+							<div class="col-sm-7">
+								<input type="email" class="form-control" id="inputEmail3" placeholder="姓名">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-3 control-label">出生日期</label>
+							<div class="col-sm-7">
+								<input type="email" class="form-control" id="inputEmail3" placeholder="出生日期">
+							</div>
+						</div>
+
+		              	<div class="form-group">
+		                	<label for="inputEmail3" class="col-sm-3 control-label">性别</label>
+		                	<div class="col-sm-7">
+								<div class="radio radio-inline">
+									<label>
+										<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>男
+									</label>
+								</div>
+								<div class="radio radio-inline">
+									<label>
+										<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">女
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+			                <label for="inputPassword3" class="col-sm-3 control-label">国籍</label>
+			                <div class="col-sm-7">
+								<select class="form-control" id="certificate">
+									<option value="100">亚洲 Asia</option>
+									<option value="101">阿富汗 Afghanistan</option>
+									<option value="102">巴林 Bahrian</option>
+									<option value="103">孟加拉国 Bangladesh</option>
+									<option value="104">不丹 Bhutan</option>
+									<option value="105">文莱 Brunei</option>
+									<option value="106">缅甸 Myanmar</option>
+									<option value="107">柬埔寨 Democratic Kampuchea</option>
+									<option value="108">塞浦路斯 Cyprus</option>
+									<option value="109">朝鲜 Korea Rep</option>
+									<option value="110">香港 Hong Kong</option>
+									<option value="111">印度 India</option>
+									<option value="112">印度尼西亚 Indonesia</option>
+									<option value="113">伊朗 Iran</option>
+									<option value="114">伊拉克 Iraq</option>
+									<option value="115">以色列 Israel</option>
+									<option value="116">日本 Japan</option>
+									<option value="117">约旦 Jordan</option>
+									<option value="118">科威特 Kuwait</option>
+									<option value="119">老挝 Laos  PDR</option>
+									<option value="120">黎巴嫩 Lebanon</option>
+									<option value="121">澳门 Macau</option>
+									<option value="122">马来西亚 Malaysia</option>
+									<option value="123">马尔代夫 Maldives</option>
+									<option value="124">蒙古 Mongolia</option>
+									<option value="125">尼泊尔 Nepal</option>
+									<option value="126">阿曼 Oman</option>
+									<option value="127">巴基斯坦 Pakistan</option>
+									<option value="128">巴勒斯坦 Palestine</option>
+									<option value="129">菲律宾 Philippines</option>
+									<option value="130">卡塔尔 Qatar</option>
+									<option value="131">沙特阿拉伯 Saudi Arabia</option>
+									<option value="132">新加坡 Singapore</option>
+									<option value="133">韩国 Korea Rep</option>
+									<option value="134">斯里兰卡 Sri Lanka</option>
+									<option value="135">叙利亚 Syrian Arab Rep.</option>
+									<option value="136">泰国 Thailand</option>
+									<option value="137">土耳其 Turkey</option>
+									<option value="138">阿拉伯联合酋长国 United Arab</option>
+									<option value="139">也门共和国 Yemen Rep</option>
+									<option value="141">越南 Vietnam</option>
+									<option value="142" selected>中华人民共和国 China</option>
+									<option value="143">台湾省 Taiwan prov</option>
+									<option value="199">亚洲其他 Oth、Asia、nes</option>
+									<option value="200">非洲 Africa</option>
+									<option value="201">阿尔及利亚 Algeria</option>
+									<option value="202">安哥拉 Angola</option>
+									<option value="203">贝宁 Benin</option>
+									<option value="204">博茨瓦那 Botswana</option>
+									<option value="205">布隆迪 Burundi</option>
+									<option value="206">喀麦隆 Cameroon</option>
+									<option value="207">加那利群岛 Canary Is</option>
+									<option value="208">佛得角 Cape Verde</option>
+									<option value="209">中非 Central African Rep.</option>
+									<option value="210">塞卜泰(休达) Ceuta</option>
+									<option value="211">乍得 Chad</option>
+									<option value="212">科摩罗 Comoros</option>
+									<option value="213">刚果 Congo</option>
+									<option value="214">吉布提 Djibouti</option>
+									<option value="215">埃及 Egypt</option>
+									<option value="216">赤道几内亚 Eq. Guinea</option>
+									<option value="217">埃塞俄比亚 Ethiopia</option>
+									<option value="218">加蓬 Gabon</option>
+									<option value="219">冈比亚 Gambia</option>
+									<option value="220">加纳 Ghana</option>
+									<option value="221">几内亚 Guinea</option>
+									<option value="222">几内亚(比绍) Guineabissau</option>
+									<option value="223">科特迪瓦 Cote dlvoir</option>
+									<option value="224">肯尼亚 Kenya</option>
+									<option value="225">利比里亚 Liberia</option>
+									<option value="226">利比亚 Libyan Arab Jm</option>
+									<option value="227">马达加斯加 Madagascar</option>
+									<option value="228">马拉维 Malawi</option>
+									<option value="229">马里 Mali</option>
+									<option value="230">毛里塔尼亚 Mauritania</option>
+									<option value="231">毛里求斯 Mauritius</option>
+									<option value="232">摩洛哥 Morocco</option>
+									<option value="233">莫桑比克 Mozambique</option>
+									<option value="234">纳米比亚 Namibia</option>
+									<option value="235">尼日尔 Niger</option>
+									<option value="236">尼日利亚 Nigeria</option>
+									<option value="237">留尼汪 Reunion</option>
+									<option value="238">卢旺达 Rwanda</option>
+									<option value="239">圣多美和普林西比 Sao Tome</option>
+									<option value="240">塞内加尔 Senegal</option>
+									<option value="241">塞舌尔 Seychelles</option>
+									<option value="242">塞拉利昂 Sierra Leone</option>
+									<option value="243">索马里 Somalia</option>
+									<option value="244">南非 S.Africa</option>
+									<option value="245">西撒哈拉 Western Sahara</option>
+									<option value="246">苏丹 Sudan</option>
+									<option value="247">坦桑尼亚 Tanzania</option>
+									<option value="248">多哥 Togo</option>
+									<option value="249">突尼斯 Tunisia</option>
+									<option value="250">乌干达 Uganda</option>
+									<option value="251">布基纳法索 Burkina Faso</option>
+									<option value="252">扎伊尔 Zaire</option>
+									<option value="253">赞比亚 Zambia</option>
+									<option value="254">津巴布韦 Zimbabwe</option>
+									<option value="255">莱索托 Lesotho</option>
+									<option value="256">梅利利亚 Melilla</option>
+									<option value="257">斯威士兰 Swaziland</option>
+									<option value="258">厄立特里亚 Eritrea</option>
+									<option value="299">非洲其他 Oth.Afr.nes</option>
+									<option value="300">欧洲 Europe</option>
+									<option value="301">比利时 Belgium</option>
+									<option value="302">丹麦 Denmark</option>
+									<option value="303">英国 United Kingdom</option>
+									<option value="304">德意志联邦共和国 Germany</option>
+									<option value="305">法国 France</option>
+									<option value="306">爱尔兰 Ireland</option>
+									<option value="307">意大利 Italy</option>
+									<option value="308">卢森堡 Luxembourg</option>
+									<option value="309">荷兰 Netherlands</option>
+									<option value="310">希腊 Greece</option>
+									<option value="311">葡萄牙 Portugal</option>
+									<option value="312">西班牙 Spain</option>
+									<option value="313">阿尔巴尼亚 Albania</option>
+									<option value="314">安道尔 Andorra</option>
+									<option value="315">奥地利 Austria</option>
+									<option value="316">保加利亚 Bulgaria</option>
+									<option value="318">芬兰 Finland</option>
+									<option value="320">直布罗陀 Gibraltar</option>
+									<option value="321">匈牙利 Hungary</option>
+									<option value="322">冰岛 Iceland</option>
+									<option value="323">列支敦士登 Liechtenstein</option>
+									<option value="324">马耳他 Malta</option>
+									<option value="325">摩纳哥 Monaco</option>
+									<option value="326">挪威 Norway</option>
+									<option value="327">波兰 Poland</option>
+									<option value="328">罗马尼亚 Romania</option>
+									<option value="329">圣马力诺 San Marino</option>
+									<option value="330">瑞典 Sweden</option>
+									<option value="331">瑞士 Switzerland</option>
+									<option value="334">爱沙尼亚 Estonia</option>
+									<option value="335">拉脱维亚 Latvia</option>
+									<option value="336">立陶宛 Lithuania</option>
+									<option value="337">格鲁吉亚 Georgia</option>
+									<option value="338">亚美尼亚 Armenia</option>
+									<option value="339">阿塞拜疆 Azerbaijan</option>
+									<option value="340">白俄罗斯 Belorussia</option>
+									<option value="341">哈萨克斯坦 Kazakhstan</option>
+									<option value="342">吉尔吉斯 Kirghizia</option>
+									<option value="343">摩尔多瓦 Moldavia</option>
+									<option value="344">俄罗斯 Russia</option>
+									<option value="345">塔吉克斯坦 Tadzhikistan</option>
+									<option value="346">土库曼斯坦 Turkmenistan</option>
+									<option value="347">乌克兰 Ukraine</option>
+									<option value="348">乌兹别克斯坦 Uzbekstan</option>
+									<option value="349">南斯拉夫联盟共和国 Yugoslavi</option>
+									<option value="350">斯洛文尼亚共和国 Slovenia Re</option>
+									<option value="351">克罗地亚共和国 Croatia Rep</option>
+									<option value="352">捷克共和国 Czech Rep</option>
+									<option value="353">斯洛伐克共和国 Slovak Rep</option>
+									<option value="354">前南斯拉夫马其顿共和国 Maced</option>
+									<option value="355">波斯尼亚-黑塞哥维那共和国 Bo</option>
+									<option value="399">欧洲其他 Oth.Eur.nes</option>
+									<option value="400">拉丁美洲 Latin America</option>
+									<option value="401">安提瓜和巴布达 Antigua Bar</option>
+									<option value="402">阿根廷 Argentina</option>
+									<option value="403">阿鲁巴岛 Aruba</option>
+									<option value="404">巴哈马 Bahamas</option>
+									<option value="405">巴巴多斯 Barbados</option>
+									<option value="406">伯利兹 Belize</option>
+									<option value="408">玻利维亚 Bolivia</option>
+									<option value="409">博内尔 Bonaire</option>
+									<option value="410">巴西 Brazil</option>
+									<option value="411">开曼群岛 Cayman Is</option>
+									<option value="412">智利 Chile</option>
+									<option value="413">哥伦比亚 Colombia</option>
+									<option value="414">多米尼加 Dominica</option>
+									<option value="415">哥斯达黎加 Costa Rica</option>
+									<option value="416">古巴 Cuba</option>
+									<option value="417">库腊索岛 Curacao</option>
+									<option value="418">多米尼加共和国 Dominican Rep</option>
+									<option value="419">厄瓜多尔 Ecuador</option>
+									<option value="420">法属圭亚那 French Guyana</option>
+									<option value="421">格林纳达 Grenada</option>
+									<option value="422">瓜德罗普 Guadeloupe</option>
+									<option value="423">危地马拉 Guatemala</option>
+									<option value="424">圭亚那 Guyana</option>
+									<option value="425">海地 Haiti</option>
+									<option value="426">洪都拉斯 Honduras</option>
+									<option value="427">牙买加 Jamaica</option>
+									<option value="428">马提尼克 Martinique</option>
+									<option value="429">墨西哥 Mexico</option>
+									<option value="430">蒙特塞拉特 Montserrat</option>
+									<option value="431">尼加拉瓜 Nicaragua</option>
+									<option value="432">巴拿马 Panama</option>
+									<option value="433">巴拉圭 Paraguay</option>
+									<option value="434">秘鲁 Peru</option>
+									<option value="435">波多黎各 Puerto Rico</option>
+									<option value="436">萨巴 Saba</option>
+									<option value="437">圣卢西亚 Saint Lucia</option>
+									<option value="438">圣马丁岛 Saint Martin</option>
+									<option value="439">圣文森特和格林纳丁斯 S. Vinc</option>
+									<option value="440">萨尔瓦多 El Salvador</option>
+									<option value="441">苏里南 Suriname</option>
+									<option value="442">特立尼达和多巴哥 Trinidad</option>
+									<option value="443">特克斯和凯科斯群岛 Turks</option>
+									<option value="444">乌拉圭 Uruguay</option>
+									<option value="445">委内瑞拉 Venezuela</option>
+									<option value="446">英属维尔京群岛 Br. Virgin Is</option>
+									<option value="447">圣其茨--尼维斯 St. Kitts-Nev</option>
+									<option value="499">拉美洲其他 Oth.L.Amer.nes</option>
+									<option value="500">北美洲 North America</option>
+									<option value="501">加拿大 Canada</option>
+									<option value="502">美国 United States</option>
+									<option value="503">格陵兰 Greenland</option>
+									<option value="504">百慕大 Bermuda</option>
+									<option value="599">北美洲其 Oth.N.Amer.nes</option>
+									<option value="600">大洋洲 Oceania</option>
+									<option value="601">澳大利亚 Australia</option>
+									<option value="602">库克群岛 Cook Is</option>
+									<option value="603">斐济 Fiji</option>
+									<option value="604">盖比群岛 Gambier Is</option>
+									<option value="605">马克萨斯群岛 Marquesas Is</option>
+									<option value="606">瑙鲁 Nauru</option>
+									<option value="607">新喀里多尼亚 New Caledonia</option>
+									<option value="608">瓦努阿图 Vanuatu</option>
+									<option value="609">新西兰 New Zealand</option>
+									<option value="610">诺福克岛 Norfolk Is</option>
+									<option value="611">巴布亚新几内亚 Papua New Gui</option>
+									<option value="612">社会群岛 Society Is</option>
+									<option value="613">所罗门群岛 Solomon Is</option>
+									<option value="614">汤加 Tonga</option>
+									<option value="615">土阿莫土群岛 Tuamotu Is</option>
+									<option value="616">土布艾群岛 Tubai Is</option>
+									<option value="617">萨摩亚 Samoa</option>
+									<option value="618">基里巴斯 Kiribati</option>
+									<option value="619">图瓦卢 Tuvalu</option>
+									<option value="620">密克罗尼西亚联邦 Fed S Micro</option>
+									<option value="621">马绍尔群岛共和国 RP. Marshal</option>
+									<option value="622">贝劳共和国 Palau</option>
+									<option value="699">大洋洲其他 Oth.Ocean.nes</option>
+									<option value="701">国（地）别不详的 Country(reg</option>
+									<option value="702">联合国和其他国际组织 UN etc.</option>
+								</select>
+			                </div>
+						</div>
+						<div class="form-group">
+			                <label for="inputPassword3" class="col-sm-3 control-label">民族</label>
+			                <div class="col-sm-7">
+								<select class="form-control" id="certificate">
+									<option value="01">汉族</option>
+									<option value="02">蒙古族</option>
+									<option value="03">回族</option>
+									<option value="04">藏族</option>
+									<option value="05">维吾尔族</option>
+									<option value="06">苗族</option>
+									<option value="07">彝族</option>
+									<option value="08">壮族</option>
+									<option value="09">布依族</option>
+									<option value="10">朝鲜族</option>
+									<option value="11">满族</option>
+									<option value="12">侗族</option>
+									<option value="13">瑶族</option>
+									<option value="14">白族</option>
+									<option value="15">土家族</option>
+									<option value="16">哈尼族</option>
+									<option value="17">哈萨克族</option>
+									<option value="18">傣族</option>
+									<option value="19">黎族</option>
+									<option value="20">傈僳族</option>
+									<option value="21">佤族</option>
+									<option value="22">畲族</option>
+									<option value="23">高山族</option>
+									<option value="24">拉祜族</option>
+									<option value="25">水族</option>
+									<option value="26">东乡族</option>
+									<option value="27">纳西族</option>
+									<option value="28">景颇族</option>
+									<option value="29">柯尔克孜族</option>
+									<option value="30">土族</option>
+									<option value="31">达斡尔族</option>
+									<option value="32">仫佬族</option>
+									<option value="33">羌族</option>
+									<option value="34">布朗族</option>
+									<option value="35">撤拉族</option>
+									<option value="36">毛难族</option>
+									<option value="37">仡佬族</option>
+									<option value="38">锡伯族</option>
+									<option value="39">阿昌族</option>
+									<option value="40">普米族</option>
+									<option value="41">塔吉克族</option>
+									<option value="42">怒族</option>
+									<option value="43">乌孜别克族</option>
+									<option value="44">俄罗斯族</option>
+									<option value="45">鄂温克族</option>
+									<option value="46">崩龙族</option>
+									<option value="47">保安族</option>
+									<option value="48">裕固族</option>
+									<option value="49">京族</option>
+									<option value="50">塔塔尔族</option>
+									<option value="51">独龙族</option>
+									<option value="52">鄂伦春族</option>
+									<option value="53">赫哲族</option>
+									<option value="54">门巴族</option>
+									<option value="55">珞巴族</option>
+									<option value="56">基诺族</option>
+									<option value="97">其他</option>
+									<option value="98">外国血统</option>
+								</select>
+			                </div>
+						</div>
+						<div class="form-group">
+			                <label for="inputPassword3" class="col-sm-3 control-label">证件类型</label>
+			                <div class="col-sm-7">		
+								<select class="form-control" id="certificate">
+									<option value="0">身份证</option>
+									<option value="1">军官证</option>
+									<option value="2">护照</option>
+									<option value="3">其他证件</option>
+								</select>
+			                </div>
+						</div>
+						<div class="form-group">
+			                <label for="inputPassword3" class="col-sm-3 control-label">证件号码</label>
+			                <div class="col-sm-7">
+			                  <input type="email" class="form-control" id="inputEmail3" placeholder="证件号码">
+			                </div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+					<button class="btn btn-primary" type="button">保存</button>
+				</div>
+        	</div>
+		</div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/cdn/js/jquery/2.0.2/jquery.min.js"></script>
+    <script src="/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.min.js"></script>
+    <script src="offcanvas.js"></script>
+
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="js/bootstrap-ie.js"></script>
+	<![endif]-->
+
+    <script type="text/javascript">
+    	$(function(){
+
+    		$("#certificateType").on("change",function(arg1){
+    			if(0 == arg1.currentTarget.value){
+    				$("#certificate").css("display","");
+    			}else{
+    				$("#certificate").css("display","none");
+    			}
+    		});
+
+    	})
+    </script>
+  </body>
+</html>
