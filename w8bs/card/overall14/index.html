@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<title>OverAll</title>
+		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+	    <!-- Bootstrap -->
+	    <link rel="stylesheet" type="text/css" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap.min.css" media="screen">
+	    <link rel="stylesheet" type="text/css" href="/cdn/js/bootstrap/3.0.3/dist/css/bootstrap-theme.min.css" media="screen">
+
+		<!--[if lte IE 9]>
+		<link rel="stylesheet" type="text/css" href="/cdn/js/bsie/0.0.0/css/bootstrap-ie6.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/js/bsie/0.0.0/css/ie.css">
+		<link rel="stylesheet" type="text/css" href="/verybsie/css/bootstrap-verybsie.css">
+		<![endif]-->
+
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/verybsie/css/bootstrap-verybsie.css">
+		<![endif]-->
+		
+	    <!-- Olx -->
+	    <link rel="stylesheet" type="text/css" href="../../assets/css/olx/olx.css" media="screen">
+
+		<style>
+		.olx-table { font-size:12px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top" role="navigation">
+			<ul class="breadcrumb">
+				<div class="glyphicon glyphicon-home"></div><li>当前位置： <a href="javascript:void(0);" onClick="top.location.href='../indexUI.html#page/welcomeUI.html'">首页</a></li>
+				<li class="active">平台管理</li>
+				<li><a href="javascript:void(0);" onClick="location.reload()">菜单维护与管理</a></li>				
+			</ul>
+		</div>
+		<div class="container">
+			<div class="row">
+			  <div class="col-md-6">
+			  	<div id="info_alert" class="olx-titalert">
+					系统默认菜单设置
+				</div>
+				<div class="panel panel-default table-responsive olx-tablepan">
+ 					  <table id="table1" data-olx-type="olx.grid" class="table table-bordered table-hover table-condensed table-striped olx-table" data-url="grid_2.html" data-current="2" data-pagesize="20" data-count="561">
+                        <thead>
+                          <tr class="olx-thcolor">
+                            <th>应用包名称</th>
+                            <th>模块数</th>
+                            <th>操作</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>城市一卡通应用 </td>
+                            <td>45 </td>
+							<td><a href="">编辑</a></td>
+                          </tr>
+                         <tr>
+                            <td>城市一卡通应用 </td>
+                            <td>45 </td>
+							<td><a href="">编辑</a></td>
+                          </tr>
+                         <tr>
+                            <td>城市一卡通应用 </td>
+                            <td>45 </td>
+							<td><a href="">编辑</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+ 					</div>
+					<div id="info_alert" class="olx-titalert">
+					客户菜单设置
+				    </div>
+					<div class="panel panel-default table-responsive olx-tablepan">
+ 					  <table id="table1" data-olx-type="olx.grid" class="table table-bordered table-hover table-condensed table-striped olx-table" data-url="grid_2.html" data-current="2" data-pagesize="20" data-count="561">
+                        <thead>
+                          <tr class="olx-thcolor">
+                            <th>应用包名称</th>
+                            <th>模块数</th>
+                            <th>操作</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>城市一卡通应用 </td>
+                            <td>45 </td>
+							<td><a href="">编辑</a></td>
+                          </tr>
+                         <tr>
+                            <td>城市一卡通应用 </td>
+                            <td>45 </td>
+							<td><a href="">编辑</a></td>
+                          </tr>
+                         <tr>
+                            <td>城市一卡通应用 </td>
+                            <td>45 </td>
+							<td><a href="">编辑</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+ 					</div>
+			  </div>
+			  <div class="col-md-6">
+			  	<div id="info_alert" class="olx-titalert">
+					菜单加载编辑区域
+				    </div>
+			  	<div class="bs-example">
+                  城市一卡通应用包
+               </div>
+			  </div>
+			</div>		
+	</div>
+		<div class="modal fade" id="delConfirmModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"><b>警告</b></h4>
+					</div>
+					<div class="modal-body">
+						<p>你确认执行该删除操作吗？</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="delConfirmModal_btn_submit">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="delAlertModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"><b>提示</b></h4>
+					</div>
+					<div class="modal-body">
+						<p>请选择需要删除的记录！</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="editAlertModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"><b>提示</b></h4>
+					</div>
+					<div class="modal-body">
+						<p>请选择一条需要编辑的记录！</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Bootstrap -->
+		<script type="text/javascript" src="/cdn/js/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="/cdn/js/bootstrap/3.0.3/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/cdn/js/underscore/1.5.1/underscore.min.js"></script>
+
+		<!-- Olx -->
+		<script type="text/javascript" src="/olxjs/js/olx.js?v12"></script>
+
+		<!--[if lte IE 9]>
+			<script type="text/javascript" src="/cdn/js/html5shiv/3.7.0/html5shiv.js"></script>
+			<script type="text/javascript" src="/cdn/js/respond/1.3.0/respond.min.js"></script>
+		<![endif]-->
+
+		<!--[if lte IE 7]>
+		<script type="text/javascript" src="/verybsie/js/bootstrap-verybsie.js"></script>
+		<![endif]-->
+
+		<!-- Own -->
+		<script type="text/javascript" src="index.js"></script>
+
+	</body>
+</html>
