@@ -1,5 +1,59 @@
 @import "../default.less";
 
+body {
+	#banner {
+
+	}
+
+	#header {
+		margin-top: 70px;
+	}
+
+	#footer {
+		border-top: 1px solid #E5E5E5;
+		margin-top: 20px;
+	    padding-bottom: 30px;
+	    padding-top: 10px;
+	    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
+
+	    >div {
+		    >div {
+				p {
+					margin-bottom: 0;
+
+				    a {
+						color: #CC0000;
+						font-weight: bold;
+				    }
+				}
+
+				p:last-child {
+				    a {
+						color: black;
+				    }
+				}
+		    }
+
+			>div:first-child {
+				float: left;
+			}
+
+			>div:last-child {
+				float: right;
+			}
+	    }
+	}
+
+	#qrcode {
+		margin-bottom: 20px;
+
+		img {
+			width: 100px;
+			height: 100px
+		}
+	}
+}
+
 .clearfix {
 	clear: both;
 }
@@ -364,48 +418,6 @@ a {
 
 a:hover {
 	text-decoration: none;
-}
-
-#header {
-	margin-top: 70px;
-}
-
-#banner {
-}
-
-#footer {
-	border-top: 1px solid #E5E5E5;
-	margin-top: 20px;
-    padding-bottom: 30px;
-    padding-top: 10px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
-
-    >div {
-	    >div {
-			p {
-				margin-bottom: 0;
-
-			    a {
-			    	color: #CC0000;
-			    	font-weight: bold;
-			    }
-			}
-
-			p:last-child {
-			    a {
-			    	color: black;
-			    }
-			}
-	    }
-
-		>div:first-child {
-			float: left;
-		}
-
-		>div:last-child {
-			float: right;
-		}
-    }
 }
 
 #comments {
@@ -891,15 +903,6 @@ a:hover {
 		display: block;
 		height: 0;
 		visibility: hidden;
-	}
-}
-
-#qrcode {
-	margin-bottom: 20px;
-
-	img {
-		width: 100px;
-		height: 100px
 	}
 }
 
