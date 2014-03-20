@@ -7,7 +7,7 @@
 		    #foreach($top10ViewNum in $top10ViewNums)<li class="list-group-item">					
 		        <span class="badge">$top10ViewNum.ViewNums</span>
 			    <a href="${virtualPath}archive/${top10ViewNum.Id}.html" title="$top10ViewNum.ArticleTitle">
-			        <div>$top10ViewNum.ArticleTitle</div>
+			        <div class="olx-text-ellipsis">$top10ViewNum.ArticleTitle</div>
                 </a>						        	
 			</li>
 			#end
