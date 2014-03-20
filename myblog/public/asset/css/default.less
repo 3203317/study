@@ -45,6 +45,27 @@ body {
 		color: #FFFFFF;
 		transition: all 0.25s ease-in-out 0s;
 	}
+
+	.love-thumbnail {
+		font-size: 12px;
+
+		a {
+			font-size: 12px;
+		}
+
+		>div {
+			overflow: hidden;
+
+			>p:first-child {
+				a {
+					color: #D2322D
+				}
+				a:hover, a:focus {
+					text-decoration: underline
+				}
+			}
+		}
+	}
 }
 
 .clearfix {
@@ -145,6 +166,11 @@ a:hover {
 			}
 		}
 	}
+}
+
+.center-alert {
+	text-align: center;
+	font-size: 12px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1010px) {
