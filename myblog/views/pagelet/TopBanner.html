@@ -69,8 +69,12 @@
 					<a href="${virtualPath}user/login">登陆</a>
 				</li>
 			</ul>
-
-			#parse('pagelet/TopSearchForm.html')
+			<form id="banner_searchForm" class="navbar-form navbar-right" role="search" data-olx-type="olx.form">
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="搜索">
+				</div>
+				<button class="btn btn-default" type="submit"><div class="glyphicon glyphicon-search"></div></button>
+			</form>
 		</div>
 	</div>
 </div>
