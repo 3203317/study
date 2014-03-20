@@ -1,2 +1,3 @@
-#foreach($usefulLink in $usefulLinks)<a target="_blank" href="$usefulLink.LinkUrl" title="$usefulLink.LinkName" class="list-group-item olx-list-group-item">$usefulLink.LinkName</a>
-#end
+<div id="usefulLinks" class="list-group">
+#foreach($usefulLink in $usefulLinks)<a target="_blank" href="$usefulLink.LinkUrl" title="$usefulLink.LinkName" class="list-group-item">$usefulLink.LinkName</a>
+#end</div>

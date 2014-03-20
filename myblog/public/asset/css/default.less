@@ -33,6 +33,12 @@ body {
 		color: #FFFFFF;
 	}
 
+	#usefulLinks {
+		>a {
+			border: 0;
+		}
+	}
+
 	#loadMore:hover, #loadMore:focus, #loadMore:active {
 		background-color: #D2322D;
 		border-color: #AC2925;
@@ -120,6 +126,25 @@ a:hover {
 
 .panel-title {
 	font-size: 14px
+}
+
+.olx-panel {
+	.panel-body {
+		padding: 0;
+
+		.list-group {
+			margin-bottom: 0;
+
+			.list-group-item {
+				border-left: 0 none;
+				border-right: 0 none;
+				border-bottom: 0 none;
+			}
+			.list-group-item:first-child {
+				border-top: 0 none;
+			}
+		}
+	}
 }
 
 @media screen and (min-width: 768px) and (max-width: 1010px) {
