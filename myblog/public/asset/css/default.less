@@ -5,16 +5,16 @@ body, h1, h2, h3, h4, h5, h6 {
 body {
 	background: url("images/bg.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
 
-	#backTop:before {
-		content: "\e113";
-	}
-
 	#backTop {
+		&:before {
+			content: "\e113";
+		}
+
 		display: inline-block;
 		font-family: "Glyphicons Halflings";
 		font-style: normal;
 		font-weight: normal;
-		line-height: 1;
+		line-height: 1px;
 		bottom: 50px;
 		color: #3D4450;
 		cursor: pointer;
@@ -37,13 +37,13 @@ body {
 		background-color: #3D4450;
 		border-color: #080808;
 		color: #FFFFFF;
-	}
 
-	#loadMore:hover, #loadMore:focus, #loadMore:active {
-		background-color: #D2322D;
-		border-color: #AC2925;
-		color: #FFFFFF;
-		transition: all 0.25s ease-in-out 0s;
+		&:hover, &:focus, &:active {
+			background-color: #D2322D;
+			border-color: #AC2925;
+			color: #FFFFFF;
+			transition: all 0.25s ease-in-out 0s;
+		}
 	}
 
 	.love-thumbnail {
@@ -58,10 +58,11 @@ body {
 
 			>p:first-child {
 				a {
-					color: #D2322D
-				}
-				a:hover, a:focus {
-					text-decoration: underline
+					color: #D2322D;
+
+					&:hover, &:focus {
+						text-decoration: underline;
+					}
 				}
 			}
 		}
@@ -94,12 +95,12 @@ body {
 .flexslider {
 	border: 1px solid #DDDDDD;
 	padding: 5px;
-	background-color: #E3E3E3
-}
+	background-color: #E3E3E3;
 
-.flexslider:hover {
-	background-color: #D43F3A;
-	opacity: 0.8
+	&:hover {
+		background-color: #D43F3A;
+		opacity: 0.8;
+	}
 }
 
 .content-frame {
@@ -158,10 +159,10 @@ body {
 
 a {
 	text-decoration: none;
-}
 
-a:hover {
-	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
 }
 
 .panel-title {
