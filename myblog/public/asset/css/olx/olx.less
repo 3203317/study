@@ -18,18 +18,27 @@ body {
 	}
 
 	#articleIntros {
+		.flexslider {
+			border: 1px solid #DDDDDD;
+			padding: 5px;
+			background-color: #E3E3E3;
 
+			&:hover {
+				background-color: #D43F3A;
+				opacity: 0.8;
+			}
+		}
 	}
 
-	#archives_acc, #tags_acc {
+	#archiveList, #tagList {
 		margin-bottom: 10px;
 
 		a {
 			color: #B94A48;
-		}
 
-		a:hover, a:focus {
-			text-decoration: underline;
+			&:hover, &:focus {
+				text-decoration: underline;
+			}
 		}
 
 		p {
@@ -230,11 +239,11 @@ body {
 	font-size: 12px;
 
 	a {
-		color: #64A765
-	}
+		color: #64A765;
 
-	a:focus, a:hover {
-		text-decoration: underline
+		&:focus, &:hover {
+			text-decoration: underline;
+		}
 	}
 }
 
