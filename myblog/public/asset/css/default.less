@@ -56,12 +56,14 @@ body {
 		>div {
 			overflow: hidden;
 
-			>p:first-child {
-				a {
-					color: #D2322D;
+			>p {
+				&:first-child {
+					a {
+						color: #D2322D;
 
-					&:hover, &:focus {
-						text-decoration: underline;
+						&:hover, &:focus {
+							text-decoration: underline;
+						}
 					}
 				}
 			}
@@ -73,16 +75,38 @@ body {
 
 			.comment-post {
 
-				.tool:hover, .tool:focus {
-					color: #555555 !important;
+				.tool {
+					&:hover, &:focus {
+						color: #555555 !important;
 
-					span {
-						opacity: 1 !important;
+						span {
+							opacity: 1 !important;
+						}
 					}
 				}
+
 				.hideme {
 					display: none;
 				}
+			}
+		}
+	}
+
+	.content-frame {
+		background-color: #FFFFFF;
+		border-radius: 4px;
+		box-shadow: 0 0 2px #C2C2C2;
+		margin-bottom: 30px;
+		min-height: 20px;
+		padding: 19px;
+		position: relative;
+		border: 1px solid #DDDDDD;
+
+		.breadcrumb {
+			font-size: 12px;
+
+			a {
+				color: #D2322D;
 			}
 		}
 	}
@@ -103,25 +127,6 @@ body {
 	}
 }
 
-.content-frame {
-	background-color: #FFFFFF;
-	border-radius: 4px;
-	box-shadow: 0 0 2px #C2C2C2;
-	margin-bottom: 30px;
-	min-height: 20px;
-	padding: 19px;
-	position: relative;
-	border: 1px solid #DDDDDD;
-
-	.breadcrumb {
-		font-size: 12px;
-
-		a {
-			color: #D2322D;
-		}
-	}
-}
-
 .olx-list-group {
 	li {
 		a {
@@ -129,13 +134,15 @@ body {
 			div {
 				padding-right: 10px;
 			}
+
+			&:hover, &:focus {
+				color: #D9534F;
+			}
 		}
-	}
-	li:hover, li:focus {
-		background-color: #F5F5F5;
-	}
-	a:hover, a:focus {
-		color: #D9534F
+
+		&:hover, &:focus {
+			background-color: #F5F5F5;
+		}
 	}
 }
 
@@ -166,7 +173,7 @@ a {
 }
 
 .panel-title {
-	font-size: 14px
+	font-size: 14px;
 }
 
 .olx-panel {
@@ -180,9 +187,10 @@ a {
 				border-left: 0 none;
 				border-right: 0 none;
 				border-bottom: 0 none;
-			}
-			.list-group-item:first-child {
-				border-top: 0 none;
+
+				&:first-child {
+					border-top: 0 none;
+				}
 			}
 		}
 	}
@@ -194,7 +202,7 @@ a {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1010px) {
-	#banner_searchForm {
+	#bannerSearchForm {
 		display: none;
 	}
 }
@@ -211,8 +219,10 @@ a {
 @media screen and (max-width: 800px) {
 	#footer {
 		>div {
-			>div:last-child {
-				float: left;
+			>div {
+				&:last-child {
+					float: left !important;
+				}
 			}
 		}
 	}
