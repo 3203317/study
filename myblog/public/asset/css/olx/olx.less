@@ -57,22 +57,22 @@ body {
 						color: #CC0000;
 						font-weight: bold;
 				    }
+
+					&:last-child {
+						a {
+							color: black;
+						}
+					}
 				}
 
-				p:last-child {
-				    a {
-						color: black;
-				    }
+				&:first-child {
+					float: left;
+				}
+
+				&:last-child {
+					float: right;
 				}
 		    }
-
-			>div:first-child {
-				float: left;
-			}
-
-			>div:last-child {
-				float: right;
-			}
 	    }
 	}
 
@@ -86,7 +86,7 @@ body {
 	}
 }
 
-.olx-nav-pills > li > a {
+.nav-pills > li > a {
 	padding: 8px 15px;
 }
 
