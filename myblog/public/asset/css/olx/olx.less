@@ -144,11 +144,11 @@ body {
 
 				>a {
 					color: #555555;
-				}
 
-				>a:hover {  
-					color: #D9534F;
-					transition: all 0.25s ease-in-out 0s;
+					&:hover {
+						color: #D9534F;
+						transition: all 0.25s ease-in-out 0s;
+					}
 				}
 			}
 		}
@@ -166,17 +166,17 @@ body {
 				a {
 					color: #FFFFFF;
 				}
-			}
 
-			.olx-label:hover {
-				background-color: #D9534F;
-				transition: all 0.25s ease-in-out 0s;
+				&:hover {
+					background-color: #D9534F;
+					transition: all 0.25s ease-in-out 0s;
+				}
 			}
 		}
 
 		.content-article {
 			.thumbnail {
-				-moz-box-sizing: border-box;				
+				-moz-box-sizing: border-box;
 				float: left;
 				width: 100%;
 				padding: 0;
@@ -191,11 +191,11 @@ body {
 					margin-left: auto;
 					margin-right: auto;
 					transition: all 0.2s ease-in-out 0s;
-				}
 
-				img:hover {
-					opacity: 0.8;
-					border: 5px solid #D9534F;
+					&:hover {
+						opacity: 0.8;
+						border: 5px solid #D9534F;
+					}
 				}
 			}
 
@@ -261,36 +261,39 @@ body {
 
 	#comments_info {
 
-		>div:first-child {
-			float: left;
+		>div {
+			&:first-child {
+				float: left;
 
-			.btn {
-				font-size: 12px;
-			}
-			.btn-default {
-				span {
-					color: red
+				.btn {
+					font-size: 12px;
+				}
+				.btn-default {
+					span {
+						color: red;
+					}
 				}
 			}
-		}
-		>div:last-child {
-			float: right;
-			line-height: 31px;
+			&:last-child {
+				float: right;
+				line-height: 31px;
 
-			.a-default {
-				color: #999999
-			}
-			.a-default:hover {
-				color: #333333
-			}
-			.a-active {
-				color: #DD3322;
-			}
+				.a-default {
+					color: #999999;
 
-			a {
-				margin: 0 2px;
+					&:hover {
+						color: #333333;
+					}
+				}
+				.a-active {
+					color: #DD3322;
+				}
+
+				a {
+					margin: 0 2px;
+				}
 			}
-		}
+		}		
 	}
 	
 	#comment_posts {
