@@ -224,3 +224,4 @@ myblog/views/pagelet/articleIntros.top10.html
 myblog/views/pagelet/tagList.html
 myblog/views/pagelet/archiveList.html
 myblog/public/asset/css/default.css
+myblog/node_modules/
