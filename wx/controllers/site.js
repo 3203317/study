@@ -8,12 +8,6 @@ var fs = require('fs'),
 	qs = require('querystring'),
 	velocity = require('velocityjs');
 
-var Comment = require('../biz/comment'),
-	Link = require('../biz/link'),
-	Article = require('../biz/article'),
-	Tag = require('../biz/tag'),
-	Category = require('../biz/category');
-
 var title = 'FOREWORLD 洪荒',
 	virtualPath = '/';
 

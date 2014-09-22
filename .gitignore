@@ -225,3 +225,4 @@ myblog/views/pagelet/tagList.html
 myblog/views/pagelet/archiveList.html
 myblog/public/asset/css/default.css
 myblog/node_modules/
+wx/node_modules/
