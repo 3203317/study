@@ -40,6 +40,8 @@ var UserSchema = new Schema({
 		type: String
 	}, SecKey: {			// 密钥
 		type: String
+	}, Company_Id: {
+		type: ObjectId
 	}
 }, {
 	versionKey: false,

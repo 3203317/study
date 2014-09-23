@@ -2,14 +2,14 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var LinkSchema = new Schema({
-	LinkName: {
+var CompanySchema = new Schema({
+	CompName: {
 		type: String
-	}, LinkUrl: {
+	}, CompDesc: {
 		type: String
-	}, Sort: {			// 排序
-		type: Number
-	}, User_Id: {		// 用户Id
+	}, Email: {
+		type: String
+	}, User_Id: {
 		type: ObjectId
 	}
 }, {
@@ -21,8 +21,8 @@ var LinkSchema = new Schema({
 	}
 });
 
-LinkSchema.virtual('PostTime').get(function(){
+CompanySchema.virtual('PostTime').get(function(){
 	return this._id.getTimestamp();
 });
 
-mongoose.model('Link', LinkSchema);
+mongoose.model('Company', CompanySchema);
