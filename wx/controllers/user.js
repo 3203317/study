@@ -4,11 +4,7 @@ var conf = require('../settings'),
 var title = 'FOREWORLD 洪荒',
 	virtualPath = '/';
 
-var User = require('../biz/user'),
-	Link = require('../biz/link'),
-	Category = require('../biz/category'),
-	Comment = require('../biz/comment'),
-	Article = require('../biz/article');
+var User = require('../biz/user');
 
 exports.loginUI = function(req, res, next){
 	res.render('user/Login', {

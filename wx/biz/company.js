@@ -1,16 +1,16 @@
 var models = require('../models'),
 	User = models.User,
-	Link = models.Link;
+	Company = models.Company;
 
 /**
- * 保存新文章
+ * 保存新
  *
  * @params {Object} newInfo
  * @params {Function} cb
  * @return
  */
 exports.saveNew = function(newInfo, cb){
-	Link.create(newInfo, function (err, doc){
+	Company.create(newInfo, function (err, doc){
 		if(err) return cb(err);
 		cb(null, 0, null, doc);
 	});

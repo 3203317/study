@@ -20,7 +20,7 @@ mongoose.connect(url, function (err){
 require('./User');
 require('./Article');
 require('./Comment');
-require('./Link');
+require('./Company');
 require('./Category');
 require('./Tag');
 require('./Manager');
@@ -28,7 +28,7 @@ require('./Manager');
 exports.User = mongoose.model('User');
 exports.Article = mongoose.model('Article');
 exports.Comment = mongoose.model('Comment');
-exports.Link = mongoose.model('Link');
+exports.Company = mongoose.model('Company');
 exports.Category = mongoose.model('Category');
 exports.Tag = mongoose.model('Tag');
 exports.Manager = mongoose.model('Manager');

@@ -1,4 +1,5 @@
-var site = require('../controllers/site');
+var site = require('../controllers/site'),
+	user = require('../controllers/user');
 
 var virtualPath = '',
 	title = 'FOREWORLD 洪荒',
@@ -7,6 +8,8 @@ var virtualPath = '',
 module.exports = function(app){
 	app.get('/index.html$', site.indexUI);
 	app.get('/', site.indexUI);
+
+	app.get('/user/login$', user.loginUI);
 };
 
 /**
